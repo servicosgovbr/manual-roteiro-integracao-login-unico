@@ -13,6 +13,7 @@ Roteiro de Integração do Brasil Cidadão
    contexto
    introducao
    arquiteturaservicosprotocolo
+   escopoatributos
 
 
 Indices and tables
