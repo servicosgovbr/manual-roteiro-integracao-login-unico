@@ -14,6 +14,7 @@ Roteiro de Integração do Brasil Cidadão
    introducao
    arquiteturaservicosprotocolo
    escopoatributos
+   niveisautenticacao 
 
 
 Indices and tables
