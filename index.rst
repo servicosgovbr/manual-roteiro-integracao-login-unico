@@ -16,7 +16,14 @@ Roteiro de Integração do Brasil Cidadão
    escopoatributos
    niveisautenticacao
    seloconfiabilidadecadastral
-   lancadordeservicos    
+   lancadordeservicos
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Informações Técnicas para Integração
+
+   iniciarintegracao
+   
 
 
 Indices and tables
