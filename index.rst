@@ -14,7 +14,8 @@ Roteiro de Integração do Brasil Cidadão
    introducao
    arquiteturaservicosprotocolo
    escopoatributos
-   niveisautenticacao 
+   niveisautenticacao
+   seloconfiabilidadecadastral   
 
 
 Indices and tables
