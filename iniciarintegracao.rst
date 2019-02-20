@@ -43,6 +43,8 @@ Exemplo de requisição:
 
 5. Para obter o *token* e o *access_token*, o consumidor deve fazer uma requisição POST para o endereço https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token passando as seguintes informações:
 
+Parâmetros do Header para requisição Post https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
@@ -50,6 +52,159 @@ Exemplo de requisição:
 **Authorization**  Informação codificada em *Base64*, no seguinte formato: CLIENT_ID:CLIENT_SECRET (senha de acesso do serviço consumidor)(utilizar `codificador para Base64`_ |site externo|  para gerar codificação). A palavra Basic deve está antes da informação. 
 =================  ======================================================================
 	
+Exemplo de *header*:
+
+.. code-block:: console
+
+	Content-Type:application/x-www-form-urlencoded
+	Authorization: Basic											
+	ZWM0MzE4ZDYtZjc5Ny00ZDY1LWI0ZjctMzlhMzNiZjRkNTQ0OkFJSDRoaXBfTUJYcVJkWEVQSVJkWkdBX2dRdjdWRWZqYlRFT2NWMHlFQll4aE1iYUJzS0xwSzRzdUVkSU5FcS1kNzlyYWpaZ3I0SGJu VUM2WlRXV1lJOA==
+
+Parâmetros da Query para requisição Post https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+	
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**grant_type**     Especifica para o provedor o tipo de autorização. Neste caso será **authorization_code**
+**code**           Código retornado pela requisição anterior (exemplo: Z85qv1)
+**redirect_uri**   URI de retorno cadastrada no Brasil Cidadão no formato *URL Encode*
+=================  ======================================================================
+
+Exemplo de requisição
+
+.. code-block:: console
+
+	https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token?grant_type=authorization_code&code=Z85qv1&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php	
+
+O serviço retornará, em caso de sucesso, a informação, no formato JSON, conforme exemplo:
+
+.. code-block:: JSON
+
+	{ 
+		"access_token": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiI2ODI1NjQwNzA0MiIsImF6cCI6IjQ1ZGYzZWJjLTkwZjItNDMwMy1iMmQyLWUwY2ZiZjhkOWEwZCIsInNjb3BlIjpbXSwibmFtZSI6InRlc3RlIGVtcHJlc2EgaW5tZXRybyIsImlzcyI6Imh0dHBzOlwvXC90ZXN0ZXNjcC1lY2lkYWRhby5lc3RhbGVpcm8uc2VycHJvLmdvdi5iclwvc2NwXC8iLCJleHAiOjE1NTA2MTQ0NDIsImlhdCI6MTU1MDYxMDg0MiwiYXV0aF9mYWN0b3IiOiJDUEZfU0VOSEEiLCJqdGkiOiJhMGJlYmM1Mi1hYWQ5LTRlNzktYWEzNC03YTUzMWU0ZmE4ZDUifQ.dM-lUCSUU2vvWJruR9pMuUTf3_0qMo2JQFCccthn0dfc6cyUG-e_Vdl7t1j4bxrXk2IKx_8oEMk9c9csDzLxVx7HIy3mKp9pA2VmRGGU5FD3pUrAqkOgwGns0s9P0eCCIQKd_ylyUisPJwRroow7g72ldrCxm8BJneG4MX5soWHiiMfnu0IWSBiKQuQJ7fRfkJJC6Cxveq4AtZJ4mID3tPK496rFMFsY1RytsI-ed_Q_dGj6XxiEQpAlHiLCgxynrhIVMOyjU20h8FOWGWxE3rtr14Dl1fl6rvXp8wl5BJGurinj2kZjfe_HI1TJR0ykR84YibMM34DqJ93hseJLNw", 
+		"token_type": "Bearer", 
+		"expires_in": 3599 
+	} 
+
+Ou , no caso de falha, a informação, conforme exemplo abaixo:
+
+.. code-block:: JSON
+
+	{
+		"error":"invalid_request"
+	}
+
+6. De posse das informações de *token* e *access token*, a aplicação consumidora já está habilitada para consultar dados de recursos protegidos, que são os escopos de informações. Deve fazer uma requisição GET para o endereço https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getUserInfo/brasil_cidadao passando as seguintes informações:
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+=================  ======================================================================
+
+Exemplo de retorno do barramento de serviços no formato JSON:
+
+.. code-block:: JSON
+
+	{
+		"cpf": "88918894588",
+		"nome": "HENRIQUE PRETORIUM ",
+		"email": "henrique.pretorium@enterprisex.gov.br",
+		"telefone": "00000000",
+		"foto":"informacao da foto em formato base 64 com tamanho até 4 MB"
+	}
+
+Resultados Esperados do Acesso ao Serviços de Autenticação	
+----------------------------------------------------------
+
+Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
+
+- **Código 200**: Dados acessados e retornados em formato JSON ao usuário, de acordo com o JSON de cada escopo;
+- **Código 400**: Token recebido por mais de um método;
+- **Código 401**: Token não encontrado ou inválido , CPF inválido, usuário não existente no sistema, access token inválido;
+- **Código 403**: Escopo solicitado não autorizado pelo usuário;
+- **Código 404**: Escopo obrigatório.
+
+Acesso ao Serviço de Cadastro de Pessoas Jurídicas
+--------------------------------------------------
+
+O Brasil Cidadão disponibiliza dois serviços para acesso a informações de Pessoa Jurídica. O primeiro apresenta todos os CNPJs cadastrados para um determinado usuário. O segundo, utiliza desse CNPJ para extrair informações cadastradas no Brasil Cidadão para aquela pessoa e empresa.
+
+Para acessar o serviço que disponibiliza os CNPJs vinculados a um determinado usuário, é necessário o seguinte:
+
+1. Na requisição de autenticação, adicionar o escopo “brasil_cidadao_empresa“, conforme exemplo:
+
+Exemplo de requisição
+
+.. code-block:: console
+
+	https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+brasil_cidadao+brasil_cidadao_empresa&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+
+2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/servicos-ecidadao/ecidadao/usuario/getConfiabilidade enviando as seguintes informações:
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+=================  ======================================================================
+
+3. O resultado em formato JSON são selos de confiabilidade da autenticação. O delo a ser verificado será o “Representante Legal do CNPJ”, conforme o exemplo abaixo:
+
+Exemplo de requisição
+
+.. code-block:: JSON
+	
+	{
+		"id": 0,
+		"nivel": 11,
+		"descricao": "REPRESENTANTE E-CNPJ"
+	}
+
+4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/empresa/escopo/brasil_cidadao_empresa enviando as seguintes informações:
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+=================  ======================================================================
+
+5. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
+
+Exemplo de requisição
+
+.. code-block:: JSON
+
+	{ 
+		"cnpjs": [ 
+			{"cnpj": "CNPJ da empresa",
+			"nome": "NOME FANTASIA DA EMPRESA",
+			"atuacao" : "ATUAÇÃO DO CPF NO CNPJ INFORMADO tendo o valor 'SOCIO' ou 'COLABORADOR'
+			}],
+		"cpf": "CPF DO USUÁRIO LOGADO"
+	}
+
+6. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL: https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/empresa/"cnpj"/escopo/brasil_cidadao_empresa enviando as seguintes informações:
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**cnpj**           CNPJ da empresa formatado (sem ponto, barra etc).
+=================  ======================================================================
+
+7. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
+
+Exemplo de requisição
+
+.. code-block:: JSON
+
+	{
+		"cnpj": "CNPJ", 
+		"nomeFantasia": "NOME FANTASIA",
+		"atuacao": "ATUACÃO tendo o valor SOCIO ou COLABORADOR",
+		"cpfResponsavel": "CPF DO RESPONSÁVEL",
+		"nomeResponsavel": "NOME DO RESPONSÁVEL"
+	}
 	
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
