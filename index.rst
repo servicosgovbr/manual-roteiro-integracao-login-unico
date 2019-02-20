@@ -7,7 +7,7 @@ Roteiro de Integração do Brasil Cidadão
 ===================================================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Legislação e Conceitos
 
    contexto
