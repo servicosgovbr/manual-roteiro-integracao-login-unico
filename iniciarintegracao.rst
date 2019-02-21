@@ -174,13 +174,16 @@ Exemplo de requisição
 
 .. code-block:: JSON
 
-	{ 
-		"cnpjs": [ 
-			{"cnpj": "CNPJ da empresa",
-			"nome": "NOME FANTASIA DA EMPRESA",
-			"atuacao" : "ATUAÇÃO DO CPF NO CNPJ INFORMADO tendo o valor 'SOCIO' ou 'COLABORADOR'
-			}],
-		"cpf": "CPF DO USUÁRIO LOGADO"
+	{
+		"cnpjs":
+		[
+			{
+			 "cnpj": "CNPJ da empresa",
+			 "nome": "NOME FANTASIA DA EMPRESA"
+			},
+			
+		],
+		"cpf": "CPF do representante da empresa"
 	}
 
 6. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL: https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/empresa/"cnpj"/escopo/brasil_cidadao_empresa enviando as seguintes informações:
@@ -201,7 +204,7 @@ Exemplo de requisição
 	{
 		"cnpj": "CNPJ", 
 		"nomeFantasia": "NOME FANTASIA",
-		"atuacao": "ATUACÃO tendo o valor SOCIO ou COLABORADOR",
+		"atuacao": "ATUACÃO tendo o valor SOCIO, CONTADOR e REPRESENTANTE_LEGAL",
 		"cpfResponsavel": "CPF DO RESPONSÁVEL",
 		"nomeResponsavel": "NOME DO RESPONSÁVEL"
 	}
@@ -250,41 +253,45 @@ Os selos existentes no Brasil Cidadão são:
 
 .. code-block:: JSON
 
-	{
-		"id": 0,
-		"nivel": 2,
-		"descricao": "Institucional" (Servidor Público)
-	}
-	{
-		"id": 0,
-		"nivel": 1,
-		"descricao": "Conformidade"
-	}
-	{
-		"id": 0,
-		"nivel": 4,
-		"descricao": "Biometria"
-	}
-	{
-		"id": 0,
-		"nivel": 5,
-		"descricao": "Certificado Digital" 
-	}
-	{
-		"id": 0,
-		"nivel": 3,
-		"descricao": "Convalidação" (Módulo Balcão) 
-	}
-	{
-		"id": 0,
-		"nivel": 10,
-		"descricao": "DNI"
-	}
-	{
-		"id": 0,
-		"nivel": 11,
-		"descricao": "REPRESENTANTE E-CNPJ"
-	}
+	[
+		{
+			"id": 0,
+			"nivel": 2,
+			"descricao": "Institucional (Servidor Público)" 
+		},
+		{
+			"id": 0,
+			"nivel": 1,
+			"descricao": "Conformidade"
+		},
+		{
+			"id": 0,
+			"nivel": 4,
+			"descricao": "Biometria"
+		},
+		{
+			"id": 0,
+			"nivel": 5,
+			"descricao": "Certificado Digital" 
+		},	
+		{	
+			"id": 0,
+			"nivel": 3,
+			"descricao": "Convalidação (Módulo Balcão)" 
+		},
+		{
+			"id": 0,
+			"nivel": 10,
+			"descricao": "DNI"
+		},
+		{
+			"id": 0,
+			"nivel": 11,
+			"descricao": "REPRESENTANTE E-CNPJ"
+		}
+	]
+
+	
 
 
 .. |site externo| image:: _images/site-ext.gif
