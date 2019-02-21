@@ -205,6 +205,87 @@ Exemplo de requisição
 		"cpfResponsavel": "CPF DO RESPONSÁVEL",
 		"nomeResponsavel": "NOME DO RESPONSÁVEL"
 	}
+
+Resultados Esperados do Acesso ao Serviço de Cadastro de Pessoas Jurídicas
+--------------------------------------------------------------------------
+
+Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
+
+- **Código 200**: Dados acessados e retornados em formato JSON ao usuário, de acordo com o JSON de cada escopo;
+- **Código 400**: Token recebido por mais de um método;
+- **Código 401**: Token não encontrado ou inválido , CNPJ inválido, usuário não existente no sistema, access token inválido;
+- **Código 403**: Escopo solicitado não autorizado pelo usuário;
+- **Código 404**: Escopo obrigatório.
+
+Acesso ao Serviço de Confiabilidade Cadastral (Selos)
+-----------------------------------------------------
+
+Para acessar o serviço de consulta de empresas é necessário:
+
+1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade;
+
+Parâmetros do Header para requisição GET "https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade"
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+=================  ======================================================================
+
+2. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
+
+.. code-block:: JSON
+
+	{
+		"id" : "Número do selo cadastrado no Login Único",
+		"nivel" : "Escala do nível presente no conceito do Login Único",
+		"descricao" : "nome do selo cadastrado no Login Único"
+	}
 	
+	
+Resultados Esperados do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
+-----------------------------------------------------------------------------
+
+Os selos existentes no Brasil Cidadão são:
+
+.. code-block:: JSON
+
+	{
+		"id": 0,
+		"nivel": 2,
+		"descricao": "Institucional" (Servidor Público)
+	}
+	{
+		"id": 0,
+		"nivel": 1,
+		"descricao": "Conformidade"
+	}
+	{
+		"id": 0,
+		"nivel": 4,
+		"descricao": "Biometria"
+	}
+	{
+		"id": 0,
+		"nivel": 5,
+		"descricao": "Certificado Digital" 
+	}
+	{
+		"id": 0,
+		"nivel": 3,
+		"descricao": "Convalidação" (Módulo Balcão) 
+	}
+	{
+		"id": 0,
+		"nivel": 10,
+		"descricao": "DNI"
+	}
+	{
+		"id": 0,
+		"nivel": 11,
+		"descricao": "REPRESENTANTE E-CNPJ"
+	}
+
+
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
