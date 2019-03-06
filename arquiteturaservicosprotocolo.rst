@@ -60,18 +60,14 @@ Para criar a assinatura, há necessidade de assinar o *header* codificado, o *pa
 
 .. code-block:: console
 
-	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9(header).eyJzdWIiOiIxMjM0NTY3ODkwI			
-	iwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9(payload).TJVA95OrM7E2c			
-	Bab30RMHrHDcEfxjoYZgeFONFh7HgQ(signature)
+	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9(header).eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9(payload).TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ(signature)
 
 Para acessar recursos protegidos, o cliente deve enviar o *token* gerado através do atributo *Authorization* do *header* da requisição, com a *flag Bearer*, como abaixo:
 
 .. code-block:: console
 
 	Authorization: Bearer											
-	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY				
-	3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95			
-	OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
+	eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ
    
 
 Código Autorizador
