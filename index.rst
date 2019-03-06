@@ -1,4 +1,4 @@
-.. Roteiro de Integração do Brasil Cidadão documentation master file, created by
+.. Roteiro de Integração do Brasil Cidadão master file, created by
    sphinx-quickstart on Mon Feb 18 09:35:23 2019.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
