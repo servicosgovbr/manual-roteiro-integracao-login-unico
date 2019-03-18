@@ -4,7 +4,7 @@
 Solicitação de Configuração
 +++++++++++++++++++++++++++
 
-Para utilização do sistema Brasil Cidadão, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do plano de configuração encaminhado junto com este documento (**plano-configuracao-brasil-cidadao-vX.doc**).
+Para utilização do sistema Brasil Cidadão, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Configuração`_.
 
 O formulário deverá ser encaminhado para os integrantes da Secretaria de Tecnologia da Informação e Comunicação (SETIC) do Ministério do Planejamento para realizar configuração da utilização do Brasil Cidadão.
 
@@ -296,3 +296,4 @@ Os selos existentes no Brasil Cidadão são:
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
+.. _`Plano de Configuração`: arquivos/plano-configuracao-brasil-cidadao-v9.doc
