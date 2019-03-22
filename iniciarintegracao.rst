@@ -125,6 +125,78 @@ Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs
 - **Código 403**: Escopo solicitado não autorizado pelo usuário;
 - **Código 404**: Escopo obrigatório.
 
+Acesso ao Serviço de Confiabilidade Cadastral (Selos)
+-----------------------------------------------------
+
+Para acessar o serviço de consulta de empresas é necessário:
+
+1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade;
+
+Parâmetros do Header para requisição GET "https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade"
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+=================  ======================================================================
+
+2. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
+
+.. code-block:: JSON
+
+	{
+		"id" : "Número do selo cadastrado no Login Único",
+		"nivel" : "Escala do nível presente no conceito do Login Único",
+		"descricao" : "nome do selo cadastrado no Login Único"
+	}
+	
+	
+Resultados Esperados do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
+-----------------------------------------------------------------------------
+
+Os selos existentes no Brasil Cidadão são:
+
+.. code-block:: JSON
+
+	[
+		{
+			"id": 0,
+			"nivel": 2,
+			"descricao": "Institucional (Servidor Público)" 
+		},
+		{
+			"id": 0,
+			"nivel": 1,
+			"descricao": "Conformidade"
+		},
+		{
+			"id": 0,
+			"nivel": 4,
+			"descricao": "Biometria"
+		},
+		{
+			"id": 0,
+			"nivel": 5,
+			"descricao": "Certificado Digital" 
+		},	
+		{	
+			"id": 0,
+			"nivel": 3,
+			"descricao": "Convalidação (Módulo Balcão)" 
+		},
+		{
+			"id": 0,
+			"nivel": 10,
+			"descricao": "DNI"
+		},
+		{
+			"id": 0,
+			"nivel": 11,
+			"descricao": "REPRESENTANTE E-CNPJ"
+		}
+	]
+
+
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------
 
@@ -220,14 +292,14 @@ Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs
 - **Código 403**: Escopo solicitado não autorizado pelo usuário;
 - **Código 404**: Escopo obrigatório.
 
-Acesso ao Serviço de Confiabilidade Cadastral (Selos)
------------------------------------------------------
+Acesso ao Serviço de Informações cadastradas pelo Balcão (Selo Nível 3)
+----------------------------------------------------------------------
 
-Para acessar o serviço de consulta de empresas é necessário:
+O Brasil Cidadão disponibiliza o serviço para recuperar as informações apresentadas no balcão pelo cidadão.
 
-1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade;
+Para acessar o serviço é necessário:
 
-Parâmetros do Header para requisição GET "https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade"
+1. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/servicos-ecidadao/ecidadao/usuario/getConfiabilidade enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -235,64 +307,64 @@ Parâmetros do Header para requisição GET "https://testeservicos-ecidadao.esta
 **Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
 =================  ======================================================================
 
-2. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
+2. O resultado em formato JSON são selos de confiabilidade da autenticação. O selo a ser verificado será o "Convalidação" (selo que representa o balcão), conforme o exemplo abaixo:
+
+Exemplo de requisição
 
 .. code-block:: JSON
-
+	
 	{
-		"id" : "Número do selo cadastrado no Login Único",
-		"nivel" : "Escala do nível presente no conceito do Login Único",
-		"descricao" : "nome do selo cadastrado no Login Único"
+		"id": 0,
+		"nivel": 3,
+		"descricao": "Convalidação"
 	}
-	
-	
-Resultados Esperados do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
------------------------------------------------------------------------------
 
-Os selos existentes no Brasil Cidadão são:
+3. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getDocumentos/sigla-do-orgao-do-balcao enviando as seguintes informações:
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**sigla-do-orgao-do-balcao**  sigla do órgão do balcão que recolheu os documentos
+============================  ======================================================================
+
+4. O resultado em formato JSON é a detalhamento das informações cadastradas pelo atendente do balcão, conforme o exemplo abaixo:
+
+Exemplo de requisição
 
 .. code-block:: JSON
 
 	[
 		{
-			"id": 0,
-			"nivel": 2,
-			"descricao": "Institucional (Servidor Público)" 
-		},
-		{
-			"id": 0,
-			"nivel": 1,
-			"descricao": "Conformidade"
-		},
-		{
-			"id": 0,
-			"nivel": 4,
-			"descricao": "Biometria"
-		},
-		{
-			"id": 0,
-			"nivel": 5,
-			"descricao": "Certificado Digital" 
-		},	
-		{	
-			"id": 0,
-			"nivel": 3,
-			"descricao": "Convalidação (Módulo Balcão)" 
-		},
-		{
-			"id": 0,
-			"nivel": 10,
-			"descricao": "DNI"
-		},
-		{
-			"id": 0,
-			"nivel": 11,
-			"descricao": "REPRESENTANTE E-CNPJ"
+		"id": "Número do Documento (Formulário Cadastro pelo Ministério da Economia)",
+		"nome": "Nome do Documento (Formulário Cadastro pelo Ministério da Economia)",
+		"docAssinado": "Identifica se documento utilizou assinatura digital. Possui valor true e false" ,
+		"campos":
+			[
+				{
+				"id": "Identificador do Campo cadastrado no documento",
+				"nome": "Nome do Campo cadastrado no documento",
+				"tipo": "Tipo do Campo cadastrado no documento. Possui os valores Arquivo (Upload de documentos); Campo Textual (letras e números); Data ; Hora; Número; Enumeração (Conteúdo com lista de valores); Assinatura (Informa que area deverá ter assinatura por certificado digital)",
+				"enumeracao": "Caso o tipo do campo seja Enumeração, mostrará quais conteúdos pertencem a lista.",
+				"ordem": "Número que aparece o campo no documento",
+				"formato": "Formatação da Mascará cadastrada para campo.",
+				"obrigatorio": "Indica se o preenchimento do campo é obrigatório ou não. Possui valor true ou false",
+				"valor": "Valor do campo escolhido para preenchimento"
+				}
+			]	
 		}
-	]
+   	]
 
-	
+Resultados Esperados do Acesso Serviço de Informações cadastradas pelo Balcão (Selo Nível 3)
+--------------------------------------------------------------------------
 
+Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
+
+- **Código 200**: Dados acessados e retornados em formato JSON ao usuário, de acordo com o JSON de cada escopo;
+- **Código 400**: Token recebido por mais de um método;
+- **Código 401**: Token não encontrado ou inválido ,usuário não existente no sistema, access token inválido;
+- **Código 403**: Escopo solicitado não autorizado pelo usuário;
+- **Código 404**: Escopo obrigatório.
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
