@@ -17,7 +17,7 @@ Além disso, o OIDC suporta vários tipos de clientes, como aplicações que uti
 
 *OAuth2* é um protocolo aberto para autorização que permite aos clientes obterem acesso a recursos protegidos do servidor em nome do proprietário do recurso. O proprietário pode ser um cliente ou usuário final. Também especifica como um usuário final pode autorizar o acesso de terceiros aos seus recursos do servidor sem precisar compartilhar suas credenciais. Atualmente ele está sendo usado por grandes empresas como *Google*, *Facebook*, *Microsoft*, *Twitter*, e outros.
 
-O protocolo fornece 4 estratégias para concessão de autorização: código de autorização, implícita, credenciais de senha do proprietário do recurso e credenciais do cliente. A estratégia usada no Brasil Cidadão é o código de autorização, que utiliza um *token*.
+O protocolo fornece 4 estratégias para concessão de autorização: código de autorização, implícita, credenciais de senha do proprietário do recurso e credenciais do cliente. A estratégia usada no Login Unico/GOV.BR (Brasil Cidadão) é o código de autorização, que utiliza um *token*.
 
 *Json Web Token - JWT*
 +++++++++++++++++++++
@@ -73,7 +73,7 @@ Para acessar recursos protegidos, o cliente deve enviar o *token* gerado atravé
 Código Autorizador
 ++++++++++++++++++
 
-A estratégia é autorizar clientes a acessarem informações dos usuários proprietários através de um código identificador (Cliente ID). O cliente deve ser cadastrado no Portal de Gestão do Brasil Cidadão para obter um Cliente ID. Após , o proprietário da informação, ao ser requisitado, deve habilitar esse cliente para ter acesso às suas informações. O cliente está habilitado para obter do servidor os recursos necessários.
+A estratégia é autorizar clientes a acessarem informações dos usuários proprietários através de um código identificador (Cliente ID). O cliente deve ser cadastrado no Portal de Gestão do Login Único/GOV.BR (Brasil Cidadão) para obter um Cliente ID. Após , o proprietário da informação, ao ser requisitado, deve habilitar esse cliente para ter acesso às suas informações. O cliente está habilitado para obter do servidor os recursos necessários.
 
 Essa estratégia é muito utilizada no mercado pois é otimizada para as aplicações *server-side*, o qual o código fonte não é exposto e a confidencialidade do Cliente ID é mantida.
 
@@ -83,7 +83,7 @@ A Figura 2 explica a obtenção de recursos do servidor para um cliente cadastra
    :align: center
    :alt: Tem se o fluxo para código autorizador na visão cliente (Requisição da autorização, Requisição do Access Token e ID Token, Acesso ao recurso protegido) e na visão do provedor da identificação (Solicitação da identificação do usuário, Obter autorização, Direcionar a solicitação da identifiação do usuário, validar o cliente, validar código de autorização, Passar as permissões para o Access Token)
 
-No passo A, a aplicação cliente solicita autorização. O usuário realiza a autenticação no Brasil Cidadão, obtêm a autorização e é redirecionado para o cliente, conforme o passo B. Já no passo C, o cliente solicita o *Access Token* e o *ID Token*, que são as credenciais para permitir as consultas de recursos por um determinado tempo. As credenciais são geradas no servidor e não podem navegar pelo cliente, para manter a confidencialidade. Após o cliente ser validado e receber o *ID Token* e *Access Token* no passo D, ele pode solicitar ao Brasil Cidadão os recursos necessários. A Figura 3 mostra os parâmetros necessários para as requisições da Figura 2.  
+No passo A, a aplicação cliente solicita autorização. O usuário realiza a autenticação no Login Único/GOV.BR (Brasil Cidadão), obtêm a autorização e é redirecionado para o cliente, conforme o passo B. Já no passo C, o cliente solicita o *Access Token* e o *ID Token*, que são as credenciais para permitir as consultas de recursos por um determinado tempo. As credenciais são geradas no servidor e não podem navegar pelo cliente, para manter a confidencialidade. Após o cliente ser validado e receber o *ID Token* e *Access Token* no passo D, ele pode solicitar ao Login Único/GOV.BR (Brasil Cidadão) os recursos necessários. A Figura 3 mostra os parâmetros necessários para as requisições da Figura 2.  
 
 .. figure:: _images/figura-3-explicacao-parametros-necessarios.jpg
    :align: center

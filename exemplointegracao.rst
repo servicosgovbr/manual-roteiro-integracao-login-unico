@@ -1,7 +1,7 @@
 ﻿Exemplo de implementação
 ========================
 
-Os exemplos são básicos da forma de realizar as requisições para Brasil Cidadão. Cabe ao desenvolvedor realizar a organização e aplicação da segurança necessária na aplicação consumidora.
+Os exemplos são básicos da forma de realizar as requisições para Login Único/GOV.BR (Brasil Cidadão). Cabe ao desenvolvedor realizar a organização e aplicação da segurança necessária na aplicação consumidora.
 
 JAVA
 ++++
@@ -36,7 +36,7 @@ JAVA
 
 		/**
 		 * 
-		 * O presente código tem por objetivo exemplificar de forma minimalista o consumo dos serviços utilizados pelo Brasil Cidadão. 
+		 * O presente código tem por objetivo exemplificar de forma minimalista o consumo dos serviços utilizados pelo Login Único/GOV.BR (Brasil Cidadão). 
 		 * 
 		 */
 
@@ -44,11 +44,11 @@ JAVA
 				
 			/**
 			 * O processo de autenticação e autorização de recursos ocorre essencialmente em três etapas:
-			 * 		Etapa 1: Chamada do serviço de autorização do Brasil Cidadão;
+			 * 		Etapa 1: Chamada do serviço de autorização do Login Único/GOV.BR (Brasil Cidadão);
 			 *      Etapa 2: Recuperação do Access Token e
 			 *      Etapa 3: Validação do Access Token por meio da verificação de sua assinatura.
 			 * Após concluída essas três etapas, a aplicação cliente terá as informações básicas para conceder acesso de acordo com suas próprias políticas de autorização.
-			 * Caso a aplicação cliente necessite de informações adicionais, fica habilitado o acesso à todos os serviços (presentes e futuros) fornecidos pelo Brasil Cidadão por meio do access token.
+			 * Caso a aplicação cliente necessite de informações adicionais, fica habilitado o acesso à todos os serviços (presentes e futuros) fornecidos pelo Login Único/GOV.BR (Brasil Cidadão) por meio do access token.
 			 * O presente código exemplifica a chamada aos seguintes serviços:
 			 * 		Serviço 1: getUserInfo - Serviço que recupera informações do usuário direto da Receita Federal;
 			 * 		Serviço 2: getConfiabilidade - Serviço que recupera os selos de confiabilidade atribuidos ao usuário;
@@ -65,8 +65,8 @@ JAVA
 			 */
 			
 			
-			private static final String URL_PROVIDER = "https://testescp-ecidadao.estaleiro.serpro.gov.br";
-			private static final String URL_SERVICOS = "https://testeservicos-ecidadao.estaleiro.serpro.gov.br";
+			private static final String URL_PROVIDER = "https://teste.brcidadao.estaleiro.serpro.gov.br";
+			private static final String URL_SERVICOS = "https://teste.brcidadao.estaleiro.serpro.gov.br";
 			private static final String REDIRECT_URI = "<coloque-aqui-a-uri>";                                                      //redirectURI informada na chamada do serviço do authorize.
 			private static final List<String> SCOPES = Arrays.asList("openid", "brasil_cidadao", "brasil_cidadao_empresa");         //Escopos cadastrados para a aplicação.
 			private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do serviço do authorize.
@@ -76,10 +76,10 @@ JAVA
 
 				/**
 				 *  Etapa 1: No Browser, chamar a URL do Authorize para recuperar o code e o state (opcional) conforme o exemplo abaixo:
-				 *		https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=<coloque-aqui-o-client-id>&scope=openid+brasil_cidadao+brasil_cidadao_empresa&redirect_uri=<coloque-aqui-a-uri-de-redirecionamento>&nonce=<coloque-aqui-um-numero-aleatorio>&state=<coloque-aqui-um-numero-aleatorio>
+				 *		https://teste.brcidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=<coloque-aqui-o-client-id>&scope=openid+brasil_cidadao+brasil_cidadao_empresa&redirect_uri=<coloque-aqui-a-uri-de-redirecionamento>&nonce=<coloque-aqui-um-numero-aleatorio>&state=<coloque-aqui-um-numero-aleatorio>
 				 *		Descrição dos parametros:
 				 *			response_type: Sempre "code";
-				 *			client_id:     Identificador do sistema que usa o Brasil Cidadão. Este identificador é único para cada sistema;
+				 *			client_id:     Identificador do sistema que usa o Login Único/GOV.BR (Brasil Cidadão). Este identificador é único para cada sistema;
 				 *			scope:         Lista de escopos requisitados pelo sistema. Escopos são agrupamentos de informações cujo acesso deverá 
 				 *				           ser autorizado pelo cidadão que acessa o sistema. Cada sistema deverá informar que conjunto de informações (escopos) deseja;
 				 *          redirect_uri:  Uri para qual será feito o redirect após o login do cidadão (usuário). Para Celulares, usamos uma pseudo URI;
@@ -91,7 +91,7 @@ JAVA
 				
 				System.out.println("--------------------Etapa 1 - URL do Serviço Authorize------------------");
 				System.out.println("Abra um Browser (Chrome ou Firefox), aperte F12. Clique na aba 'Network'.");
-				System.out.println("Cole a URL abaixo no Browser (Chrome ou Firefox) e entre com um usuário cadastrado no Brasil Cidadão");
+				System.out.println("Cole a URL abaixo no Browser (Chrome ou Firefox) e entre com um usuário cadastrado no Login Único/GOV.BR (Brasil Cidadão)");
 				System.out.println(URL_PROVIDER + "/scp/authorize?response_type=code&client_id=" + CLIENT_ID + "&scope=" + String.join("+", SCOPES) + "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, "UTF-8") + "&nonce=" + createRandomNumber() + "&state=" + createRandomNumber());
 
 				/**
@@ -122,7 +122,7 @@ JAVA
 				 * 				1- id client da aplicação à qual o usuário se autenticou;
 				 * 				2- Escopos requeridos pela aplicação autorizados pelo usuário;
 				 * 				3- CPF do usuário autenticado
-				 * 				4- Nome completo do usuário cadastrado no Brasil Cidadão. Atenção, este é o nome que foi fornecido pelo usuário no momento do seu cadastro 
+				 * 				4- Nome completo do usuário cadastrado no Login Único/GOV.BR (Brasil Cidadão). Atenção, este é o nome que foi fornecido pelo usuário no momento do seu cadastro 
 				 *               
 				 */
 
@@ -137,13 +137,13 @@ JAVA
 				String idClient = jwtClaims.getStringClaimValue("azp");             //Client Id
 				List<String> scopes = jwtClaims.getStringListClaimValue("scope");    //Escopos autorizados pelo usuário
 				String cpfDoUsuario = jwtClaims.getSubject();                        //CPF do usuário.
-				String nomeCompleto = jwtClaims.getStringClaimValue("name");   //Nome Completo do cadastro feito pelo usuário no Brasil Cidadão. 
+				String nomeCompleto = jwtClaims.getStringClaimValue("name");   //Nome Completo do cadastro feito pelo usuário no Login Único/GOV.BR (Brasil Cidadão). 
 
 				System.out.println("\n--------------------Etapa 3 - Informações obtidas do Access Token------------------");
-				System.out.printf("O usuário %s, CPF %s foi autenticado pelo Brasil Cidadão por meio de %s para usar o sistema %s. Este usuário também autorizou este mesmo sistema à utilizar as informações representadas pelos escopos %s. \n", nomeCompleto, cpfDoUsuario, idClient, String.join(",", scopes) );
+				System.out.printf("O usuário %s, CPF %s foi autenticado pelo Login Único/GOV.BR (Brasil Cidadão) por meio de %s para usar o sistema %s. Este usuário também autorizou este mesmo sistema à utilizar as informações representadas pelos escopos %s. \n", nomeCompleto, cpfDoUsuario, idClient, String.join(",", scopes) );
 		   
 				/**
-				 * Serviço 1: De posse do access token, a aplicação pode chamar o serviço de recuperação de informações do usuário (getUserInfo).
+				 * Serviço 1: De posse do access token, a aplicação pode chamar o serviço de recuperação de informações do usuário (Usuário/escopo).
 				 * 			
 				 */
 				
@@ -275,7 +275,7 @@ JAVA
 			private static String getUserInfo(String accessToken, String scope) {
 				String retorno = "";
 				try {
-					URL url = new URL(URL_SERVICOS + "/servicos-ecidadao/ecidadao/usuario/getUserInfo/" + scope);
+					URL url = new URL(URL_SERVICOS + "/servicos-ecidadao/ecidadao/info/usuario/escopo/" + scope);
 					HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 					conn.setRequestMethod("GET");
 					conn.setRequestProperty("Accept", "application/json");
@@ -359,7 +359,7 @@ JAVA
 			private static String getConfiabilidade(String accessToken) throws Exception {
 				String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/servicos-ecidadao/ecidadao/usuario/getConfiabilidade");
+				URL url = new URL(URL_SERVICOS + "/servicos-ecidadao/ecidadao/info/usuario/selo");
 				HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
@@ -561,25 +561,25 @@ Arquivo PHP
 
 			/**
 			 * 
-			 * O presente código tem por objetivo exemplificar de forma minimalista o consumo dos serviços utilizados pelo Brasil Cidadão. 
+			 * O presente código tem por objetivo exemplificar de forma minimalista o consumo dos serviços utilizados pelo Login Único/GOV.BR (Brasil Cidadão). 
 			 * 
 			 */
 
 			use \Firebase\JWT\JWT;
 
-			$URL_PROVIDER="https://testescp-ecidadao.estaleiro.serpro.gov.br";
+			$URL_PROVIDER="https://teste.brcidadao.estaleiro.serpro.gov.br";
 			$CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";
 			$SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";
 			$REDIRECT_URI = "<coloque-aqui-a-uri>";
 			$SCOPE = "openid+brasil_cidadao+brasil_cidadao_empresa";
-			$URL_SERVICOS="https://testeservicos-ecidadao.estaleiro.serpro.gov.br";
+			$URL_SERVICOS="https://teste.brcidadao.estaleiro.serpro.gov.br";
 
 			/*
 			 *  Etapa 1: No Browser, chamar a URL do Authorize para recuperar o code e o state (opcional) conforme o exemplo abaixo:
-			 *		https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=<coloque-aqui-o-client-id>&scope=openid+brasil_cidadao+brasil_cidadao_empresa&redirect_uri=<coloque-aqui-a-uri-de-redirecionamento>&nonce=<coloque-aqui-um-numero-aleatorio>&state=<coloque-aqui-um-numero-aleatorio>
+			 *		https://teste.brcidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=<coloque-aqui-o-client-id>&scope=openid+brasil_cidadao+brasil_cidadao_empresa&redirect_uri=<coloque-aqui-a-uri-de-redirecionamento>&nonce=<coloque-aqui-um-numero-aleatorio>&state=<coloque-aqui-um-numero-aleatorio>
 			 *		Descrição dos parametros:
 			 *			response_type: Sempre "code";
-			 *			client_id:     Identificador do sistema que usa o Brasil Cidadão. Este identificador é único para cada sistema;
+			 *			client_id:     Identificador do sistema que usa o Login Único/GOV.BR (Brasil Cidadão). Este identificador é único para cada sistema;
 			 *			scope:         Lista de escopos requisitados pelo sistema. Escopos são agrupamentos de informações cujo acesso deverá 
 			 *				           ser autorizado pelo cidadão que acessa o sistema. Cada sistema deverá informar que conjunto de informações (escopos) deseja;
 			 *          redirect_uri:  Uri para qual será feito o redirect após o login do cidadão (usuário). Para Celulares, usamos uma pseudo URI;
@@ -640,9 +640,9 @@ Arquivo PHP
 				 * 				1- id client da aplicação à qual o usuário se autenticou;
 				 * 				2- Escopos requeridos pela aplicação autorizados pelo usuário;
 				 * 				3- CPF do usuário autenticado
-				 * 				4- Nome completo do usuário cadastrado no Brasil Cidadão. Atenção, este é o nome que foi fornecido pelo usuário no momento do seu cadastro 
-				 *                 (ou obtido do Certificado Digital e-CPF caso o cadastro tenha sido feito por este meio). O Serviço getUserInfo obtém as informações do 
-				 *                 usuário direto da Receita Federal.
+				 * 				4- Nome completo do usuário cadastrado no Login Único/GOV.BR (Brasil Cidadão). Atenção, este é o nome que foi fornecido pelo usuário no momento do seu cadastro 
+				 *                 (ou obtido do Certificado Digital e-CPF caso o cadastro tenha sido feito por este meio). O Serviço info/usuario obtém as informações do 
+				 *                 usuário com detalhes.
 				 */
 				$url = $URL_PROVIDER . "/scp/jwk" ;
 				$ch_jwk = curl_init();
@@ -661,15 +661,15 @@ Arquivo PHP
 				}
 
 				/*
-					Serviço de obtenção cadastro do usuário: De posse do access token, a aplicação pode chamar o serviço de recuperação de informações do usuário (getUserInfo) conforme o exemplo abaixo.
+					Serviço de obtenção cadastro do usuário: De posse do access token, a aplicação pode chamar o serviço de recuperação de informações do usuário (info/usuario) conforme o exemplo abaixo.
 				*/
-				$url = $URL_SERVICOS . "/servicos-ecidadao/ecidadao/usuario/getUserInfo/brasil_cidadao" ;
+				$url = $URL_SERVICOS . "/servicos-ecidadao/ecidadao/info/usuario/brasil_cidadao" ;
 				$ch_user_info = curl_init();
 				curl_setopt($ch_user_info,CURLOPT_SSL_VERIFYPEER, true);
 				curl_setopt($ch_user_info,CURLOPT_URL, $url);
 				curl_setopt($ch_user_info, CURLOPT_RETURNTRANSFER, TRUE);
 				$headers = array(
-						'Authorization: '. $json_output_tokens['access_token']
+						'Authorization: Bearer '. $json_output_tokens['access_token']
 				);
 				curl_setopt($ch_user_info, CURLOPT_HTTPHEADER, $headers);
 				$json_output_user_info = json_decode(curl_exec($ch_user_info), true);
@@ -680,11 +680,11 @@ Arquivo PHP
 				*/
 				$ch_confiabilidade = curl_init();
 				curl_setopt($ch_confiabilidade,CURLOPT_SSL_VERIFYPEER, true);
-				curl_setopt($ch_confiabilidade,CURLOPT_URL, $URL_SERVICOS . "/servicos-ecidadao/ecidadao/usuario/getConfiabilidade");
+				curl_setopt($ch_confiabilidade,CURLOPT_URL, $URL_SERVICOS . "/servicos-ecidadao/ecidadao/info/usuario/selo");
 				curl_setopt($ch_confiabilidade, CURLOPT_RETURNTRANSFER, TRUE);
 				$headers = array(
 						'Accept: application/json',
-						'Authorization: '. $json_output_tokens['access_token']
+						'Authorization: Bearer '. $json_output_tokens['access_token']
 				);
 				curl_setopt($ch_confiabilidade, CURLOPT_HTTPHEADER, $headers);
 				$json_output_confiabilidade = json_decode(curl_exec($ch_confiabilidade), true);
@@ -703,7 +703,7 @@ Arquivo PHP
 					curl_setopt($ch_empresas_vinculadas, CURLOPT_RETURNTRANSFER, TRUE);
 					$headers = array(
 							'Accept: application/json',
-							'Authorization: '. $json_output_tokens['access_token']
+							'Authorization: Bearer '. $json_output_tokens['access_token']
 					);
 					curl_setopt($ch_empresas_vinculadas, CURLOPT_HTTPHEADER, $headers);
 					$json_output_empresas_vinculadas = json_decode(curl_exec($ch_empresas_vinculadas), true);
@@ -780,7 +780,7 @@ Arquivo PHP
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<meta http-equiv="X-UA-Compatible" content="ie=edge">
-			<title>STI Brasil Cidadao</title>
+			<title>STI Login Único/GOV.BR (Brasil Cidadao)</title>
 			<link rel="stylesheet" type="text/css" href="css/sti.css">
 			<script>
 				function waiting() {
@@ -790,7 +790,7 @@ Arquivo PHP
 		</head>
 		<body>
 			<div class="header">
-				<h1>STI Brasil Cidadão</h1>
+				<h1>STI Login Único/GOV.BR (Brasil Cidadão)</h1>
 				<p><b>S</b>ite de <b>T</b>este <b>I</b>ntegrado ao Brasil Cidadão</p>
 			</div>
 
@@ -799,7 +799,7 @@ Arquivo PHP
 					if (isset($json_output_payload_access_token)) {
 						echo '<a href="#" class="right">Logout</a>';
 					} else {
-						echo '<a href="' . $uri .'" onClick="waiting();" class="right">Logar com o Brasil Cidadão</a>'; 
+						echo '<a href="' . $uri .'" onClick="waiting();" class="right">Logar com o Login Único/GOV.BR (Brasil Cidadão)</a>'; 
 					}
 				?>
 			</div>
@@ -810,7 +810,7 @@ Arquivo PHP
 				<div class="left_side">
 					<div>
 						<h3>Etapa 1 (obrigatório): Autenticação</h3>
-						<p>Ao clicar no botão "Logar com o Brasil Cidadão" a seguinte URL será chamada:</p>
+						<p>Ao clicar no botão "Logar com o Login Único/GOV.BR (Brasil Cidadão)" a seguinte URL será chamada:</p>
 					</div>
 				</div>
 				<div class="right_side">
@@ -885,7 +885,7 @@ Arquivo PHP
 					<div class="left_side">
 						<div>
 							<h3>Serviço: Recuperar Informações do Usuário</h3>
-							<p>De posse do access token, a aplicação pode chamar o serviço de recuperação de informações do usuário (getUserInfo):</p>
+							<p>De posse do access token, a aplicação pode chamar o serviço de recuperação de informações do usuário (info/usuario):</p>
 						</div>
 					</div>
 					<div class="right_side">   

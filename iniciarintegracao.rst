@@ -4,9 +4,9 @@
 Solicitação de Configuração
 +++++++++++++++++++++++++++
 
-Para utilização do sistema Brasil Cidadão, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Configuração`_.
+Para utilização do sistema Login Único/GOV.BR (Brasil Cidadão), há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Configuração`_.
 
-O formulário deverá ser encaminhado para os integrantes da Secretaria de Tecnologia da Informação e Comunicação (SETIC) do Ministério do Planejamento para realizar configuração da utilização do Brasil Cidadão.
+O formulário deverá ser encaminhado para os integrantes da Secretaria de Governança Digital (SGD) do Ministério da Economia (ME) para realizar configuração da utilização do Login Único/GOV.BR (Brasil Cidadão).
 
 Métodos e interfaces de integração (Passo-a-Passo para Integrar)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -18,13 +18,13 @@ Para que a autenticação aconteça, todo o canal de comunicação deve ser real
 
 1. Ao requisitar autenticação via Provedor, o mesmo verifica se o usuário está logado. Caso o usuário não esteja logado o provedor redireciona para a página de login.
 
-2. A requisição é feita através de um GET para o endereço https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/authorize passando as seguintes informações:
+2. A requisição é feita através de um GET para o endereço https://teste.brcidadao.estaleiro.serpro.gov.br/scp/authorize passando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
 **response_type**  Especifica para o provedor o tipo de autorização. Neste caso será **code**
-**client_id**      Chave de acesso, que identifica o serviço consumidor fornecido pelo Brasil Cidadão para a aplicação cadastrada
+**client_id**      Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único/GOV.BR (Brasil Cidadão) para a aplicação cadastrada
 **scope**          Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Se for mais de um, esta informação deve vir separada pelo caractere “+”.
 **redirect_uri**   URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*
 **nonce**          Sequência de caracteres usado para associar uma sessão do serviço consumidor a um *Token* de ID e para atenuar os ataques de repetição. Pode ser um valor aleatório, mas que não seja de fácil dedução. Item obrigatório.
@@ -35,15 +35,15 @@ Exemplo de requisição:
 
 .. code-block:: console
 
-	https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+brasil_cidadao&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+	https://teste.brcidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+brasil_cidadao&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
 3. Após autenticado, o provedor redireciona para a página de autorização. O usuário habilitará o consumidor no sistema para os escopos solicitados. Caso o usuário da solicitação autorize o acesso ao recurso protegido, é gerado um “ticket de acesso” intitulado *access_token* (vide especificação *OAUTH 2.0*);
 
 4. Após a autorização, a requisição é retornada para a URL especificada no passo 1, enviando os seguintes parâmetros: code=Z85qv1e state=358578ce6728b. Lembrando que para essa requisição o *code* têm um tempo de expiração e só pode ser utilizado uma única vez;
 
-5. Para obter o *token* e o *access_token*, o consumidor deve fazer uma requisição POST para o endereço https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token passando as seguintes informações:
+5. Para obter o *token* e o *access_token*, o consumidor deve fazer uma requisição POST para o endereço https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token passando as seguintes informações:
 
-Parâmetros do Header para requisição Post https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+Parâmetros do Header para requisição Post https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -58,23 +58,23 @@ Exemplo de *header*:
 
 	Content-Type:application/x-www-form-urlencoded
 	Authorization: Basic											
-	ZWM0MzE4ZDYtZjc5Ny00ZDY1LWI0ZjctMzlhMzNiZjRkNTQ0OkFJSDRoaXBfTUJYcVJkWEVQSVJkWkdBX2dRdjdWRWZqYlRFT2NWMHlFQll4aE1iYUJzS0xwSzRzdUVkSU5FcS1kNzlyYWpaZ3I0SGJu VUM2WlRXV1lJOA==
+	ZWM0MzE4ZDYtZjc5Ny00ZDY1LWI0ZjctMzlhMzNiZjRkNTQ0OkFJSDRoaXBfTUJYcVJkWEVQSVJkWkdBX2dRdjdWRWZqYlRFT2NWMHlFQll4aE1iYUJzS0xwSzRzdUVkSU5FcS1kNzlyYWpaZ3I0SGJuVUM2WlRXV1lJOA==
 
-Parâmetros da Query para requisição Post https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+Parâmetros da Query para requisição Post https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 	
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
 **grant_type**     Especifica para o provedor o tipo de autorização. Neste caso será **authorization_code**
 **code**           Código retornado pela requisição anterior (exemplo: Z85qv1)
-**redirect_uri**   URI de retorno cadastrada no Brasil Cidadão no formato *URL Encode*
+**redirect_uri**   URI de retorno cadastrada no Login Único/GOV.BR (Brasil Cidadão) no formato *URL Encode*
 =================  ======================================================================
 
 Exemplo de requisição
 
 .. code-block:: console
 
-	https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token?grant_type=authorization_code&code=Z85qv1&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php	
+	https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token?grant_type=authorization_code&code=Z85qv1&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php	
 
 O serviço retornará, em caso de sucesso, a informação, no formato JSON, conforme exemplo:
 
@@ -94,12 +94,12 @@ Ou , no caso de falha, a informação, conforme exemplo abaixo:
 		"error":"invalid_request"
 	}
 
-6. De posse das informações de *token* e *access token*, a aplicação consumidora já está habilitada para consultar dados de recursos protegidos, que são os escopos de informações. Deve fazer uma requisição GET para o endereço https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getUserInfo/brasil_cidadao passando as seguintes informações:
+6. De posse das informações de *token* e *access token*, a aplicação consumidora já está habilitada para consultar dados de recursos protegidos, que são os escopos de informações. Deve fazer uma requisição GET para o endereço https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/info/usuario/escopo/brasil_cidadao passando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 =================  ======================================================================
 
 Exemplo de retorno do barramento de serviços no formato JSON:
@@ -117,7 +117,7 @@ Exemplo de retorno do barramento de serviços no formato JSON:
 Resultados Esperados do Acesso ao Serviços de Autenticação	
 ----------------------------------------------------------
 
-Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
+Os acessos aos serviços do Login Único/GOV.BR (Brasil Cidadão) ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
 
 - **Código 200**: Dados acessados e retornados em formato JSON ao usuário, de acordo com o JSON de cada escopo;
 - **Código 400**: Token recebido por mais de um método;
@@ -130,14 +130,14 @@ Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 
 Para acessar o serviço de consulta de empresas é necessário:
 
-1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade;
+1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/info/usuario/selo;
 
-Parâmetros do Header para requisição GET "https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getConfiabilidade"
+Parâmetros do Header para requisição GET "https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/info/usuario/selo"
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 =================  ======================================================================
 
 2. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
@@ -147,14 +147,15 @@ Parâmetros do Header para requisição GET "https://testeservicos-ecidadao.esta
 	{
 		"id" : "Número do selo cadastrado no Login Único",
 		"nivel" : "Escala do nível presente no conceito do Login Único",
-		"descricao" : "nome do selo cadastrado no Login Único"
+		"descricao" : "nome do selo cadastrado no Login Único",
+		"escopoSelo" : "Determina qual escopo pertence ao selo"
 	}
 	
 	
 Resultados Esperados do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 -----------------------------------------------------------------------------
 
-Os selos existentes no Brasil Cidadão são:
+Os selos existentes no Login Único/GOV.BR (Brasil Cidadão) são:
 
 .. code-block:: JSON
 
@@ -162,37 +163,44 @@ Os selos existentes no Brasil Cidadão são:
 		{
 			"id": 0,
 			"nivel": 2,
-			"descricao": "Institucional (Servidor Público)" 
+			"descricao": "Institucional (Servidor Público)", 
+			"escopoSelo" : " "
 		},
 		{
 			"id": 0,
 			"nivel": 1,
-			"descricao": "Conformidade"
+			"descricao": "Conformidade",
+			"escopoSelo" : " "
 		},
 		{
 			"id": 0,
 			"nivel": 4,
-			"descricao": "Biometria"
+			"descricao": "Biometria",
+			"escopoSelo" : " "
 		},
 		{
 			"id": 0,
 			"nivel": 5,
-			"descricao": "Certificado Digital" 
+			"descricao": "Certificado Digital",
+			"escopoSelo" : " "			
 		},	
 		{	
 			"id": 0,
 			"nivel": 3,
-			"descricao": "Convalidação (Módulo Balcão)" 
+			"descricao": "Convalidação (Módulo Balcão)",
+			"escopoSelo" : " "	
 		},
 		{
 			"id": 0,
 			"nivel": 10,
-			"descricao": "DNI"
+			"descricao": "DNI",
+			"escopoSelo" : " "
 		},
 		{
 			"id": 0,
 			"nivel": 11,
-			"descricao": "REPRESENTANTE E-CNPJ"
+			"descricao": "REPRESENTANTE E-CNPJ",
+			"escopoSelo" : " "
 		}
 	]
 
@@ -200,7 +208,7 @@ Os selos existentes no Brasil Cidadão são:
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------
 
-O Brasil Cidadão disponibiliza dois serviços para acesso a informações de Pessoa Jurídica. O primeiro apresenta todos os CNPJs cadastrados para um determinado usuário. O segundo, utiliza desse CNPJ para extrair informações cadastradas no Brasil Cidadão para aquela pessoa e empresa.
+O Login Único/GOV.BR (Brasil Cidadão) disponibiliza dois serviços para acesso a informações de Pessoa Jurídica. O primeiro apresenta todos os CNPJs cadastrados para um determinado usuário. O segundo, utiliza desse CNPJ para extrair informações cadastradas no Login Único/GOV.BR (Brasil Cidadão) para aquela pessoa e empresa.
 
 Para acessar o serviço que disponibiliza os CNPJs vinculados a um determinado usuário, é necessário o seguinte:
 
@@ -210,14 +218,14 @@ Exemplo de requisição
 
 .. code-block:: console
 
-	https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+brasil_cidadao+brasil_cidadao_empresa&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+	https://teste.brcidadao.estaleiro.serpro.gov.br/scp/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+brasil_cidadao+brasil_cidadao_empresa&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/servicos-ecidadao/ecidadao/usuario/getConfiabilidade enviando as seguintes informações:
+2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/info/usuario/selo enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 =================  ======================================================================
 
 3. O resultado em formato JSON são selos de confiabilidade da autenticação. O delo a ser verificado será o “Representante Legal do CNPJ”, conforme o exemplo abaixo:
@@ -229,15 +237,16 @@ Exemplo de requisição
 	{
 		"id": 0,
 		"nivel": 11,
-		"descricao": "REPRESENTANTE E-CNPJ"
+		"descricao": "REPRESENTANTE E-CNPJ",
+		"escopoSelo" : " "
 	}
 
-4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/empresa/escopo/brasil_cidadao_empresa enviando as seguintes informações:
+4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/empresa/escopo/brasil_cidadao_empresa enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 =================  ======================================================================
 
 5. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
@@ -258,12 +267,12 @@ Exemplo de requisição
 		"cpf": "CPF do representante da empresa"
 	}
 
-6. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL: https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/empresa/"cnpj"/escopo/brasil_cidadao_empresa enviando as seguintes informações:
+6. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL: https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/empresa/**cnpj**/escopo/brasil_cidadao_empresa enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 **cnpj**           CNPJ da empresa formatado (sem ponto, barra etc).
 =================  ======================================================================
 
@@ -284,7 +293,7 @@ Exemplo de requisição
 Resultados Esperados do Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------------------------------
 
-Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
+Os acessos aos serviços do Login Único/GOV.BR (Brasil Cidadão) ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
 
 - **Código 200**: Dados acessados e retornados em formato JSON ao usuário, de acordo com o JSON de cada escopo;
 - **Código 400**: Token recebido por mais de um método;
@@ -295,16 +304,16 @@ Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs
 Acesso ao Serviço de Informações cadastradas pelo Balcão (Selo Nível 3)
 ----------------------------------------------------------------------
 
-O Brasil Cidadão disponibiliza o serviço para recuperar as informações apresentadas no balcão pelo cidadão.
+O Login Único/GOV.BR (Brasil Cidadão) disponibiliza o serviço para recuperar as informações apresentadas no balcão pelo cidadão.
 
 Para acessar o serviço é necessário:
 
-1. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/servicos-ecidadao/ecidadao/usuario/getConfiabilidade enviando as seguintes informações:
+1. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/info/usuario/selo enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://teste.brcidadao.estaleiro.serpro.gov.br/scp/token
 =================  ======================================================================
 
 2. O resultado em formato JSON são selos de confiabilidade da autenticação. O selo a ser verificado será o "Convalidação" (selo que representa o balcão), conforme o exemplo abaixo:
@@ -316,15 +325,16 @@ Exemplo de requisição
 	{
 		"id": 0,
 		"nivel": 3,
-		"descricao": "Convalidação"
+		"descricao": "Convalidação",
+		"escopoSelo" : " "
 	}
 
-3. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://testeservicos-ecidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/usuario/getDocumentos/sigla-do-orgao-do-balcao enviando as seguintes informações:
+3. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://teste.brcidadao.estaleiro.serpro.gov.br/servicos-ecidadao/ecidadao/info/documentos/orgao/sigla-do-orgao-do-balcao enviando as seguintes informações:
 
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://testescp-ecidadao.estaleiro.serpro.gov.br/scp/token
+**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://teste.brcidadao.estaleiro.serpro.gov.br//scp/token
 **sigla-do-orgao-do-balcao**  sigla do órgão do balcão que recolheu os documentos
 ============================  ======================================================================
 
@@ -358,13 +368,13 @@ Exemplo de requisição
 Resultados Esperados do Acesso Serviço de Informações cadastradas pelo Balcão (Selo Nível 3)
 --------------------------------------------------------------------------
 
-Os acessos aos serviços do Brasil Cidadão ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
+Os acessos aos serviços do Login Único/GOV.BR (Brasil Cidadão) ocorrem por meio de chamadas de URLs e a resposta são códigos presentes conforme padrão do protocolo http. Estes códigos são:
 
-- **Código 200**: Dados acessados e retornados em formato JSON ao usuário, de acordo com o JSON de cada escopo;
+- **Código 200**: Dados acessados e retornados em formato JSON ao usuário;
 - **Código 400**: Token recebido por mais de um método;
-- **Código 401**: Token não encontrado ou inválido ,usuário não existente no sistema, access token inválido;
-- **Código 403**: Escopo solicitado não autorizado pelo usuário;
-- **Código 404**: Escopo obrigatório.
+- **Código 401**: Não foram encontradas as credenciais de autorização;
+- **Código 402**: Não existe(m) documento(s) para o critério informado;
+- **Código 404**: Sigla do orgão e obrigatória.
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
