@@ -39,7 +39,7 @@ Exemplo de requisição:
 
 .. code-block:: console
 
-	https://staging.acesso.gov.br/scp/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+phone+profile&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+phone+profile&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
 4. Após a autorização, a requisição é retornada para a URL especificada no redirect_uri do serviço https://sso.staging.acesso.gov.br/authorize, enviando os parâmetros:
 
@@ -52,9 +52,9 @@ Exemplo de requisição:
 
 4. Após autenticado, o provedor redireciona para a página de autorização. O usuário habilitará o consumidor no sistema para os escopos solicitados. Caso o usuário da solicitação autorize o acesso, é gerado um “ticket de acesso”, conforme demonstra na especificação `OpenID Connect`_ ;
 
-5. Para obter o *ticket de acesso*, o consumidor deve fazer uma requisição POST para o endereço https://staging.acesso.gov.br/scp/token passando as seguintes informações:
+5. Para obter o *ticket de acesso*, o consumidor deve fazer uma requisição POST para o endereço https://staging.acesso.gov.br/token passando as seguintes informações:
 
-Parâmetros do Header para requisição Post https://staging.acesso.gov.br/scp/token
+Parâmetros do Header para requisição Post https://sso.staging.acesso.gov.br/token
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -71,7 +71,7 @@ Exemplo de *header*:
 	Authorization: Basic											
 	ZWM0MzE4ZDYtZjc5Ny00ZDY1LWI0ZjctMzlhMzNiZjRkNTQ0OkFJSDRoaXBfTUJYcVJkWEVQSVJkWkdBX2dRdjdWRWZqYlRFT2NWMHlFQll4aE1iYUJzS0xwSzRzdUVkSU5FcS1kNzlyYWpaZ3I0SGJuVUM2WlRXV1lJOA==
 
-Parâmetros da Query para requisição Post https://staging.acesso.gov.br/scp/token
+Parâmetros da Query para requisição Post https://sso.staging.acesso.gov.br/token
 	
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -85,7 +85,7 @@ Exemplo de *query*
 
 .. code-block:: console
 
-	https://staging.acesso.gov.br/scp/token?grant_type=authorization_code&code=Z85qv1&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php	
+	https://sso.staging.acesso.gov.br/token?grant_type=authorization_code&code=Z85qv1&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php	
 
 O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
 
@@ -139,7 +139,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://staging.acesso.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
 =================  ======================================================================
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
@@ -154,7 +154,7 @@ Parâmetros do Header para requisição GET https://api.staging.acesso.gov.br/ap
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://staging.acesso.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
 =================  ======================================================================
 
 2. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
@@ -234,7 +234,7 @@ Exemplo de requisição
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://staging.acesso.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
 =================  ======================================================================
 
 3. O resultado em formato JSON são selos de confiabilidade da autenticação. O selos a serem verificados serão o “Representante Legal do CNPJ”, conforme o exemplo abaixo:
@@ -256,7 +256,7 @@ Exemplo de requisição
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://staging.acesso.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
 =================  ======================================================================
 
 5. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
@@ -282,7 +282,7 @@ Exemplo de requisição
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://staging.acesso.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
 **cnpj**           CNPJ da empresa formatado (sem ponto, barra etc).
 =================  ======================================================================
 
@@ -312,7 +312,7 @@ Para acessar o serviço é necessário:
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://staging.acesso.gov.br/scp/token
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
 =================  ======================================================================
 
 2. O resultado em formato JSON são selos de confiabilidade da autenticação. O selo a ser verificado será o "Convalidação" (selo que representa o balcão), conforme o exemplo abaixo:
@@ -332,7 +332,7 @@ Exemplo de requisição
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://staging.acesso.gov.br/scp/token
+**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
 **sigla-do-orgao-do-balcao**  sigla do órgão do balcão que recolheu os documentos
 ============================  ======================================================================
 
