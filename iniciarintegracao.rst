@@ -52,7 +52,7 @@ Exemplo de requisição:
 
 4. Após autenticado, o provedor redireciona para a página de autorização. O usuário habilitará o consumidor no sistema para os escopos solicitados. Caso o usuário da solicitação autorize o acesso, é gerado um “ticket de acesso”, conforme demonstra na especificação `OpenID Connect`_ ;
 
-5. Para obter o *ticket de acesso*, o consumidor deve fazer uma requisição POST para o endereço https://staging.acesso.gov.br/token passando as seguintes informações:
+5. Para obter o *ticket de acesso*, o consumidor deve fazer uma requisição POST para o endereço https://sso.staging.acesso.gov.br/token passando as seguintes informações:
 
 Parâmetros do Header para requisição Post https://sso.staging.acesso.gov.br/token
 
