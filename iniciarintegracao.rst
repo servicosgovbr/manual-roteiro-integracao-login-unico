@@ -251,7 +251,7 @@ Exemplo de requisição
 		}
 	]
 	
-4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/api/empresas/escopo/govbr_empresa enviando as seguintes informações:
+4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/api/empresa/escopo/govbr_empresa enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
