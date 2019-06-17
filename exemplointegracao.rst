@@ -325,7 +325,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 			private static String getEmpresasVinculadas(String accessToken) throws Exception {
 				String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/api/empresas");
+				URL url = new URL(URL_SERVICOS + "/api/empresa/escopo/govbr_empresa");
 				HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
@@ -768,7 +768,7 @@ Arquivo PHP
                         */
                         $ch_empresas_vinculadas = curl_init();
                         curl_setopt($ch_empresas_vinculadas, CURLOPT_SSL_VERIFYPEER, true);
-                        curl_setopt($ch_empresas_vinculadas, CURLOPT_URL, $URL_SERVICOS . "/api/empresas");
+                        curl_setopt($ch_empresas_vinculadas, CURLOPT_URL, $URL_SERVICOS . "/api/empresa/escopo/govbr_empresa");
                         curl_setopt($ch_empresas_vinculadas, CURLOPT_RETURNTRANSFER, TRUE);
                         $headers = array(
                                         'Accept: application/json',
