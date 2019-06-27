@@ -217,7 +217,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 					 *
 					 */
 
-					String empresasJson = getEmpresasVinculadas(accessToken);
+					String empresasJson = getEmpresasVinculadas(accessToken,idTokenJwtClaims.getSubject());
 
 					System.out.println("\n--------------------Serviço 3 - Empresas vinculadas ao usuário------------------");
 					System.out.println("JSON retornado:");
@@ -236,7 +236,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 
 					if (!cnpjs.isEmpty()) {
 
-						String dadosEmpresaJson = getDadosEmpresa(accessToken, cnpj.get("cnpj").toString() , "govbr_empresa");
+						String dadosEmpresaJson = getDadosEmpresa(accessToken, cnpj.get("cnpj").toString() ,idTokenJwtClaims.getSubject());
 
 						System.out.printf(
 								"\n--------------------Serviço 4 - Informações acerca da empresa %s------------------",
@@ -322,10 +322,10 @@ Link para biblioteca `jose4j`_ |site externo|.
 				return jwtConsumer.processToClaims(token);
 			}
 
-			private static String getEmpresasVinculadas(String accessToken) throws Exception {
+			private static String getEmpresasVinculadas(String accessToken, String cpf) throws Exception {
 				String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/api/empresa/escopo/govbr_empresa");
+				URL url = new URL(URL_SERVICOS + "/empresas/v1/representantes/"+cpf+"/empresas?visao=simples");
 				HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
@@ -347,10 +347,10 @@ Link para biblioteca `jose4j`_ |site externo|.
 				return retorno;
 			}
 
-			private static String getDadosEmpresa(String accessToken, String cnpj, String scope) throws Exception {
+			private static String getDadosEmpresa(String accessToken, String cnpj, String cpf) throws Exception {
 				String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/api/empresa/" + cnpj + "/escopo/" + scope);
+				URL url = new URL(URL_SERVICOS + "/empresas/v1/representantes/" + cpf + "/empresas/" + cnpj);
 				HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
@@ -767,8 +767,9 @@ Arquivo PHP
                                 Serviço de recuperação de empresas vinculadas: De posse do access token, a aplicação pode chamar o serviço para saber quais empresas se encontram vinculadas ao usuário logado.
                         */
                         $ch_empresas_vinculadas = curl_init();
+						$cpf = $json_output_payload_id_token['sub'];
                         curl_setopt($ch_empresas_vinculadas, CURLOPT_SSL_VERIFYPEER, true);
-                        curl_setopt($ch_empresas_vinculadas, CURLOPT_URL, $URL_SERVICOS . "/api/empresa/escopo/govbr_empresa");
+						curl_setopt($ch_empresas_vinculadas, CURLOPT_URL, $URL_SERVICOS . "/empresas/v1/representantes/" . $cpf . "/empresas?visao=simples");
                         curl_setopt($ch_empresas_vinculadas, CURLOPT_RETURNTRANSFER, TRUE);
                         $headers = array(
                                         'Accept: application/json',
@@ -784,7 +785,7 @@ Arquivo PHP
                         $cnpj = $json_output_empresas_vinculadas[0];
                         $ch_papel_empresa = curl_init();
                         curl_setopt($ch_papel_empresa,CURLOPT_SSL_VERIFYPEER, true);
-                        curl_setopt($ch_papel_empresa,CURLOPT_URL, $URL_SERVICOS . "/api/empresa/" . $cnpj . "/escopo/govbr_empresa");
+						curl_setopt($ch_papel_empresa,CURLOPT_URL, $URL_SERVICOS . "/empresas/v1/representantes/" . $cpf . "/empresas/" . $cnpj);
                         curl_setopt($ch_papel_empresa, CURLOPT_RETURNTRANSFER, TRUE);
                         $headers = array(
                                         'Accept: application/json',

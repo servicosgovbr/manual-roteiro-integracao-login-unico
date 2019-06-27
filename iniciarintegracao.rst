@@ -251,12 +251,13 @@ Exemplo de requisição
 		}
 	]
 	
-4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/api/empresa/escopo/govbr_empresa enviando as seguintes informações:
+4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas?visao=simples enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
 **Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**cpf**            CPF do cidadão (sem ponto, barra etc).
 =================  ======================================================================
 
 5. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
@@ -277,13 +278,14 @@ Exemplo de requisição
 		"cpf": "(CPF do representante da empresa)"
 	}
 
-6. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/api/empresa/**cnpj**/escopo/govbr_empresa enviando as seguintes informações:
+6. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas/**cnpj** enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
 **Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**cnpj**           CNPJ da empresa formatado (sem ponto, barra etc).
+**cpf**            CPF do cidadão (sem ponto, barra etc).
+**cnpj**           CNPJ da empresa (sem ponto, barra etc).
 =================  ======================================================================
 
 7. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
@@ -300,68 +302,68 @@ Exemplo de requisição
 		"nomeResponsavel": "(NOME DO RESPONSÁVEL)"
 	}
 
-Acesso ao Serviço de Informações cadastradas pelo Balcão (Selo Nível 3)
-----------------------------------------------------------------------
+.. Acesso ao Serviço de Informações cadastradas pelo Balcão (Selo Nível 3)
+.. ----------------------------------------------------------------------
 
-O Login Único disponibiliza o serviço para recuperar as informações apresentadas no balcão pelo cidadão.
+.. O Login Único disponibiliza o serviço para recuperar as informações apresentadas no balcão pelo cidadão.
 
-Para acessar o serviço é necessário:
+.. Para acessar o serviço é necessário:
 
-1. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/api/info/usuario/selo enviando as seguintes informações:
+.. 1. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/api/info/usuario/selo enviando as seguintes informações:
 
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-=================  ======================================================================
+.. =================  ======================================================================
+.. **Variavél**  	   **Descrição**
+.. -----------------  ----------------------------------------------------------------------
+.. **Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+.. =================  ======================================================================
 
-2. O resultado em formato JSON são selos de confiabilidade da autenticação. O selo a ser verificado será o "Convalidação" (selo que representa o balcão), conforme o exemplo abaixo:
+.. 2. O resultado em formato JSON são selos de confiabilidade da autenticação. O selo a ser verificado será o "Convalidação" (selo que representa o balcão), conforme o exemplo abaixo:
 
-Exemplo de requisição
+.. Exemplo de requisição
 
-.. code-block:: JSON
+.. .. code-block:: JSON
 	
-	{
-		"id": 0,
-		"nivel": 3,
-		"descricao": "Convalidação"
-	}
+..	{
+..		"id": 0,
+..		"nivel": 3,
+..		"descricao": "Convalidação"
+..	}
 
-3. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/info/documentos/orgao/sigla-do-orgao-do-balcao enviando as seguintes informações:
+.. 3. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/info/documentos/orgao/sigla-do-orgao-do-balcao enviando as seguintes informações:
 
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**sigla-do-orgao-do-balcao**  sigla do órgão do balcão que recolheu os documentos
-============================  ======================================================================
+.. ============================  ======================================================================
+.. **Variavél**  	              **Descrição**
+.. ----------------------------  ----------------------------------------------------------------------
+.. **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+.. **sigla-do-orgao-do-balcao**  sigla do órgão do balcão que recolheu os documentos
+.. ============================  ======================================================================
 
-4. O resultado em formato JSON é a detalhamento das informações cadastradas pelo atendente do balcão, conforme o exemplo abaixo:
+.. 4. O resultado em formato JSON é a detalhamento das informações cadastradas pelo atendente do balcão, conforme o exemplo abaixo:
 
-Exemplo de requisição
+.. Exemplo de requisição
 
-.. code-block:: JSON
+.. .. code-block:: JSON
 
-	[
-		{
-		"id": "Número do Documento (Formulário Cadastro pelo Ministério da Economia)",
-		"nome": "Nome do Documento (Formulário Cadastro pelo Ministério da Economia)",
-		"docAssinado": "Identifica se documento utilizou assinatura digital. Possui valor true e false" ,
-		"campos":
-			[
-				{
-				"id": "(Identificador do Campo cadastrado no documento)",
-				"nome": "(Nome do Campo cadastrado no documento)",
-				"tipo": "(Tipo do Campo cadastrado no documento. Possui os valores Arquivo (Upload de documentos); Campo Textual (letras e números); Data ; Hora; Número; Enumeração (Conteúdo com lista de valores); Assinatura (Informa que area deverá ter assinatura por certificado digital))",
-				"enumeracao": "(Caso o tipo do campo seja Enumeração, mostrará quais conteúdos pertencem a lista.",
-				"ordem": "(Número que aparece o campo no documento)",
-				"formato": "(Formatação da Mascará cadastrada para campo.)",
-				"obrigatorio": "(Indica se o preenchimento do campo é obrigatório ou não. Possui valor true ou false)",
-				"valor": "(Valor do campo escolhido para preenchimento)"
-				}
-			]	
-		}
-   	]
+..	[
+..		{
+..		"id": "Número do Documento (Formulário Cadastro pelo Ministério da Economia)",
+..		"nome": "Nome do Documento (Formulário Cadastro pelo Ministério da Economia)",
+..		"docAssinado": "Identifica se documento utilizou assinatura digital. Possui valor true e false" ,
+..		"campos":
+..			[
+..				{
+..				"id": "(Identificador do Campo cadastrado no documento)",
+..				"nome": "(Nome do Campo cadastrado no documento)",
+..				"tipo": "(Tipo do Campo cadastrado no documento. Possui os valores Arquivo (Upload de documentos); Campo Textual (letras e números); Data ; Hora; Número; Enumeração (Conteúdo com lista de valores); Assinatura (Informa que area deverá ter assinatura por certificado digital))",
+..				"enumeracao": "(Caso o tipo do campo seja Enumeração, mostrará quais conteúdos pertencem a lista.",
+..				"ordem": "(Número que aparece o campo no documento)",
+..				"formato": "(Formatação da Mascará cadastrada para campo.)",
+..				"obrigatorio": "(Indica se o preenchimento do campo é obrigatório ou não. Possui valor true ou false)",
+..				"valor": "(Valor do campo escolhido para preenchimento)"
+..				}
+..			]	
+..		}
+..   	]
 
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
 ------------------------------------------------------------------
@@ -377,7 +379,7 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
-.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGIN UNICO_final.doc
+.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_final.doc
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#TokenResponse
 .. _`auth 2.0 Redirection Endpoint`: https://tools.ietf.org/html/rfc6749#section-3.1.2
 .. _`Exemplos de Integração`: exemplointegracao.html
