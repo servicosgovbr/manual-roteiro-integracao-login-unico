@@ -12,10 +12,10 @@ A figura 5 apresenta tela dos escopos por serviços:
 Atributos Disponíveis
 +++++++++++++++++++++
 
-Existem dois escopos disponibilizados pelo Brasil Cidadão para apresentar os atributos disponíveis:
+Existem dois escopos disponibilizados pelo Login Único para apresentar os atributos disponíveis:
 
 - openid, email, phone, profile (CPF, Nome, e-mail, telefone, foto);
-- brasil_cidadao_empresa (CNPJ, Nome Fantasia, CPF do Responsável, Nome do Responsável, Atuação no CNPJ).
+- govbr_empresa (CNPJ, Nome Fantasia, CPF do Responsável, Nome do Responsável, Atuação no CNPJ).
    
 .. |site externo| image:: _images/site-ext.gif
             
