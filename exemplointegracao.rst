@@ -173,8 +173,10 @@ Link para biblioteca `jose4j`_ |site externo|.
 				System.out.println("\n\nDados do usuário:");
 				System.out.println("CPF: " + idTokenJwtClaims.getSubject()); //CPF do usuário autenticado.
 				System.out.println("Nome: " + nomeCompleto); // Nome Completo do cadastro feito pelo usuário no Gov.br.
-				System.out.println("E-Mail: " + idTokenJwtClaims.getClaimValue("email")); //(Endereço de e-mail cadastrado no Gov.br do usuário autenticado.)
-				System.out.println("Telefone: " + idTokenJwtClaims.getClaimValue("phone_number")); //(Número de telefone cadastrado no Gov.br do usuário autenticado.)
+				System.out.println("Email Validado: " + idTokenJwtClaims.getClaimValue("email_verified")); //(Confirma se o email foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")
+				System.out.println("E-Mail: " + idTokenJwtClaims.getClaimValue("email")); //(Endereço de e-mail cadastrado no Gov.br do usuário autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email não virá no ID_TOKEN)
+				System.out.println("Telefone Validado: " + idTokenJwtClaims.getClaimValue("phone_number_verified")); //(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")
+				System.out.println("Telefone: " + idTokenJwtClaims.getClaimValue("phone_number")); //(Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN)
 				System.out.println("Link para a foto: " + fotoUrl); //URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.
 				System.out.println("\n\nDados da Autenticação:");
 				System.out.println("Amr: " + idTokenJwtClaims.getClaimValue("amr")); // Fator de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.
@@ -703,15 +705,16 @@ Arquivo PHP
                  *          Para isso, este exemplo usa a biblioteca chamada "firebase/php-jwt" mas qualquer outra biblioteca que implemente a especificação pode ser usada.
                  *
                  *          O Id Token fornece as seguintes informações acerca do usuário:
-                 *                              1- id client da aplicação à qual o usuário se autenticou;
-                 *                              2- Escopos requeridos pela aplicação autorizados pelo usuário;
-                 *                              3- CPF do usuário autenticado
-                 *                              4- Nome completo do usuário cadastrado no Gov.br. Atenção, este é o nome que foi fornecido pelo usuário no momento do seu cadastro
-                 *                 (ou obtido do Certificado Digital e-CPF caso o cadastro tenha sido feito por este meio
-				 *								5- Número do telefone.
-				 *								6- Endereço de email.
-                 *                              7- Método de autenticação (CPF e Senha ou Certificado Digital 
-                 *				                8- CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica. 
+                 *              1- id client da aplicação à qual o usuário se autenticou;
+                 *              2- Escopos requeridos pela aplicação autorizados pelo usuário;
+                 *              3- CPF do usuário autenticado
+                 *              4- Nome completo do usuário cadastrado no Gov.br. Atenção, este é o nome que foi fornecido pelo usuário no momento do seu cadastro ou obtido do Certificado Digital e-CPF caso o cadastro tenha sido feito por este meio
+				 *				5- Número do telefone está valido ou não no cadastro.
+				 *				6- Número do telefone.
+				 *				7- Endereço de email está valido ou não no cadastro.
+				 *				8- Endereço de email.
+                 *              9- Método de autenticação (CPF e Senha ou Certificado Digital)
+                 *				10- CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica. 
                  */
                 $id_token = $json_output_tokens['id_token'];
 
@@ -1000,8 +1003,10 @@ Arquivo PHP
 									<div class="result" style="width:900px;">
 											<pre>CPF: <?php echo $json_output_payload_id_token['sub']; ?></pre> <!-- CPF do usuário autenticado. -->
 											<pre>Nome: <?php echo $json_output_payload_id_token['name']; ?></pre> <!-- Nome Completo do cadastro feito pelo usuário no Gov.br. -->
-											<pre>Telefone: <?php echo $json_output_payload_id_token['phone_number']; ?></pre> <!-- (Número de telefone cadastrado no Gov.br do usuário autenticado.)-->
-											<pre>Email: <?php echo $json_output_payload_id_token['email']; ?></pre> <!-- (Endereço de e-mail cadastrado no Gov.br do usuário autenticado.)-->
+											<pre>Telefone Validado: <?php echo $json_output_payload_id_token['phone_number_verified']; ?></pre> <!-- (Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")-->
+											<pre>Telefone: <?php echo $json_output_payload_id_token['phone_number']; ?></pre> <!-- (Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN)-->
+											<pre>Email Validado: <?php echo $json_output_payload_id_token['email_verified']; ?></pre> <!-- (Confirma se o email foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")-->
+											<pre>Email: <?php echo $json_output_payload_id_token['email']; ?></pre> <!-- (Endereço de e-mail cadastrado no Gov.br do usuário autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email não virá no ID_TOKEN)-->
 											<pre>AMR: <?php echo $json_output_payload_id_token['amr']; ?></pre> <!--  Fator de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem. -->
 											<pre>CNPJ: <?php echo $json_output_payload_id_token['cnpj']; ?></pre> <!-- CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica. -->
 									</div>
