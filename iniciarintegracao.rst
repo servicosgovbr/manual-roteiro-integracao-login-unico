@@ -18,7 +18,7 @@ Para que a autenticação aconteça, todo o canal de comunicação deve ser real
 
 A utilização da autenticação do Login Único depende dos seguintes passos:
 
-1. A chamada para autenticação deverá ocorrer pelo botão com o conteúdo **Entrar com GOV.BR**.
+1. A chamada para autenticação deverá ocorrer pelo botão com o conteúdo **Entrar com GOV.BR**. Para o formato do botão, seguir as orientações do `Design System do Governo Federal`_ |site externo|. 
 
 2. Ao requisitar autenticação via Provedor, o mesmo verifica se o usuário está logado. Caso o usuário não esteja logado o provedor redireciona para a página de login. 
 
@@ -388,3 +388,4 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#TokenResponse
 .. _`auth 2.0 Redirection Endpoint`: https://tools.ietf.org/html/rfc6749#section-3.1.2
 .. _`Exemplos de Integração`: exemplointegracao.html
+.. _`Design System do Governo Federal`: http://dsgov.estaleiro.serpro.gov.br/ds/componentes/button
