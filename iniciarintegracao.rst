@@ -198,12 +198,12 @@ Os selos existentes no Login Único são:
 		},
 		{
 			"id": 0,
-			"nivel": 5,
+			"nivel": 3,
 			"descricao": "Certificado Digital"	
 		},	
 		{	
 			"id": 0,
-			"nivel": 3,
+			"nivel": 5,
 			"descricao": "Convalidação (Módulo Balcão)"	
 		},
 		{
@@ -215,6 +215,11 @@ Os selos existentes no Login Único são:
 			"id": 0,
 			"nivel": 11,
 			"descricao": "REPRESENTANTE E-CNPJ"
+		},
+		{
+			"id": 0,
+			"nivel": 13,
+			"descricao": "COLABORADOR E-CNPJ"
 		}
 	]
 
