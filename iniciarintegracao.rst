@@ -4,7 +4,7 @@
 Solicitação de Configuração
 +++++++++++++++++++++++++++
 
-Para utilização do sistema Login Único, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Integração`_.
+Para utilização do sistema Login Único, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Integração <http://manual-roteiro-integracao-login-unico.servicos.gov.br/pt/stable/arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_final.doc>`_.
 
 O formulário deverá ser encaminhado para os integrantes da Secretaria de Governança Digital (SGD) do Ministério da Economia (ME) para realizar configuração da utilização do Login Único.
 
