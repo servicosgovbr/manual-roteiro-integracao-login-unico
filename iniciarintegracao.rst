@@ -149,6 +149,33 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
 
+Acesso ao Serviço de Log Out
+----------------------------
+
+1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html
+
+Parâmetros do Header para requisição GET https://sso.staging.acesso.gov.br/logout
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+=================  ======================================================================
+
+Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
+	
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for inválidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
+============================  ======================================================================
+
+Exemplo de *execução*
+
+.. code-block:: console
+
+	https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html
+
 Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 -----------------------------------------------------
 
