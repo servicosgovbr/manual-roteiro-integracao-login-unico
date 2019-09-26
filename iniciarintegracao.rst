@@ -154,13 +154,13 @@ Acesso ao Serviço de Log Out
 
 1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html
 
-Parâmetros do Header para requisição GET https://sso.staging.acesso.gov.br/logout
+.. Parâmetros do Header para requisição GET https://sso.staging.acesso.gov.br/logout
 
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-=================  ======================================================================
+.. =================  ======================================================================
+.. **Variavél**  	   **Descrição**
+.. -----------------  ----------------------------------------------------------------------
+.. **Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+.. =================  ======================================================================
 
 Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
 	
