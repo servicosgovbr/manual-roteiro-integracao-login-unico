@@ -39,7 +39,7 @@ Exemplo de requisição:
 
 .. code-block:: console
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+(email/phone/profile)&redirect_uri=http://appcliente.com.br/phpcliente/loginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+(email/phone/profile)&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
 4. Após a autorização, a requisição é retornada para a URL especificada no redirect_uri do serviço https://sso.staging.acesso.gov.br/authorize, enviando os parâmetros:
 
@@ -170,11 +170,16 @@ Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/log
 **post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for inválidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
 ============================  ======================================================================
 
-Exemplo de *execução*
+Exemplo de *execução* no front end em javascript
 
-.. code-block:: console
+.. code-block:: javascript
 
-	https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html
+	var form = document.createElement("form");      
+	form.setAttribute("method", "post");
+    form.setAttribute("post_logout_redirect_uri", "https://www.minha-aplicacao.gov.br/retorno.html");	
+	form.setAttribute("action", "https://sso.staging.acesso.gov.br/logout");
+    document.body.appendChild(form);  
+	form.submit();
 
 Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 -----------------------------------------------------
