@@ -73,7 +73,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 			private static final String URL_PROVIDER = "https://sso.staging.acesso.gov.br";
 			private static final String URL_SERVICOS = "https://api.staging.acesso.gov.br";
 			private static final String REDIRECT_URI = "<coloque-aqui-a-uri>";                                                      //redirectURI informada na chamada do serviço do authorize.
-			private static final String SCOPES = "openid+(profile/phone/email/govbr_empresa)"; 	// Escopos pedidos para a aplicação. Observe que para esse exemplo, podem ser autorizados ou email, ou phone ou ambos, ou seja, os tods juntos não são obrigatórios.  
+			private static final String SCOPES = "openid+email+phone+profile+govbr_empresa"; 	// Escopos pedidos para a aplicação.  
 			private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do serviço do authorize.
 			private static final String SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";                           //secret de conhecimento apenas do backend da aplicação.
 
@@ -611,7 +611,7 @@ Arquivo PHP
         $CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";
         $SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";
         $REDIRECT_URI = "<coloque-aqui-a-uri>";
-        $SCOPE = "openid+(profile/phone/email/govbr_empresa)";
+        $SCOPE = "openid+email+phone+profile+govbr_empresa";
         $URL_SERVICOS="https://api.staging.acesso.gov.br";
 
         /*
