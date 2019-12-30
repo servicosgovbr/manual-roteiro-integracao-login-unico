@@ -1,7 +1,22 @@
 ﻿Exemplo de implementação
 ========================
 
+
 Os exemplos são básicos da forma de realizar as requisições para Login Único. Cabe ao desenvolvedor realizar a organização e aplicação da segurança necessária na aplicação consumidora.
+
+DOCKER
+++++++
+
+Caso você só queira ver o exemplo funcionando execute com o Docker instalado:
+
+.. code-block:: console
+
+$ docker run -d -p 80:80 --env CLIENT_ID='MEU-CLIENT-ID' --env SECRET='MEU-SECRET' --env REDIRECT_URI='http://MINHA-URL' --name meu-login-teste govbr/login-php-exemplo
+
+.. warning::
+    Altere as variáveis antes de executar o comando. Caso a redirect_uri não seja para localhost coloque no seu /etc/hosts um redirect para o localhost.
+
+Depois acesso o http://localhost ou o redirect_uri alterado no hosts.
 
 JAVA
 ++++
@@ -73,7 +88,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 			private static final String URL_PROVIDER = "https://sso.staging.acesso.gov.br";
 			private static final String URL_SERVICOS = "https://api.staging.acesso.gov.br";
 			private static final String REDIRECT_URI = "<coloque-aqui-a-uri>";                                                      //redirectURI informada na chamada do serviço do authorize.
-			private static final String SCOPES = "openid+email+phone+profile+govbr_empresa"; 	// Escopos pedidos para a aplicação.  
+			private static final String SCOPES = "openid+email+phone+profile+govbr_empresa"; 	// Escopos pedidos para a aplicação.
 			private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do serviço do authorize.
 			private static final String SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";                           //secret de conhecimento apenas do backend da aplicação.
 
@@ -153,7 +168,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 				String idClient = accessTokenJwtClaims.getAudience().get(0); // Client Id
 				List<String> scopes = accessTokenJwtClaims.getStringListClaimValue("scope"); // Escopos autorizados pelo usuário
 				String nomeCompleto = idTokenJwtClaims.getStringClaimValue("name"); // Nome Completo do cadastro feito pelo usuário no Gov.br.
-				String fotoUrl = idTokenJwtClaims.getStringClaimValue("picture"); // 
+				String fotoUrl = idTokenJwtClaims.getStringClaimValue("picture"); //
 
 				System.out.println("\n--------------------Etapa 3 - Informações obtidas do Access Token------------------");
 				System.out.printf("O usuário " + nomeCompleto + " foi autenticado pelo Gov.br para usar o sistema " + idClient
@@ -234,7 +249,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 					JSONObject empresasVinculadasJson = (JSONObject) parser.parse(empresasJson);
 					JSONArray cnpjs = (JSONArray) empresasVinculadasJson.get("cnpjs");
 					JSONObject cnpj = (JSONObject)cnpjs.get(0);
-					
+
 
 					if (!cnpjs.isEmpty()) {
 
@@ -490,7 +505,7 @@ Arquivo CSS
 				color: white;
 		}
 
-		.row {  
+		.row {
 			display: -ms-flexbox; /* IE10 */
 			display: -webkit-box;                  /* chrome */
 			-webkit-justify-content: space-around; /* chrome */
@@ -509,7 +524,7 @@ Arquivo CSS
 			padding: 20px;
 		}
 
-		.right_side {   
+		.right_side {
 			-ms-flex: 70%; /* IE10 */
 			flex: 70%;
 			width: 70%; /* chrome */
@@ -544,7 +559,7 @@ Arquivo CSS
 
 		/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 		@media screen and (max-width: 700px) {
-			.row {   
+			.row {
 				flex-direction: column;
 			}
 		}
@@ -594,8 +609,8 @@ Arquivo CSS
 		}
 
 Arquivo PHP
------------		
-		
+-----------
+
 .. code-block:: PHP
 
 		<?php
@@ -681,7 +696,7 @@ Arquivo PHP
                  *                              2- Escopos requeridos pela aplicação autorizados pelo usuário;
                  *                              3- CPF do usuário autenticado
                  *                              4- Nome completo do usuário cadastrado no Gov.br. Atenção, este é o nome que foi fornecido pelo usuário no momento do seu cadastro
-                 *                 (ou obtido do Certificado Digital e-CPF caso o cadastro tenha sido feito por este meio). 
+                 *                 (ou obtido do Certificado Digital e-CPF caso o cadastro tenha sido feito por este meio).
                  */
                 $url = $URL_PROVIDER . "/jwk" ;
                 $ch_jwk = curl_init();
@@ -714,7 +729,7 @@ Arquivo PHP
 				 *				7- Endereço de email está valido ou não no cadastro.
 				 *				8- Endereço de email.
                  *              9- Método de autenticação (CPF e Senha ou Certificado Digital)
-                 *				10- CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica. 
+                 *				10- CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.
                  */
                 $id_token = $json_output_tokens['id_token'];
 
@@ -724,7 +739,7 @@ Arquivo PHP
                     $detalhamentoErro = $e;
                 }
 
-            
+
 
                 /*
                         Serviço de obtenção da foto do usuário: De posse do id token e access token, a aplicação pode chamar o serviço para obter a foto do perfil através da url informada no parâmetro picture no id token
@@ -1094,7 +1109,7 @@ Arquivo PHP
 ANDROID (MOBILE)
 ++++++++++++++++
 
-`Exemplo para download`_ 
+`Exemplo para download`_
 
 **Observações para executar o exemplo**
 ------------------------------------------
@@ -1104,7 +1119,7 @@ ANDROID (MOBILE)
 2. Alterar configurações da tag "data" do AndroidManifest.xml da pasta /OauthMobileApp:
 
 - android:scheme="coloque-aqui-o-esquema-da-sua-uri-de-retorno"
-- android:host="coloque-aqui-o-host-da-sua-uri-de-retorno" 
+- android:host="coloque-aqui-o-host-da-sua-uri-de-retorno"
 - android:path="coloque-aqui-o-path-da-sua-uri-de-retorno"
 
 **Exemplo:** URL de Retorno ("local://exemplo.com/callback"), o scheme sera ("local"), o host será ("exemplo.com") e o path será (/callback)
@@ -1112,8 +1127,8 @@ ANDROID (MOBILE)
 3. Instalar as bibliotecas:
 
 - `RETROFIT`_ |site externo|
-- `OKHTTP`_ |site externo| 
-- `jose4j`_ |site externo| 
+- `OKHTTP`_ |site externo|
+- `jose4j`_ |site externo|
 
 4. Alterar as configurações no arquivo Config.java da pasta /OauthMobileApp:
 
@@ -1122,22 +1137,22 @@ ANDROID (MOBILE)
 - AUTHORIZATION_SCOPE("openid profile phone email govbr_empresa")
 - AUTHORIZATION_ENDPOINT_URI("https://sso.staging.acesso.gov.br/authorize")
 - LOGOUT_ENDPOINT_URI("https://sso.staging.acesso.gov.br/logout")
-- TOKEN_ENDPOINT_URI("endereco-backend-para-acessar-conteudo-da-pasta-OauthMobileBackend")	
+- TOKEN_ENDPOINT_URI("endereco-backend-para-acessar-conteudo-da-pasta-OauthMobileBackend")
 
 5. Cadastrar variáveis de ambiente do serviço backend da pasta /OauthMobileBackend
 
-- CLIENT_ID="coloque-aqui-o-client-id-da-sua-aplicação" 
+- CLIENT_ID="coloque-aqui-o-client-id-da-sua-aplicação"
 - TOKEN_SERVICE_URL="https://sso.staging.acesso.gov.br/token"
 - REDIRECT_URI="coloque-aqui-o-redirect-uri-identico-ao-informado-nomanifest-do-app-android"
-- ISSUER="https://seu-domínio" 
+- ISSUER="https://seu-domínio"
 - CREDENTIALS="coloque-aqui-as-credenciais-co"
 - JWK_RSA_WEB_KEY="coloque-aqui-o-par-de-chaves-que-assinarão-o-token-desessao-gerado-por-algoritmo-RSA-tendo-padrao-jwk"
 - JWK_SERVICE_URL="https://sso.staging.acesso.gov.br/jwk"
-- SERVICE_URL="ttps://api.staging.acesso.gov.br" 
-	
+- SERVICE_URL="ttps://api.staging.acesso.gov.br"
+
 .. |site externo| image:: _images/site-ext.gif
-.. _`jose4j` : https://javalibs.com/artifact/org.bitbucket.b_c/jose4j		
+.. _`jose4j` : https://javalibs.com/artifact/org.bitbucket.b_c/jose4j
 .. _`firebase/php-jwt`: https://github.com/firebase/php-jwt
 .. _`RETROFIT`: https://square.github.io/retrofit/
 .. _`OKHTTP`: https://square.github.io/okhttp/
-.. _`Exemplo para download`: arquivos/android-oauth-sdk-master.zip 
+.. _`Exemplo para download`: arquivos/android-oauth-sdk-master.zip
