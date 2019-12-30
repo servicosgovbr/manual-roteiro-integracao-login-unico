@@ -16,6 +16,10 @@ $ docker run -d -p 80:80 --env CLIENT_ID='MEU-CLIENT-ID' --env SECRET='MEU-SECRE
 
 Depois acesso o http://localhost ou o redirect_uri alterado no hosts.
 
+.. figure:: _images/exemplo-docker.gif
+   :align: center
+   :alt: Exemplo com o comando docker em PHP.
+
 JAVA
 ++++
 
