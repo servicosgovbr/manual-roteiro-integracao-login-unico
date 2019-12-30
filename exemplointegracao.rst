@@ -4,22 +4,6 @@
 
 Os exemplos são básicos da forma de realizar as requisições para Login Único. Cabe ao desenvolvedor realizar a organização e aplicação da segurança necessária na aplicação consumidora.
 
-DOCKER
-++++++
-
-Caso você só queira ver o exemplo funcionando execute com o Docker instalado:
-
-$ docker run -d -p 80:80 --env CLIENT_ID='MEU-CLIENT-ID' --env SECRET='MEU-SECRET' --env REDIRECT_URI='http://MINHA-URL' --name meu-login-teste govbr/login-php-exemplo
-
-.. warning::
-    Altere as variáveis antes de executar o comando. Caso a redirect_uri não seja para localhost coloque no seu /etc/hosts um redirect para o localhost.
-
-Depois acesso o http://localhost ou o redirect_uri alterado no hosts.
-
-.. figure:: _images/exemplo-docker.gif
-   :align: center
-   :alt: Exemplo com o comando docker em PHP.
-
 JAVA
 ++++
 
