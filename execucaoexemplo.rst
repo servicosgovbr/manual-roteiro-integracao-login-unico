@@ -19,8 +19,9 @@ Depois acesso o http://localhost ou o redirect_uri alterado no hosts.
 
 Gif mostrando como executa o exemplo:
 
-.. figure:: _images/exemplo-docker.gif
-   :align: center
+.. figure:: _static/exemplo-docker.*
    :alt: Exemplo com o comando docker em PHP.
+
+   Exemplo com o comando docker em PHP.
 
 .. |site externo| image:: _images/site-ext.gif
