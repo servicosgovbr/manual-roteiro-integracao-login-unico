@@ -170,17 +170,22 @@ Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/log
 **post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for inválidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
 ============================  ======================================================================
 
-Exemplo de *execução* no front end em javascript
+Exemplo 1 de *execução* no front end em javascript
 
 .. code-block:: javascript
 
 	var form = document.createElement("form");      
 	form.setAttribute("method", "post");
-    form.setAttribute("post_logout_redirect_uri", "https://www.minha-aplicacao.gov.br/retorno.html");	
-	form.setAttribute("action", "https://sso.staging.acesso.gov.br/logout");
+    form.setAttribute("action", "https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html");
     document.body.appendChild(form);  
 	form.submit();
 
+Exemplo 2 de *execução* no front end em javascript
+
+.. code-block:: javascript
+
+	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
+	
 Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 -----------------------------------------------------
 
