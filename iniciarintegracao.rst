@@ -245,11 +245,6 @@ Os selos existentes no Login Único são:
 		},
 		{
 			"id": 0,
-			"nivel": 10,
-			"descricao": "DNI"
-		},
-		{
-			"id": 0,
 			"nivel": 11,
 			"descricao": "REPRESENTANTE E-CNPJ"
 		},
@@ -257,9 +252,24 @@ Os selos existentes no Login Único são:
 			"id": 0,
 			"nivel": 13,
 			"descricao": "COLABORADOR E-CNPJ"
+		},
+		{
+			"id": 0,
+			"nivel": 101,
+			"descricao": "SELO_KBA_PREVIDENCIA (selo gerado através de questionário respondido através do site Meu INSS)" 
+		},
+		{
+			"id": 0,
+			"nivel": 102,
+			"descricao": "SELO_BALCAO_SAT_PREVIDENCIA (selo gerado via balcão do INSS)" 
+		},
+		{
+			"id": 0,
+			"nivel": 103,
+			"descricao": "SELO_BALAO_NAI_PREVIDENCIA (selo gerado via Internet Banking)" 
 		}
+		
 	]
-
 
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------
@@ -276,29 +286,7 @@ Exemplo de requisição
 
 	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_empresa&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/api/info/usuario/selo enviando as seguintes informações:
-
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-=================  ======================================================================
-
-3. O resultado em formato JSON são selos de confiabilidade da autenticação. O selos a serem verificados serão o “Representante Legal do CNPJ”, conforme o exemplo abaixo:
-
-Exemplo de requisição
-
-.. code-block:: JSON
-
-	[	
-		{
-			"id": 0,
-			"nivel": 11,
-			"descricao": "REPRESENTANTE E-CNPJ"
-		}
-	]
-	
-4. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas?visao=simples enviando as seguintes informações:
+2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas?visao=simples enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -307,7 +295,7 @@ Exemplo de requisição
 **cpf**            CPF do cidadão (sem ponto, barra etc).
 =================  ======================================================================
 
-5. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
+3. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
 
 Exemplo de requisição
 
@@ -325,7 +313,7 @@ Exemplo de requisição
 		"cpf": "(CPF do representante da empresa)"
 	}
 
-6. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas/**cnpj** enviando as seguintes informações:
+4. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas/**cnpj** enviando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -335,7 +323,7 @@ Exemplo de requisição
 **cnpj**           CNPJ da empresa (sem ponto, barra etc).
 =================  ======================================================================
 
-7. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
+5. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
 
 Exemplo de requisição
 

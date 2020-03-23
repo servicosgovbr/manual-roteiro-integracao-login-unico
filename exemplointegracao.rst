@@ -212,43 +212,41 @@ Link para biblioteca `jose4j`_ |site externo|.
 					}
 				}
 
-				if (seloNivels.contains(new Long(11))) { // Selo de REPRESENTANTE E-CNPJ
+				/**
+				 * Serviço 3: De posse do access token, a aplicação pode chamar o serviço para
+				 * saber quais empresas se encontram vinculadas ao usuário logado.
+				 *
+				 */
 
-					/**
-					 * Serviço 3: De posse do access token, a aplicação pode chamar o serviço para
-					 * saber quais empresas se encontram vinculadas ao usuário logado.
-					 *
-					 */
+				String empresasJson = getEmpresasVinculadas(accessToken,idTokenJwtClaims.getSubject());
 
-					String empresasJson = getEmpresasVinculadas(accessToken,idTokenJwtClaims.getSubject());
+				System.out.println("\n--------------------Serviço 3 - Empresas vinculadas ao usuário------------------");
+				System.out.println("JSON retornado:");
+				System.out.println(empresasJson);
 
-					System.out.println("\n--------------------Serviço 3 - Empresas vinculadas ao usuário------------------");
+				/**
+				 * Serviço 4: De posse do access token, a aplicação pode chamar o serviço para
+				 * obter dados de uma empresa específica e o papel do usuário logado nesta
+				 * empresa.
+				 */
+
+				JSONObject empresasVinculadasJson = (JSONObject) parser.parse(empresasJson);
+				JSONArray cnpjs = (JSONArray) empresasVinculadasJson.get("cnpjs");
+				JSONObject cnpj = (JSONObject)cnpjs.get(0);
+
+
+				if (!cnpjs.isEmpty()) {
+
+					String dadosEmpresaJson = getDadosEmpresa(accessToken, cnpj.get("cnpj").toString() ,idTokenJwtClaims.getSubject());
+
+					System.out.printf(
+							"\n--------------------Serviço 4 - Informações acerca da empresa %s------------------",
+							cnpjs.get(0));
 					System.out.println("JSON retornado:");
-					System.out.println(empresasJson);
+					System.out.println(dadosEmpresaJson);
 
-					/**
-					 * Serviço 4: De posse do access token, a aplicação pode chamar o serviço para
-					 * obter dados de uma empresa específica e o papel do usuário logado nesta
-					 * empresa.
-					 */
-
-					JSONObject empresasVinculadasJson = (JSONObject) parser.parse(empresasJson);
-					JSONArray cnpjs = (JSONArray) empresasVinculadasJson.get("cnpjs");
-					JSONObject cnpj = (JSONObject)cnpjs.get(0);
-
-
-					if (!cnpjs.isEmpty()) {
-
-						String dadosEmpresaJson = getDadosEmpresa(accessToken, cnpj.get("cnpj").toString() ,idTokenJwtClaims.getSubject());
-
-						System.out.printf(
-								"\n--------------------Serviço 4 - Informações acerca da empresa %s------------------",
-								cnpjs.get(0));
-						System.out.println("JSON retornado:");
-						System.out.println(dadosEmpresaJson);
-
-					}
 				}
+				
 
 			}
 
@@ -764,41 +762,37 @@ Arquivo PHP
                 curl_close($ch_confiabilidade);
 
                 /*
-                        Verificar se CPF autenticado possui selo de Confiabildidade e-CNPJ.
+                    Serviço de recuperação de empresas vinculadas: De posse do access token, a aplicação pode chamar o serviço para saber quais empresas se encontram vinculadas ao usuário logado.
                 */
-                if ($json_output_confiabilidade['nivel'] == '11') {
-                        /*
-                                Serviço de recuperação de empresas vinculadas: De posse do access token, a aplicação pode chamar o serviço para saber quais empresas se encontram vinculadas ao usuário logado.
-                        */
-                        $ch_empresas_vinculadas = curl_init();
-						$cpf = $json_output_payload_id_token['sub'];
-                        curl_setopt($ch_empresas_vinculadas, CURLOPT_SSL_VERIFYPEER, true);
-						curl_setopt($ch_empresas_vinculadas, CURLOPT_URL, $URL_SERVICOS . "/empresas/v1/representantes/" . $cpf . "/empresas?visao=simples");
-                        curl_setopt($ch_empresas_vinculadas, CURLOPT_RETURNTRANSFER, TRUE);
-                        $headers = array(
-                                        'Accept: application/json',
-                                        'Authorization: Bearer '. $json_output_tokens['access_token']
-                        );
-                        curl_setopt($ch_empresas_vinculadas, CURLOPT_HTTPHEADER, $headers);
-                        $json_output_empresas_vinculadas = json_decode(curl_exec($ch_empresas_vinculadas), true);
-                        curl_close($ch_empresas_vinculadas);
+                $ch_empresas_vinculadas = curl_init();
+				$cpf = $json_output_payload_id_token['sub'];
+                curl_setopt($ch_empresas_vinculadas, CURLOPT_SSL_VERIFYPEER, true);
+				curl_setopt($ch_empresas_vinculadas, CURLOPT_URL, $URL_SERVICOS . "/empresas/v1/representantes/" . $cpf . "/empresas?visao=simples");
+                curl_setopt($ch_empresas_vinculadas, CURLOPT_RETURNTRANSFER, TRUE);
+                $headers = array(
+					'Accept: application/json',
+					'Authorization: Bearer '. $json_output_tokens['access_token']
+                    );
+                curl_setopt($ch_empresas_vinculadas, CURLOPT_HTTPHEADER, $headers);
+                $json_output_empresas_vinculadas = json_decode(curl_exec($ch_empresas_vinculadas), true);
+                curl_close($ch_empresas_vinculadas);
 
-                        /*
-                                Serviço de detalhamento da empresa vinculada: De posse do access token, a aplicação pode chamar o serviço para obter dados de uma empresa específica e o papel do usuário logado nesta empresa.
-                        */
-                        $cnpj = $json_output_empresas_vinculadas[0];
-                        $ch_papel_empresa = curl_init();
-                        curl_setopt($ch_papel_empresa,CURLOPT_SSL_VERIFYPEER, true);
-						curl_setopt($ch_papel_empresa,CURLOPT_URL, $URL_SERVICOS . "/empresas/v1/representantes/" . $cpf . "/empresas/" . $cnpj);
-                        curl_setopt($ch_papel_empresa, CURLOPT_RETURNTRANSFER, TRUE);
-                        $headers = array(
-                                        'Accept: application/json',
-                                        'Authorization: '. $json_output_tokens['access_token']
-                        );
-                        curl_setopt($ch_papel_empresa, CURLOPT_HTTPHEADER, $headers);
-                        $json_output_papel_empresa = json_decode(curl_exec($ch_papel_empresa), true);
-                        curl_close($ch_papel_empresa);
-                }
+                /*
+					Serviço de detalhamento da empresa vinculada: De posse do access token, a aplicação pode chamar o serviço para obter dados de uma empresa específica e o papel do usuário logado nesta empresa.
+                */
+                $cnpj = $json_output_empresas_vinculadas[0];
+                $ch_papel_empresa = curl_init();
+                curl_setopt($ch_papel_empresa,CURLOPT_SSL_VERIFYPEER, true);
+				curl_setopt($ch_papel_empresa,CURLOPT_URL, $URL_SERVICOS . "/empresas/v1/representantes/" . $cpf . "/empresas/" . $cnpj);
+                curl_setopt($ch_papel_empresa, CURLOPT_RETURNTRANSFER, TRUE);
+                $headers = array(
+					'Accept: application/json',
+					'Authorization: '. $json_output_tokens['access_token']
+                    );
+                curl_setopt($ch_papel_empresa, CURLOPT_HTTPHEADER, $headers);
+                $json_output_papel_empresa = json_decode(curl_exec($ch_papel_empresa), true);
+                curl_close($ch_papel_empresa);
+                
         }
         /**
          * Função que valida o token (access_token ou id_token) (Valida o tempo de expiração e a assinatura)
@@ -1044,9 +1038,6 @@ Arquivo PHP
 							</div>
 					</div>
 
-					<?php
-							if ($json_output_confiabilidade['nivel'] == '11') {
-					?>
 							<div class="row">
 									<div class="left_side">
 											<div>
@@ -1081,10 +1072,6 @@ Arquivo PHP
 											?>
 									</div>
 							</div>
-					<?php
-							}
-					?>
-
 
 			<?php
 					}
