@@ -14,9 +14,9 @@ Roteiro de Integração do Login Único
    introducao
 
    escopoatributos
-   niveisautenticacao
+   seloconfiabilidadecadastral
    lancadordeservicos
-..   seloconfiabilidadecadastral
+..   niveisautenticacao
 ..   arquiteturaservicosprotocolo
 ..   niveisautenticacao
 
