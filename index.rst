@@ -15,6 +15,16 @@ Roteiro de Integração do Login Único
 
    escopoatributos
    seloconfiabilidadecadastral
+   comoadquirirselocadastrobasicovalidacaodadospessoais
+   comoadquirirselocadastrobasicovalidacaodadosprevidenciarios
+   comoadquirirseloselobalcaopresencialINSS
+   comoadquirirselointernetbanking
+   comoadquirirvalidacaofacial
+   comoadquirircadastrobasicovalidacaobasedadosservidorespublicosuniao
+   comoadquirirvalidacaobiometriadigital
+   comoadquirircertificadodigitalpessoafisica
+   comoadquirircertificadodigitalpessoajuridica
+   comoadquirircolaboradorpessoaljuridica
    lancadordeservicos
 ..   niveisautenticacao
 ..   arquiteturaservicosprotocolo
