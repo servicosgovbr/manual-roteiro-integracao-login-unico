@@ -271,6 +271,70 @@ Os selos existentes no Login Único são:
 		
 	]
 
+Acesso ao Serviço de Confiabilidade Cadastral do Selo de Validação Facial
+-------------------------------------------------------------------------
+Para acessar o serviço que disponibiliza o selo de Validação Facial, é necessário o seguinte:
+
+1. Na requisição de autenticação, adicionar o escopo “govbr_confiabilidades“, conforme exemplo:
+
+Exemplo de requisição
+
+.. code-block:: console
+
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_confiabilidades&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+
+2. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades
+;
+
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**cpf**            CPF do cidadão (sem ponto, barra etc).
+=================  ======================================================================
+
+3. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
+
+.. code-block:: JSON
+
+	[
+	  {
+		"confiabilidade": {
+		  "id": "(Identificação para reconhecer o selo)",
+		  "titulo": "(Identificação do selo em tela para o cidadão)",
+		  "descricao": "(Descrição padrão do significado do selo)",
+		  "orientacoesHtml": "(Descrição, em formato de html, para descrever o cidadão os passos para adquirir o selo repassado)",
+		  "situacaoAtivo": "(Demonstra, como true ou false, o selo está disponível para aquisição na conta do cidadão)", 
+		  "urlImagem": "(Caminho de URL para mostrar a imagem do selo representado caso a aplicação deseja mostrar em seus sistemas)"
+		},
+		"dataCriacao": "(Mostra a data e hora da criação do selo na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+	  }
+	]
+
+Resultado Esperado do Serviço de Confiabilidade Cadastral do Selo de Validação Facial
+-------------------------------------------------------------------------------------
+
+O selo facial será retornado no Login Único:
+
+.. code-block:: JSON
+
+	[
+		{
+		"confiabilidade": {
+		  "id": "biovalid_facial",
+		  "titulo": "Cadastro validado por Biometria Facial",
+		  "descricao": "Validação através da Biometria Facial usando o Biovalid",
+		  "orientacoesHtml": "<p>Voc? pode obter o Selo de confiabilidade cadastral por meio do aplicativo BioValid. O aplicativo est? dispon?vel no <b>Google Play</b> e na <b>App Store</b>.</p>",
+		  "situacaoAtivo": true,
+		  "urlImagem": "https://api.staging.acesso.gov.br/confiabilidades/v1/confiabilidades/biovalid_facial/imagem"
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		}
+		
+	]	
+
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------
 
