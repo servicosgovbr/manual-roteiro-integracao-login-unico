@@ -58,9 +58,10 @@ Link para biblioteca `jose4j`_ |site externo|.
 			 * Extração das informações básicas de usuário através do ID Token; Serviço 1:
 			 * getFoto - Serviço que recupera a foto do usuário; Serviço 2:
 			 * getConfiabilidade - Serviço que recupera os selos de confiabilidade
-			 * atribuidos ao usuário; Serviço 3: getEmpresasVinculadas - Serviço que
-			 * recupera a lista de empresas vinculadas ao usuário; Serviço 4:
-			 * getDadosEmpresa - Serviço que detalha a empresa e o papel do usuário nesta
+			 * atribuidos ao usuário; - Serviço 3: getConfiabilidadeSeloFacial - saber quais as 
+			 * confiabilidade usuário logado possui. Essa inclui a confiabilidade do Selo Facial
+			 * Serviço 4: getEmpresasVinculadas - Serviço que recupera a lista de empresas vinculadas ao usuário;
+			 * Serviço 5: getDadosEmpresa - Serviço que detalha a empresa e o papel do usuário nesta
 			 * empresa.
 			 *
 			 *
@@ -74,7 +75,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 			private static final String URL_PROVIDER = "https://sso.staging.acesso.gov.br";
 			private static final String URL_SERVICOS = "https://api.staging.acesso.gov.br";
 			private static final String REDIRECT_URI = "<coloque-aqui-a-uri>";                                                      //redirectURI informada na chamada do serviço do authorize.
-			private static final String SCOPES = "openid+email+phone+profile+govbr_empresa"; 	// Escopos pedidos para a aplicação.
+			private static final String SCOPES = "openid+email+phone+profile+govbr_empresa+govbr_confiabilidades"; 	// Escopos pedidos para a aplicação.
 			private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do serviço do authorize.
 			private static final String SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";                           //secret de conhecimento apenas do backend da aplicação.
 
@@ -211,9 +212,21 @@ Link para biblioteca `jose4j`_ |site externo|.
 						seloNivels.add((Long) ((JSONObject) o).get("nivel"));
 					}
 				}
-
+				
 				/**
 				 * Serviço 3: De posse do access token, a aplicação pode chamar o serviço para
+				 * saber quais as confiabilidade usuário logado possui. Essa inclui a confiabilidade do Selo Facial
+				 */
+
+				String confiabilidadeJsonSeloFacial = getConfiabilidadeSeloFacial(accessToken,idTokenJwtClaims.getSubject());
+
+				System.out.println(
+						"\n--------------------Serviço 3 - Informações acerca da confiabilidade do usuário para Selo Facial------------------");
+				System.out.println("JSON retornado:");
+				System.out.println(confiabilidadeJsonSeloFacial);
+
+				/**
+				 * Serviço 4: De posse do access token, a aplicação pode chamar o serviço para
 				 * saber quais empresas se encontram vinculadas ao usuário logado.
 				 *
 				 */
@@ -225,7 +238,7 @@ Link para biblioteca `jose4j`_ |site externo|.
 				System.out.println(empresasJson);
 
 				/**
-				 * Serviço 4: De posse do access token, a aplicação pode chamar o serviço para
+				 * Serviço 5: De posse do access token, a aplicação pode chamar o serviço para
 				 * obter dados de uma empresa específica e o papel do usuário logado nesta
 				 * empresa.
 				 */
@@ -396,10 +409,10 @@ Link para biblioteca `jose4j`_ |site externo|.
 				return foto;
 			}
 
-			private static String getConfiabilidade(String accessToken) throws Exception {
+			private static String getConfiabilidadeSeloFacial(String accessToken,String cpf) throws Exception {
 				String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/api/info/usuario/selo");
+				URL url = new URL(URL_SERVICOS + "/confiabilidades/v1/usuarios/" + cpf + "/confiabilidades");
 				HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 				conn.setRequestMethod("GET");
 				conn.setRequestProperty("Accept", "application/json");
@@ -610,7 +623,7 @@ Arquivo PHP
         $CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";
         $SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";
         $REDIRECT_URI = "<coloque-aqui-a-uri>";
-        $SCOPE = "openid+email+phone+profile+govbr_empresa";
+        $SCOPE = "openid+email+phone+profile+govbr_empresa+govbr_confiabilidades";
         $URL_SERVICOS="https://api.staging.acesso.gov.br";
 
         /*
@@ -761,6 +774,23 @@ Arquivo PHP
                 $json_output_confiabilidade = json_decode(curl_exec($ch_confiabilidade), true);
                 curl_close($ch_confiabilidade);
 
+				/*
+                        Serviço de obtenção das Confiabilidades: De posse do access token, a aplicação pode chamar o serviço para saber quais as confiabilidade usuário logado possui. Essa inclui a confiabilidade do Selo Facial
+                */
+                $ch_confiabilidadeSeloFacial = curl_init();
+				$cpf = $json_output_payload_id_token['sub'];
+                curl_setopt($ch_confiabilidadeSeloFacial, CURLOPT_SSL_VERIFYPEER, true);
+                curl_setopt($ch_confiabilidadeSeloFacial, CURLOPT_URL, $URL_SERVICOS . "/confiabilidades/v1/usuarios/" . $cpf . "/confiabilidades");
+                curl_setopt($ch_confiabilidadeSeloFacial, CURLOPT_RETURNTRANSFER, TRUE);
+                $headers = array(
+                                'Accept: application/json',
+                                'Authorization: Bearer '. $access_token
+                );
+                curl_setopt($ch_confiabilidadeSeloFacial, CURLOPT_HTTPHEADER, $headers);
+                $json_output_confiabilidadeSeloFacial = json_decode(curl_exec($ch_confiabilidadeSeloFacial), true);
+                curl_close($ch_confiabilidadeSeloFacial);
+				
+				
                 /*
                     Serviço de recuperação de empresas vinculadas: De posse do access token, a aplicação pode chamar o serviço para saber quais empresas se encontram vinculadas ao usuário logado.
                 */
@@ -1034,6 +1064,21 @@ Arquivo PHP
 									<h3>Json:</h3>
 									<div class="result" style="width:900px;">
 											<pre><?php echo json_encode($json_output_confiabilidade, JSON_PRETTY_PRINT); ?></pre>
+									</div>
+							</div>
+					</div>
+					
+					<div class="row">
+							<div class="left_side">
+									<div>
+											<h3>Serviço: Recuperar Confiabilidades</h3>
+											<p>De posse do access token, a aplicação pode chamar o serviço para saber quais as confiabilidades usuário logado possui. Essas incluem a confiabilidade do Selo Facial:</p>
+									</div>
+							</div>
+							<div class="right_side">
+									<h3>Json:</h3>
+									<div class="result" style="width:900px;">
+											<pre><?php echo json_encode($json_output_confiabilidadeSeloFacial, JSON_PRETTY_PRINT); ?></pre>
 									</div>
 							</div>
 					</div>
