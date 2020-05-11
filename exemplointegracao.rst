@@ -180,9 +180,14 @@ Link para biblioteca `jose4j`_ |site externo|.
 				System.out.println("Telefone Validado: " + idTokenJwtClaims.getClaimValue("phone_number_verified")); //(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")
 				System.out.println("Telefone: " + idTokenJwtClaims.getClaimValue("phone_number")); //(Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN)
 				System.out.println("Link para a foto: " + fotoUrl); //URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.
-				System.out.println("\n\nDados da Autenticação:");
-				System.out.println("Amr: " + idTokenJwtClaims.getClaimValue("amr")); // Fator de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.
 				System.out.println("CNPJ: " + idTokenJwtClaims.getClaimValue("cnpj")); // CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.
+				System.out.println("Nome Empresa CNPJ " + idTokenJwtClaims.getClaimValue("cnpj_certificate_name")); //Nome da empresa vinculada ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.
+								
+				List<String> listaAMR = accessTokenJwtClaims.getStringListClaimValue("amr");
+				
+				System.out.println("\n\nDados da Autenticação:");
+				System.out.println("Amr: " + String.join(",", listaAMR)); // Lista com os fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.
+				
 				/**
 				 * Serviço 1: De posse do access token, a aplicação pode chamar o serviço para receber a foto do usuário.
 				 */
@@ -727,7 +732,8 @@ Arquivo PHP
 				 *				8- Endereço de email.
                  *              9- Método de autenticação (CPF e Senha ou Certificado Digital)
                  *				10- CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.
-                 */
+                 *              11- Nome da empresa vinculada ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.
+				 */
                 $id_token = $json_output_tokens['id_token'];
 
                 try{
@@ -1032,8 +1038,9 @@ Arquivo PHP
 											<pre>Telefone: <?php echo $json_output_payload_id_token['phone_number']; ?></pre> <!-- (Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN)-->
 											<pre>Email Validado: <?php echo $json_output_payload_id_token['email_verified']; ?></pre> <!-- (Confirma se o email foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")-->
 											<pre>Email: <?php echo $json_output_payload_id_token['email']; ?></pre> <!-- (Endereço de e-mail cadastrado no Gov.br do usuário autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email não virá no ID_TOKEN)-->
-											<pre>AMR: <?php echo $json_output_payload_id_token['amr']; ?></pre> <!--  Fator de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem. -->
+											<pre>AMR: <?php echo $json_output_payload_id_token['amr']; ?></pre> <!--  Lista com fator de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem. -->
 											<pre>CNPJ: <?php echo $json_output_payload_id_token['cnpj']; ?></pre> <!-- CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica. -->
+											<pre>Nome da Empresa do CNPJ: <?php echo $json_output_payload_id_token['cnpj_certificate_name']; ?></pre> <!-- Nome da empresa vinculada ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica. -->
 									</div>
 							</div>
 					</div>

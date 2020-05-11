@@ -112,7 +112,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 		"sub": "(CPF do usuário autenticado)",
 		"aud": "Client ID da aplicação onde o usuário se autenticou",
 		"scope": ["(Escopos autorizados pelo provedor de autenticação.)"],
-		"amr": "(Fator de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.)",
+		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.)"],
 		"iss": "(URL do provedor de autenticação que emitiu o token.)",
 		"exp": "(Data/hora de expiração do token)",
 		"iat": "(Data/hora em que o token foi emitido.)",
@@ -126,7 +126,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 	{
 		"sub": "(CPF do usuário autenticado.)",
-		"amr": "(Fator de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.)",
+		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.)"],
 		"picture": "(URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.)",
 		"name": "(Nome cadastrado no Gov.br do usuário autenticado.)",
 		"phone_number_verified": "(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
