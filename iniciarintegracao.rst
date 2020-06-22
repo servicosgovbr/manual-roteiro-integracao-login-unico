@@ -420,15 +420,15 @@ Exemplo de requisição
 
 	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_empresa&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v2/empresas enviando as seguintes informações:
+2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v2/empresas?ﬁltrar-por-participante=**cpf** enviando as seguintes informações:
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas?ﬁltrar-por-participante=cpf
 
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
 **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**ﬁltrar-por-participante**   CPF do cidadão (sem ponto, barra etc).
+**cpf**                       CPF do cidadão (sem ponto, barra etc).
 ============================  ======================================================================
 
 3. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
