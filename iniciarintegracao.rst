@@ -186,94 +186,11 @@ Exemplo 2 de *execução* no front end em javascript
 
 	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
 	
+
 Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 -----------------------------------------------------
 
-1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://api.staging.acesso.gov.br/api/info/usuario/selo;
-
-Parâmetros do Header para requisição GET https://api.staging.acesso.gov.br/api/info/usuario/selo
-
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-=================  ======================================================================
-
-2. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
-
-.. code-block:: JSON
-
-	{
-		"id" : "(Número do selo cadastrado no Login Único)",
-		"nivel" : "(Escala do nível presente no conceito do Login Único)",
-		"descricao" : "(nome do selo cadastrado no Login Único)"
-	}
-	
-	
-Resultados Esperados do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
------------------------------------------------------------------------------
-
-Os selos existentes no Login Único são:
-
-.. code-block:: JSON
-
-	[
-		{
-			"id": 0,
-			"nivel": 2,
-			"descricao": "Institucional (Servidor Público)"
-		},
-		{
-			"id": 0,
-			"nivel": 1,
-			"descricao": "Conformidade"
-		},
-		{
-			"id": 0,
-			"nivel": 4,
-			"descricao": "Biometria"
-		},
-		{
-			"id": 0,
-			"nivel": 3,
-			"descricao": "Certificado Digital"	
-		},	
-		{	
-			"id": 0,
-			"nivel": 5,
-			"descricao": "Convalidação (Módulo Balcão)"	
-		},
-		{
-			"id": 0,
-			"nivel": 11,
-			"descricao": "REPRESENTANTE E-CNPJ"
-		},
-		{
-			"id": 0,
-			"nivel": 13,
-			"descricao": "COLABORADOR E-CNPJ"
-		},
-		{
-			"id": 0,
-			"nivel": 101,
-			"descricao": "SELO_KBA_PREVIDENCIA (selo gerado através de questionário respondido através do site Meu INSS)" 
-		},
-		{
-			"id": 0,
-			"nivel": 102,
-			"descricao": "SELO_BALCAO_SAT_PREVIDENCIA (selo gerado via balcão do INSS)" 
-		},
-		{
-			"id": 0,
-			"nivel": 103,
-			"descricao": "SELO_BALAO_NAI_PREVIDENCIA (selo gerado via Internet Banking)" 
-		}
-		
-	]
-
-Acesso ao Serviço de Confiabilidade Cadastral do Selo de Validação Facial
--------------------------------------------------------------------------
-Para acessar o serviço que disponibiliza o selo de Validação Facial, é necessário o seguinte:
+Para acessar o serviço que disponibiliza as confiablidades cadastrais, é necessário o seguinte:
 
 1. Na requisição de autenticação, adicionar o escopo “govbr_confiabilidades“, conforme exemplo:
 
@@ -286,7 +203,7 @@ Exemplo de requisição
 2. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades
 ;
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades 
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -303,9 +220,9 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilida
 	  {
 		"confiabilidade": {
 		  "id": "(Identificação para reconhecer o selo)",
+		  "categoria": "(Identifica qual nível pertence o selo adquirido pelo cidadão)", 
 		  "titulo": "(Identificação do selo em tela para o cidadão)",
 		  "descricao": "(Descrição padrão do significado do selo)",
-		  "orientacoesHtml": "(Descrição, em formato de html, para descrever o cidadão os passos para adquirir o selo repassado)",
 		  "situacaoAtivo": "(Demonstra, como true ou false, o selo está disponível para aquisição na conta do cidadão)", 
 		  "urlImagem": "(Caminho de URL para mostrar a imagem do selo representado caso a aplicação deseja mostrar em seus sistemas)"
 		},
@@ -313,28 +230,181 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilida
 	  }
 	]
 
-Resultado Esperado do Serviço de Confiabilidade Cadastral do Selo de Validação Facial
--------------------------------------------------------------------------------------
+Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
+---------------------------------------------------------------------------
 
-O selo facial será retornado no Login Único:
+Os selos existentes no Login Único são:
 
 .. code-block:: JSON
 
 	[
 		{
 		"confiabilidade": {
-		  "id": "biovalid_facial",
-		  "titulo": "Cadastro validado por Biometria Facial",
-		  "descricao": "Validação através da Biometria Facial usando o Biovalid",
-		  "orientacoesHtml": "<p>Voc? pode obter o Selo de confiabilidade cadastral por meio do aplicativo BioValid. O aplicativo est? dispon?vel no <b>Google Play</b> e na <b>App Store</b>.</p>",
-		  "situacaoAtivo": true,
-		  "urlImagem": "https://api.staging.acesso.gov.br/confiabilidades/v1/confiabilidades/biovalid_facial/imagem"
+		"id": "cadastro_basico",
+		"categoria": "basica",
+		"titulo": "Cadastro com validação de dados na Receita Federal",
+		"descricao": "Validação do cadastro via base de Cadastro de Pessoas Físicas.",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/cadastro_basico/imagem"  
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+		
+		{
+		"confiabilidade": {
+		"id": "kba_previdencia",
+		"categoria": "basica_previdencia",
+		"titulo": "Cadastro com validação de dados no INSS",
+		"descricao": "Validação através de formulário On-Line da Previdência",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/kba_previdencia/imagem"   
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+		
+		{
+		"confiabilidade": {
+		"id": "balcao",
+		"categoria": "verificada",
+		"titulo": "Cadastro Presencial",
+		"descricao": "Validação e autenticação do cadastro via balcão",
+		"situacaoAtivo": false,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao/imagem"
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+		
+		{
+		"confiabilidade": {
+		"id": "balcao_correios",
+		"categoria": "verificada",
+		"titulo": "Cadastro via Balcão dos Correios",
+		"descricao": "Validação por meio da apresentação de documento de identificação em Agências dos Correios",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao_correios/imagem" 
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+
+		{
+		"confiabilidade": {
+		"id": "balcao_nai_previdencia",
+		"categoria": "verificada",
+		"titulo": "Cadastro via Internet Banking",
+		"descricao": "Validação através de Internet Banking ou Caixa eletrônico",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao_nai_previdencia/imagem"     
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+		
+		{
+		"confiabilidade": {
+		"id": "balcao_sat_previdencia",
+		"categoria": "verificada",
+		"titulo": "Cadastro via Balcão do INSS",
+		"descricao": "Validação por meio da apresentação de documento de identificação em Agências do INSS",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao_sat_previdencia/imagem" 
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+
+		{
+		"confiabilidade": {
+		"id": "bb_internet_banking",
+		"categoria": "verificada",
+		"titulo": "Cadastro via Internet Banking do Banco do Brasil",
+		"descricao": "Validação através Autenticação no Internet Banking do Banco do Brasil",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/bb_internet_banking/imagem" 
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+
+		{
+		"confiabilidade": {
+		"id": "biometria",
+		"categoria": "verificada",
+		"titulo": "Validação biométrica",
+		"descricao": "Validação e autenticação do cadastro da biometria do cidadão",
+		"situacaoAtivo": false,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/biometria/imagem" 
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},	
+		
+		{
+		"confiabilidade": {
+		"id": "biovalid_facial",
+		"categoria": "verificada",
+		"titulo": "Cadastro validado por Biometria Facial",
+		"descricao": "Validação através da Biometria Facial usando o Biovalid",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/biovalid_facial/imagem"  
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+		
+		{
+		"confiabilidade": {
+		"id": "dni",
+		"categoria": "verificada",
+		"titulo": "Documento Nacional de Identificação",
+		"descricao": "Validação e autenticação do cadastro via balcão DNI",
+		"situacaoAtivo": false,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/dni/imagem"  
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+		
+		{
+		"confiabilidade": {
+		"id": "servidor_publico",
+		"categoria": "verificada",
+		"titulo": "Cadastro validado em base de dados de servidores públicos da União",
+		"descricao": "Validação e autenticação do cadastro via base de dados de Servidores Públicos da União.",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/servidor_publico/imagem"   
+		},
+		"dataCriacao": "2020-04-13T14:28:40.936-0300"
+		},
+		
+		{
+		"confiabilidade": {
+		"id": "certificado_digital",
+		"categoria": "comprovada",
+		"titulo": "Cadastro validado por certificado digital",
+		"descricao": "Validação e autenticação do cadastro via Certificado Digital compatível com as especificações da Infraestrutura de Chaves Públicas Brasileira (ICP-BRASIL).",
+		"situacaoAtivo": true,
+		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/certificado_digital/imagem"  
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		}
-		
+				
 	]	
 
+Acesso ao Serviço de Catálogo de Confiabilidade Cadastral (Selos)
+-----------------------------------------------------------------
+
+O catálogo de confiabilidade cadastral faz parte da area de privacidade da gestão de conta do gov.br. Esse está disponível para ser chamado pelos sistemas integrados para permitir ao usuário adquirir determinada determinada confiabilidade e continuar acesso ao sistema integrado.	
+
+Para acesso ao catálogo, basta seguir os passos:
+
+1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://catalogo.staging.acesso.gov.br/#/login passando seguintes informações:
+
+Parâmetros para requisição GET https://catalogo.staging.acesso.gov.br/#/login
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
+**confiabilidades**           Os selos que aplicação integrada deseja para acessar serviço podendo ser 1 ou vários separado por vírgula. Os selos permitidos estão presentes no atributo **id** do retorno do serviço `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_. 
+============================  ======================================================================
+
+2. A resposta em caso de sucesso permite o cidadão adquirir os selos de confiabilidade e retornar ao serviço que solicitou o catálogo. O retorno do Login Único ao serviço utilizará a URL de Página inicial de serviço cadastrada no client_id.   	
+	
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------
 
@@ -350,14 +420,16 @@ Exemplo de requisição
 
 	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_empresa&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas?visao=simples enviando as seguintes informações:
+2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v2/empresas enviando as seguintes informações:
 
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**cpf**            CPF do cidadão (sem ponto, barra etc).
-=================  ======================================================================
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**ﬁltrar-por-participante**   CPF do cidadão (sem ponto, barra etc).
+============================  ======================================================================
 
 3. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
 
@@ -365,27 +437,25 @@ Exemplo de requisição
 
 .. code-block:: JSON
 
-	{
-		"cnpjs":
-		[
-			{
-			 "cnpj": "(CNPJ da empresa)",
-			 "nome": "(NOME FANTASIA DA EMPRESA)"
-			},
-			
-		],
-		"cpf": "(CPF do representante da empresa)"
-	}
+	[
+		{
+		"cnpj": "(Número de CNPJ da empresa vinculada)",
+		"razaoSocial": "(Razão Social (Nome da empresa) cadastrada na Receita Federal)",
+		"dataCriacao": "(Mostra a data e hora da vinculação do CNPJ a conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		}
+	]
 
-4. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/empresas/v1/representantes/**cpf**/empresas/**cnpj** enviando as seguintes informações:
+4. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/empresas/v2/empresas/**cnpj**/participantes/**cpf** enviando as seguintes informações:
 
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**cpf**            CPF do cidadão (sem ponto, barra etc).
-**cnpj**           CNPJ da empresa (sem ponto, barra etc).
-=================  ======================================================================
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas/**cnpj**/participantes/**cpf**
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**cpf**   					  CPF do cidadão (sem ponto, barra etc).
+**cnpj**					  CNPJ da empresa (sem ponto, barra etc).
+============================  ======================================================================
 
 5. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
 
@@ -394,75 +464,13 @@ Exemplo de requisição
 .. code-block:: JSON
 
 	{
-		"cnpj": "(Número do CNPJ)", 
-		"nomeFantasia": "(NOME FANTASIA)",
-		"atuacao": "(ATUACÃO tendo o valor SOCIO, CONTADOR e REPRESENTANTE_LEGAL)",
-		"cpfResponsavel": "(CPF DO RESPONSÁVEL)",
-		"nomeResponsavel": "(NOME DO RESPONSÁVEL)"
+	"cpf": "(Número do CPF que pode atuar com empresa)",
+	"atuacao": "(Papel do CPF na empresa na Receita Federal. O conteúdo será SOCIO, CONTADOR, REPRESENTANTE_LEGAL ou NAO_ATUANTE. O NAO_ATUANTE representa CPF possui certificado digital de pessoa jurídica, porém não possui um papel na empresa na base da Receita Federal. Se CPF for colaborador, atributo atuacao não aparecerá)",
+	"cadastrador": "(Identifica se o CPF pode realizar cadastro de colaboradores para CNPJ. O conteúdo false determinar que o CPF é um colaborador da empresa. O conteúdo true determina CPF é representante da empresa com certificado digital de pessoal jurídica)",
+	"cpfCadastrador": "(CPF responsável por realizar cadastro do Colaborador. Se CPF apresentar atributo cadastrador com conteúdo true, o atributo cpfCadastrador não aparecerá)",
+	"dataCriacao": "(Mostra a data e hora da vinculação do CPF ao CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)",
+	"dataExpiracao": "(Mostra a data e hora que o CPF poderá atuar com CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)"
 	}
-
-.. Acesso ao Serviço de Informações cadastradas pelo Balcão (Selo Nível 3)
-.. ----------------------------------------------------------------------
-
-.. O Login Único disponibiliza o serviço para recuperar as informações apresentadas no balcão pelo cidadão.
-
-.. Para acessar o serviço é necessário:
-
-.. 1. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/api/info/usuario/selo enviando as seguintes informações:
-
-.. =================  ======================================================================
-.. **Variavél**  	   **Descrição**
-.. -----------------  ----------------------------------------------------------------------
-.. **Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-.. =================  ======================================================================
-
-.. 2. O resultado em formato JSON são selos de confiabilidade da autenticação. O selo a ser verificado será o "Convalidação" (selo que representa o balcão), conforme o exemplo abaixo:
-
-.. Exemplo de requisição
-
-.. .. code-block:: JSON
-	
-..	{
-..		"id": 0,
-..		"nivel": 3,
-..		"descricao": "Convalidação"
-..	}
-
-.. 3. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/info/documentos/orgao/sigla-do-orgao-do-balcao enviando as seguintes informações:
-
-.. ============================  ======================================================================
-.. **Variavél**  	              **Descrição**
-.. ----------------------------  ----------------------------------------------------------------------
-.. **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-.. **sigla-do-orgao-do-balcao**  sigla do órgão do balcão que recolheu os documentos
-.. ============================  ======================================================================
-
-.. 4. O resultado em formato JSON é a detalhamento das informações cadastradas pelo atendente do balcão, conforme o exemplo abaixo:
-
-.. Exemplo de requisição
-
-.. .. code-block:: JSON
-
-..	[
-..		{
-..		"id": "Número do Documento (Formulário Cadastro pelo Ministério da Economia)",
-..		"nome": "Nome do Documento (Formulário Cadastro pelo Ministério da Economia)",
-..		"docAssinado": "Identifica se documento utilizou assinatura digital. Possui valor true e false" ,
-..		"campos":
-..			[
-..				{
-..				"id": "(Identificador do Campo cadastrado no documento)",
-..				"nome": "(Nome do Campo cadastrado no documento)",
-..				"tipo": "(Tipo do Campo cadastrado no documento. Possui os valores Arquivo (Upload de documentos); Campo Textual (letras e números); Data ; Hora; Número; Enumeração (Conteúdo com lista de valores); Assinatura (Informa que area deverá ter assinatura por certificado digital))",
-..				"enumeracao": "(Caso o tipo do campo seja Enumeração, mostrará quais conteúdos pertencem a lista.",
-..				"ordem": "(Número que aparece o campo no documento)",
-..				"formato": "(Formatação da Mascará cadastrada para campo.)",
-..				"obrigatorio": "(Indica se o preenchimento do campo é obrigatório ou não. Possui valor true ou false)",
-..				"valor": "(Valor do campo escolhido para preenchimento)"
-..				}
-..			]	
-..		}
-..   	]
 
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
 ------------------------------------------------------------------
@@ -483,3 +491,4 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`auth 2.0 Redirection Endpoint`: https://tools.ietf.org/html/rfc6749#section-3.1.2
 .. _`Exemplos de Integração`: exemplointegracao.html
 .. _`Design System do Governo Federal`: http://dsgov.estaleiro.serpro.gov.br/ds/componentes/button
+.. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`: iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-selos

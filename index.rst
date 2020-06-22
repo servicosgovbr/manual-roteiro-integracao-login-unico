@@ -14,21 +14,23 @@ Roteiro de Integração do Login Único
    introducao
 
    escopoatributos
-   seloconfiabilidadecadastral
+   categoriasautenticacao
    comoadquirirselocadastrobasicovalidacaodadospessoais
    comoadquirirselocadastrobasicovalidacaodadosprevidenciarios
    comoadquirirseloselobalcaopresencialINSS
    comoadquirirselointernetbanking
    comoadquirirvalidacaofacial
    comoadquirircadastrobasicovalidacaobasedadosservidorespublicosuniao
-   comoadquirirvalidacaobiometriadigital
    comoadquirircertificadodigitalpessoafisica
-   comoadquirircertificadodigitalpessoajuridica
-   comoadquirircolaboradorpessoaljuridica
-   lancadordeservicos
 ..   niveisautenticacao
 ..   arquiteturaservicosprotocolo
 ..   niveisautenticacao
+..   seloconfiabilidadecadastral
+..   comoadquirircertificadodigitalpessoajuridica
+..   comoadquirircolaboradorpessoaljuridica
+..   comoadquirirvalidacaobiometriadigital
+..   lancadordeservicos
+
 
 .. toctree::
    :maxdepth: 3
