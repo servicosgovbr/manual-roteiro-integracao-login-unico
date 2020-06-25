@@ -1,27 +1,23 @@
 ﻿Execução dos Exemplos de Integração
 ===================================
 
-PHP
-+++
+JAVA
+++++
 
-Caso você queira ver o exemplo PHP funcionando execute com o Docker instalado:
+Caso você queira ver o exemplo JAVA funcionando execute com o Docker instalado:
 
 .. code-block:: console
 
-    $ docker run -d -p 80:80 --env CLIENT_ID='MEU-CLIENT-ID' --env SECRET='MEU-SECRET' \
-      --env REDIRECT_URI='http://MINHA-URL' \
-      --name meu-login-teste govbr/login-php-exemplo
+    $ docker run -it \
+      --name meu-login-teste govbr/login-java-exemplo
 
 .. warning::
-    Altere as variáveis antes de executar o comando. Caso a redirect_uri não seja para localhost coloque no seu /etc/hosts um redirect para o localhost.
+    Siga os passos que vão aparecer no terminal.
 
-Depois acesso o http://localhost ou o redirect_uri alterado no hosts.
 
 Gif mostrando como executa o exemplo:
 
 .. figure:: _static/exemplo-docker.*
-   :alt: Exemplo com o comando docker em PHP.
+   :alt: Exemplo com o comando docker em JAVA.
 
-   Exemplo com o comando docker em PHP.
-
-.. |site externo| image:: _images/site-ext.gif
+   Exemplo com o comando docker em JAVA.
