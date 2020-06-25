@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>br.gov.logingovbr</groupId>
+  <artifactId>login</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>Login GovBR Webapp</name>
+  
+  <url>http://maven.apache.org</url>
+
+
+  <dependencies>
+    
+<dependency>
+  <groupId>org.apache.directory.studio</groupId>
+  <artifactId>org.apache.commons.io</artifactId>
+  <version>2.4</version>
+</dependency>
+	<dependency>
+   <groupId>org.bitbucket.b_c</groupId>
+   <artifactId>jose4j</artifactId>
+   <version>0.7.1</version>
+</dependency>
+
+  </dependencies>
+  <build>
+<plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+                <compilerArgs>
+          <arg>-Xlint</arg>
+        </compilerArgs>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+<plugin>
+    <groupId>de.ntcomputer</groupId>
+    <artifactId>executable-packer-maven-plugin</artifactId>
+    <version>1.0.1</version>
+    <configuration>
+              <source>1.8</source>
+          <target>1.8</target>
+        <mainClass>teste.ExemploIntegracaoGovBr</mainClass>
+    </configuration>
+    <executions>
+        <execution>
+            <goals>
+                <goal>pack-executable-jar</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+</plugins>
+    <finalName>logingovbr</finalName>
+  </build>
+</project>
+
