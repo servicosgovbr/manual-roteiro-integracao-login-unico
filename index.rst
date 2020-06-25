@@ -38,4 +38,4 @@ Roteiro de Integração do Login Único
 
    iniciarintegracao
    exemplointegracao
-..   execucaoexemplo
+   execucaoexemplo
