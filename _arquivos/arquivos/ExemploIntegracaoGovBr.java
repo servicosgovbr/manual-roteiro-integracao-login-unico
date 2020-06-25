@@ -189,7 +189,7 @@ public class ExemploIntegracaoGovBr {
                  * saber quais selos o usuário logado possui.
                  */
 
-                String confiabilidadeJson = getConfiabilidade(accessToken);
+                String confiabilidadeJson = getConfiabilidade(accessToken,idTokenJwtClaims.getSubject());
 
                 System.out.println(
                                 "\n--------------------Serviço 2 - Informações acerca da confiabilidade do usuário------------------");
