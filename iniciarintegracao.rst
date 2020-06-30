@@ -222,9 +222,7 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilida
 		  "id": "(Identificação para reconhecer o selo)",
 		  "categoria": "(Identifica qual nível pertence o selo adquirido pelo cidadão)", 
 		  "titulo": "(Identificação do selo em tela para o cidadão)",
-		  "descricao": "(Descrição padrão do significado do selo)",
-		  "situacaoAtivo": "(Demonstra, como true ou false, o selo está disponível para aquisição na conta do cidadão)", 
-		  "urlImagem": "(Caminho de URL para mostrar a imagem do selo representado caso a aplicação deseja mostrar em seus sistemas)"
+		  "descricao": "(Descrição padrão do significado do selo)"
 		},
 		"dataCriacao": "(Mostra a data e hora da criação do selo na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 	  }
@@ -243,9 +241,7 @@ Os selos existentes no Login Único são:
 		"id": "cadastro_basico",
 		"categoria": "basica",
 		"titulo": "Cadastro com validação de dados na Receita Federal",
-		"descricao": "Validação do cadastro via base de Cadastro de Pessoas Físicas.",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/cadastro_basico/imagem"  
+		"descricao": "Validação do cadastro via base de Cadastro de Pessoas Físicas."
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
@@ -255,21 +251,7 @@ Os selos existentes no Login Único são:
 		"id": "kba_previdencia",
 		"categoria": "basica_previdencia",
 		"titulo": "Cadastro com validação de dados no INSS",
-		"descricao": "Validação através de formulário On-Line da Previdência",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/kba_previdencia/imagem"   
-		},
-		"dataCriacao": "2020-04-13T14:28:40.936-0300"
-		},
-		
-		{
-		"confiabilidade": {
-		"id": "balcao",
-		"categoria": "verificada",
-		"titulo": "Cadastro Presencial",
-		"descricao": "Validação e autenticação do cadastro via balcão",
-		"situacaoAtivo": false,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao/imagem"
+		"descricao": "Validação através de formulário On-Line da Previdência"
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
@@ -279,9 +261,7 @@ Os selos existentes no Login Único são:
 		"id": "balcao_correios",
 		"categoria": "verificada",
 		"titulo": "Cadastro via Balcão dos Correios",
-		"descricao": "Validação por meio da apresentação de documento de identificação em Agências dos Correios",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao_correios/imagem" 
+		"descricao": "Validação por meio da apresentação de documento de identificação em Agências dos Correios"
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
@@ -291,9 +271,7 @@ Os selos existentes no Login Único são:
 		"id": "balcao_nai_previdencia",
 		"categoria": "verificada",
 		"titulo": "Cadastro via Internet Banking",
-		"descricao": "Validação através de Internet Banking ou Caixa eletrônico",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao_nai_previdencia/imagem"     
+		"descricao": "Validação através de Internet Banking ou Caixa eletrônico"
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
@@ -303,9 +281,7 @@ Os selos existentes no Login Único são:
 		"id": "balcao_sat_previdencia",
 		"categoria": "verificada",
 		"titulo": "Cadastro via Balcão do INSS",
-		"descricao": "Validação por meio da apresentação de documento de identificação em Agências do INSS",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/balcao_sat_previdencia/imagem" 
+		"descricao": "Validação por meio da apresentação de documento de identificação em Agências do INSS"
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
@@ -315,45 +291,17 @@ Os selos existentes no Login Único são:
 		"id": "bb_internet_banking",
 		"categoria": "verificada",
 		"titulo": "Cadastro via Internet Banking do Banco do Brasil",
-		"descricao": "Validação através Autenticação no Internet Banking do Banco do Brasil",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/bb_internet_banking/imagem" 
+		"descricao": "Validação através Autenticação no Internet Banking do Banco do Brasil"
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
 
 		{
 		"confiabilidade": {
-		"id": "biometria",
-		"categoria": "verificada",
-		"titulo": "Validação biométrica",
-		"descricao": "Validação e autenticação do cadastro da biometria do cidadão",
-		"situacaoAtivo": false,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/biometria/imagem" 
-		},
-		"dataCriacao": "2020-04-13T14:28:40.936-0300"
-		},	
-		
-		{
-		"confiabilidade": {
 		"id": "biovalid_facial",
 		"categoria": "verificada",
 		"titulo": "Cadastro validado por Biometria Facial",
-		"descricao": "Validação através da Biometria Facial usando o Biovalid",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/biovalid_facial/imagem"  
-		},
-		"dataCriacao": "2020-04-13T14:28:40.936-0300"
-		},
-		
-		{
-		"confiabilidade": {
-		"id": "dni",
-		"categoria": "verificada",
-		"titulo": "Documento Nacional de Identificação",
-		"descricao": "Validação e autenticação do cadastro via balcão DNI",
-		"situacaoAtivo": false,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/dni/imagem"  
+		"descricao": "Validação através da Biometria Facial usando o Biovalid"
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
@@ -363,9 +311,7 @@ Os selos existentes no Login Único são:
 		"id": "servidor_publico",
 		"categoria": "verificada",
 		"titulo": "Cadastro validado em base de dados de servidores públicos da União",
-		"descricao": "Validação e autenticação do cadastro via base de dados de Servidores Públicos da União.",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/servidor_publico/imagem"   
+		"descricao": "Validação e autenticação do cadastro via base de dados de Servidores Públicos da União."
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		},
@@ -375,9 +321,7 @@ Os selos existentes no Login Único são:
 		"id": "certificado_digital",
 		"categoria": "comprovada",
 		"titulo": "Cadastro validado por certificado digital",
-		"descricao": "Validação e autenticação do cadastro via Certificado Digital compatível com as especificações da Infraestrutura de Chaves Públicas Brasileira (ICP-BRASIL).",
-		"situacaoAtivo": true,
-		"urlImagem": "https://api.validacao.acesso.gov.br/confiabilidades/v1/confiabilidades/certificado_digital/imagem"  
+		"descricao": "Validação e autenticação do cadastro via Certificado Digital compatível com as especificações da Infraestrutura de Chaves Públicas Brasileira (ICP-BRASIL)."
 		},
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		}
