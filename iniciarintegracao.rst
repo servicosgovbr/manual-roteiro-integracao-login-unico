@@ -328,26 +328,26 @@ Os selos existentes no Login Único são:
 				
 	]	
 
-Acesso ao Serviço de Catálogo de Confiabilidade Cadastral (Selos)
------------------------------------------------------------------
+.. Acesso ao Serviço de Catálogo de Confiabilidade Cadastral (Selos)
+.. -----------------------------------------------------------------
 
-O catálogo de confiabilidade cadastral faz parte da area de privacidade da gestão de conta do gov.br. Esse está disponível para ser chamado pelos sistemas integrados para permitir ao usuário adquirir determinada determinada confiabilidade e continuar acesso ao sistema integrado.	
+.. O catálogo de confiabilidade cadastral faz parte da area de privacidade da gestão de conta do gov.br. Esse está disponível para ser chamado pelos sistemas integrados para permitir ao usuário adquirir determinada determinada confiabilidade e continuar acesso ao sistema integrado.	
 
-Para acesso ao catálogo, basta seguir os passos:
+.. Para acesso ao catálogo, basta seguir os passos:
 
-1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://catalogo.staging.acesso.gov.br/#/login passando seguintes informações:
+.. 1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://catalogo.staging.acesso.gov.br/#/login passando seguintes informações:
 
-Parâmetros para requisição GET https://catalogo.staging.acesso.gov.br/#/login
+.. Parâmetros para requisição GET https://catalogo.staging.acesso.gov.br/#/login
 
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**confiabilidades**           Os selos que aplicação integrada deseja para acessar serviço podendo ser 1 ou vários separado por vírgula. Os selos permitidos estão presentes no atributo **id** do retorno do serviço `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_. 
-============================  ======================================================================
+.. ============================  ======================================================================
+.. **Variavél**  	              **Descrição**
+.. ----------------------------  ----------------------------------------------------------------------
+.. **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+.. **client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
+.. **confiabilidades**           Os selos que aplicação integrada deseja para acessar serviço podendo ser 1 ou vários separado por vírgula. Os selos permitidos estão presentes no atributo **id** do retorno do serviço `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_. 
+.. ============================  ======================================================================
 
-2. A resposta em caso de sucesso permite o cidadão adquirir os selos de confiabilidade e retornar ao serviço que solicitou o catálogo. O retorno do Login Único ao serviço utilizará a URL de Página inicial de serviço cadastrada no client_id.   	
+.. 2. A resposta em caso de sucesso permite o cidadão adquirir os selos de confiabilidade e retornar ao serviço que solicitou o catálogo. O retorno do Login Único ao serviço utilizará a URL de Página inicial de serviço cadastrada no client_id.   	
 	
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------
