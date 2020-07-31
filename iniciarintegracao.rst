@@ -29,7 +29,7 @@ A utilização da autenticação do Login Único depende dos seguintes passos:
 -----------------  ----------------------------------------------------------------------
 **response_type**  Especifica para o provedor o tipo de autorização. Neste caso será **code**
 **client_id**      Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**scope**          Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+email+phone+profile**. 
+**scope**          Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+email+phone+profile+govbr_confiabilidades**. 
 **redirect_uri**   URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
 **nonce**          Sequência de caracteres usado para associar uma sessão do serviço consumidor a um *Token* de ID e para atenuar os ataques de repetição. Pode ser um valor aleatório, mas que não seja de fácil dedução. Item obrigatório.
 **state**          Valor usado para manter o estado entre a solicitação e o retorno de chamada. Item não obrigatório. 
@@ -138,7 +138,6 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 **Os paramêtros email,phone_number,picture não são obrigatórios. Ambos podem estar preenchidos ou não.**	
 	
-	
 10. Para solicitação do conteúdo da foto salva no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/picture e acrescentar o atributo Authorization ao header do HTTP da requisição:
 	
 =================  ======================================================================
@@ -149,59 +148,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
 
-Acesso ao Serviço de Log Out
-----------------------------
-
-1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL: https://sso.staging.acesso.gov.br/logout. O acesso ao Log Out deverá ser pelo **Front End** da aplicação a ser integrada com Login Único.
-
-.. Parâmetros do Header para requisição GET https://sso.staging.acesso.gov.br/logout
-
-.. =================  ======================================================================
-.. **Variavél**  	   **Descrição**
-.. -----------------  ----------------------------------------------------------------------
-.. **Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-.. =================  ======================================================================
-
-Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
-	
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for inválidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
-============================  ======================================================================
-
-Exemplo 1 de *execução* no front end em javascript
-
-.. code-block:: javascript
-
-	var form = document.createElement("form");      
-	form.setAttribute("method", "post");
-    form.setAttribute("action", "https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html");
-    document.body.appendChild(form);  
-	form.submit();
-
-Exemplo 2 de *execução* no front end em javascript
-
-.. code-block:: javascript
-
-	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
-	
-
-Acesso ao Serviço de Confiabilidade Cadastral (Selos)
------------------------------------------------------
-
-Para acessar o serviço que disponibiliza as confiablidades cadastrais, é necessário o seguinte:
-
-1. Na requisição de autenticação, adicionar o escopo “govbr_confiabilidades“, conforme exemplo:
-
-Exemplo de requisição
-
-.. code-block:: console
-
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_confiabilidades&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
-
-2. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades
-;
+11. Para verificar quais selos de confiabilidade o cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v1/usuarios/**cpf**/confiabilidades 
 
@@ -212,7 +159,7 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilida
 **cpf**            CPF do cidadão (sem ponto, barra etc).
 =================  ======================================================================
 
-3. A resposta em caso de sucesso retorna sempre um *array* de objetos JSON no seguinte formato:
+A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seguinte formato:
 
 .. code-block:: JSON
 
@@ -226,7 +173,9 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilida
 		},
 		"dataCriacao": "(Mostra a data e hora da criação do selo na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 	  }
-	]
+	] 
+
+Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
 
 Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 ---------------------------------------------------------------------------
@@ -326,28 +275,38 @@ Os selos existentes no Login Único são:
 		"dataCriacao": "2020-04-13T14:28:40.936-0300"
 		}
 				
-	]	
+	]
+	
+Acesso ao Serviço de Log Out
+----------------------------
 
-.. Acesso ao Serviço de Catálogo de Confiabilidade Cadastral (Selos)
-.. -----------------------------------------------------------------
+1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL: https://sso.staging.acesso.gov.br/logout. O acesso ao Log Out deverá ser pelo **Front End** da aplicação a ser integrada com Login Único.
 
-.. O catálogo de confiabilidade cadastral faz parte da area de privacidade da gestão de conta do gov.br. Esse está disponível para ser chamado pelos sistemas integrados para permitir ao usuário adquirir determinada determinada confiabilidade e continuar acesso ao sistema integrado.	
+.. Parâmetros do Header para requisição GET https://sso.staging.acesso.gov.br/logout
 
-.. Para acesso ao catálogo, basta seguir os passos:
+Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
+	
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for inválidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
+============================  ======================================================================
 
-.. 1. Com usuário autenticado, deverá acessar, por meio do método GET, a URL: https://catalogo.staging.acesso.gov.br/#/login passando seguintes informações:
+Exemplo 1 de **execução** no front end em javascript
 
-.. Parâmetros para requisição GET https://catalogo.staging.acesso.gov.br/#/login
+.. code-block:: javascript
 
-.. ============================  ======================================================================
-.. **Variavél**  	              **Descrição**
-.. ----------------------------  ----------------------------------------------------------------------
-.. **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-.. **client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-.. **confiabilidades**           Os selos que aplicação integrada deseja para acessar serviço podendo ser 1 ou vários separado por vírgula. Os selos permitidos estão presentes no atributo **id** do retorno do serviço `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_. 
-.. ============================  ======================================================================
+	var form = document.createElement("form");      
+	form.setAttribute("method", "post");
+    form.setAttribute("action", "https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html");
+    document.body.appendChild(form);  
+	form.submit();
 
-.. 2. A resposta em caso de sucesso permite o cidadão adquirir os selos de confiabilidade e retornar ao serviço que solicitou o catálogo. O retorno do Login Único ao serviço utilizará a URL de Página inicial de serviço cadastrada no client_id.   	
+Exemplo 2 de **execução** no front end em javascript
+
+.. code-block:: javascript
+
+	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
 	
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 --------------------------------------------------
