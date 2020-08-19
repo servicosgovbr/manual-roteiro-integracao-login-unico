@@ -383,7 +383,7 @@ public class ExemploIntegracaoGovBr {
         private static String getConfiabilidade(String accessToken,String cpf) throws Exception {
                 String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/confiabilidades/v1/usuarios/" + cpf + "/confiabilidades");
+				URL url = new URL(URL_SERVICOS + "/confiabilidades/v2/contas/" + cpf + "/confiabilidades");
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
