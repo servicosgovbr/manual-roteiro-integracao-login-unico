@@ -148,7 +148,36 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
 
-11. Para verificar quais selos de confiabilidade o cidadão possui, deverá acessar, pelo método GET, o serviço Staging: https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/conﬁabilidades 
+11. Para verificar quais catagorias o cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/categorias
+
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/categorias 
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**cpf**            CPF do cidadão (sem ponto, barra etc).
+=================  ======================================================================
+
+A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seguinte formato:
+
+.. code-block:: JSON
+
+	[
+	  {
+		"categoria": {
+			"id": "(Identificação para reconhecer a categoria)",
+			"nivel": "(Identifica qual nível pertence a categoria adicionada pelo cidadão)",
+			"titulo": "(Identificação da categoria em tela para o cidadão)",
+			"descricao": "(Descrição padrão do significado da categoria)"
+		},
+		"dataUltimaAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+	  }
+    ]
+	
+Verificar quais categorias estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)`_
+
+12. Para verificar quais selos de confiabilidade o cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/conﬁabilidades 
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/conﬁabilidades 
 
@@ -177,6 +206,97 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 	] 
 
 Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
+
+Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)
+-------------------------------------------------------------------------------
+
+As categorias existentes no Login Único são:
+
+.. code-block:: JSON
+
+	[
+		{
+		"categoria": {
+		"id": "carrossel_perguntas",
+		"nivel": "basica",
+		"titulo": "Cadastro via Carrossel de Perguntas",
+		"descricao": "Cadastro via Carrossel de Perguntas"
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		},
+		
+		{
+		"categoria": {
+		"id": "carrossel_perguntas_previdencia",
+		"nivel": "basica",
+		"titulo": "Confiabilidade adquirida por meio de validação de informações da Previdência Social.",
+		"descricao": "Validação através de formulário On-Line da Previdência"
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		},
+		
+		{
+		"categoria": {
+		"id": "balcao_presencial",
+		"nivel": "verificada",
+		"titulo": "Cadastro Presencial",
+		"descricao": "Validação e autenticação do cadastro via balcão" 
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		},
+
+		{
+		"categoria": {
+		"id": "internet_banking",
+		"nivel": "verificada",
+		"titulo": "Cadastro via Internet Banking",
+		"descricao": "Validação por meio de Internet Banking"
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		},
+
+		{
+		"categoria": {
+		"id": "biometria_facial",
+		"nivel": "verificada",
+		"titulo": "Cadastro via validação biométrica", 
+		"descricao":  "Validação e autenticação do cadastro via reconhecimento facial"
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		},
+		
+		{
+		"categoria": {
+		"id": "servidor_publico",
+		"nivel": "verificada",
+		"titulo": "Cadastro via Sigepe", 
+		"descricao":   "Validação e autenticação do cadastro via usuário e senha do Sigepe"
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		},
+		
+		{
+		"categoria": {
+		"id": "certificado_digital",
+		"nivel": "comprovada",
+		"titulo": "Cadastro via certificado digital", 
+		"descricao": "Validação e autenticação do cadastro via Certificado Digital compatível com as especificações da Infraestrutura de Chaves Públicas Brasileira (ICP-BRASIL)." 
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		},
+		
+		{
+		"categoria": {
+		"id": "biometria_individualizada",
+		"nivel": "comprovada",
+		"titulo": "Cadastro via validação biométrica", 
+		"descricao":  "Validação do cadastro via biometria facial através de balcão do Tribunal Superior Eleitoral (TSE)" 
+		},
+		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		}
+				
+	]
+
 
 Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 ---------------------------------------------------------------------------
@@ -296,13 +416,40 @@ Os selos existentes no Login Único são:
 		}
 				
 	]
+
+
+Acesso ao serviço de Catálogo de Confiabilidades (Selos)
+--------------------------------------------------------
+
+1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.acesso.gov.br/
+
+Parâmetros da Query para requisição GET https://confiabilidades.acesso.gov.br/
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
+**niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
+**categorias**				  Permitem manutenção mais facilitada da utilização dos níveis e confiabilidades (selos) do Login Único. **Atributo obrigatório**
+**confiabilidades**			  Consistem em orientar para qualificação das contas com a obtenção dos atributos autoritativos do cidadão a partir das bases oficias de governo, por meio das quais permitirão a utilização da credencial de acesso em sistemas internos dos clientes e serviços providos diretamente ao cidadão. **Atributo obrigatório**
+============================  ======================================================================
+
+2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da URL de Lançador de Serviços, conforme `Plano de Integração`_. 
+
+**Observações sobre as variáveis do serviço de catálogo**
+
+1. Conteúdo para variável *niveis* : **basica**, **verificada**, **comprovada**
+2. Conteúdo para variável *categorias* : **carrossel_perguntas** , **carrossel_perguntas_previdencia** , **balcao_presencial**, **biometria_facial**, **internet_banking**, **servidor_publico**, **certificado_digital**, **biometria_individualizada**
+3. Contéudo para variável *confiabilidades*: Será a informação do atributo id presentes em cada confiabilidade no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_
+4. Tratamento do conteúdo para cada variável:
+
+- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (categorias=carrossel_perguntas,carrossel_perguntas_previdencia)**
+- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (confiabilidades=(servidor_publico/certificado_digital)** 	
 	
 Acesso ao Serviço de Log Out
 ----------------------------
 
 1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL: https://sso.staging.acesso.gov.br/logout. O acesso ao Log Out deverá ser pelo **Front End** da aplicação a ser integrada com Login Único.
-
-.. Parâmetros do Header para requisição GET https://sso.staging.acesso.gov.br/logout
 
 Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
 	
@@ -415,3 +562,4 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`Exemplos de Integração`: exemplointegracao.html
 .. _`Design System do Governo Federal`: http://dsgov.estaleiro.serpro.gov.br/ds/componentes/button
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`: iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-selos
+.. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)` : iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-categorias

@@ -14,8 +14,8 @@ Roteiro de Integração do Login Único
    introducao
 
    escopoatributos
-   categoriasautenticacao
-
+   catalogoconfiabilidades
+   
 .. toctree::
    :maxdepth: 3
    :caption: Informações Técnicas para Integração
