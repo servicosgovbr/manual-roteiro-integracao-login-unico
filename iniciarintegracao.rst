@@ -148,9 +148,9 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
 
-11. Para verificar quais catagorias o cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/categorias
+11. Para verificar quais catagorias o cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v2/contas/cpf/categorias
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/categorias 
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v2/contas/**cpf**/categorias 
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -177,9 +177,9 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 	
 Verificar quais categorias estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)`_
 
-12. Para verificar quais selos de confiabilidade o cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/conﬁabilidades 
+12. Para verificar quais selos de confiabilidade o cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v2/contas/**cpf**/confiabilidades 
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/conﬁabilidades/v2/contas/**cpf**/conﬁabilidades 
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v2/contas/**cpf**/confiabilidades 
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
