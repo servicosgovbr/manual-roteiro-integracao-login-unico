@@ -364,16 +364,6 @@ Os selos existentes no Login Único são:
 		
 		{
 		"confiabilidade": {
-		"categoria": "balcao_presencial",
-		"titulo": "Cadastro via Balcão do INSS",
-		"descricao": "Validação por meio da apresentação de documento de identificação em Agências do INSS" 
-		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
-		},
-
-		{
-		"confiabilidade": {
 		 "id": "bb_internet_banking",
          "categoria": "internet_banking",
          "titulo": "Cadastro via Internet Banking do Banco do Brasil",
