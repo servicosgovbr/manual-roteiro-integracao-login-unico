@@ -48,7 +48,6 @@ Confiabilidades
 2. Nível Verificado
 
 - **Selo Balcão Presencial (INSS)**: Validação do cadastro do cidadão por meio do Balcão presencial localizado nas agências do INSS. `Orientações para aquisição do Selo Balcão Presencial (INSS)`_.  
-- **Selo Balcão Presencial (Correios)**: Validação do cadastro do cidadão por meio do Balcão presencial localizado nas agências dos Correios. `Orientações para aquisição do Selo Balcão Presencial (Correios)`_.
 - **Selo Internet Banking**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking dos bancos conveniados. `Orientações para aquisição do Selo Internet Banking`_.
 - **Selo Cadastro Básico com Validação em Base de Dados de Servidores Públicos da União**: Validação do cadastro por meio de base de dados de Servidores Públicos da União. `Orientações para aquisição do Selo Cadastro Básico com Validação em Base de Dados de Servidores Públicos da União`_.
 - **Selo Validação Facial**: Validação do cadastro do cidadão por meio de biometria facial. A base utilizada para comparação é a da Carteira Nacional de Habilitação (Ministério da Infraestrutura / Denatran). `Orientações para aquisição do Selo Validação Facial`_.

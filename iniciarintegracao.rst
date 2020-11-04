@@ -423,9 +423,9 @@ Os selos existentes no Login Único são:
 Acesso ao serviço de Catálogo de Confiabilidades (Selos)
 --------------------------------------------------------
 
-1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.acesso.gov.br/
+1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.staging.acesso.gov.br/
 
-Parâmetros da Query para requisição GET https://confiabilidades.acesso.gov.br/
+Parâmetros da Query para requisição GET https://confiabilidades.staging.acesso.gov.br/
 
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
