@@ -25,35 +25,35 @@ import org.jose4j.jwt.consumer.JwtConsumerBuilder;
 
 /**
  *
- * O presente cÛdigo tem por objetivo exemplificar de forma minimalista o
- * consumo dos serviÁos utilizados pelo Gov.br.
+ * O presente c√≥digo tem por objetivo exemplificar de forma minimalista o
+ * consumo dos servi√ßos utilizados pelo Gov.br.
  *
  */
 
 public class ExemploIntegracaoGovBr {
 
         /**
-         * O processo de autenticaÁ„o e autorizaÁ„o de recursos ocorre essencialmente em
-         * trÍs etapas: Etapa 1: Chamada do serviÁo de autorizaÁ„o do Gov.br; Etapa 2:
-         * RecuperaÁ„o do Access Token e Etapa 3: ValidaÁ„o do Access Token por meio da
-         * verificaÁ„o de sua assinatura. ApÛs concluÌda essas trÍs etapas, a aplicaÁ„o
-         * cliente ter· as informaÁıes b·sicas para conceder acesso de acordo com suas
-         * prÛprias polÌticas de autorizaÁ„o. Caso a aplicaÁ„o cliente necessite de
-         * informaÁıes adicionais, fica habilitado o acesso ‡ todos os serviÁos
+         * O processo de autentica√ß√£o e autoriza√ß√£o de recursos ocorre essencialmente em
+         * tr√™s etapas: Etapa 1: Chamada do servi√ßo de autoriza√ß√£o do Gov.br; Etapa 2:
+         * Recupera√ß√£o do Access Token e Etapa 3: Valida√ß√£o do Access Token por meio da
+         * verifica√ß√£o de sua assinatura. Ap√≥s conclu√≠da essas tr√™s etapas, a aplica√ß√£o
+         * cliente ter√° as informa√ß√µes b√°sicas para conceder acesso de acordo com suas
+         * pr√≥prias pol√≠ticas de autoriza√ß√£o. Caso a aplica√ß√£o cliente necessite de
+         * informa√ß√µes adicionais, fica habilitado o acesso √† todos os servi√ßos
          * (presentes e futuros) fornecidos pelo Gov.br por meio do access token. O
-         * presente cÛdigo exemplifica a chamada aos seguintes serviÁos: getUserInfo -
-         * ExtraÁ„o das informaÁıes b·sicas de usu·rio atravÈs do ID Token; ServiÁo 1:
-         * getFoto - ServiÁo que recupera a foto do usu·rio;
-		 * ServiÁo 2: getCategorias - ServiÁo que recupera as categorias do cidad„o
-		 * ServiÁo 3: getConfiabilidade - ServiÁo que recupera os selos de confiabilidade
-         * atribuidos ao usu·rio; ServiÁo 3: getEmpresasVinculadas - ServiÁo que recupera a lista de empresas vinculadas ao usu·rio;
-         * ServiÁo 4: getDadosEmpresa - ServiÁo que detalha a empresa e o papel do usu·rio nesta
+         * presente c√≥digo exemplifica a chamada aos seguintes servi√ßos: getUserInfo -
+         * Extra√ß√£o das informa√ß√µes b√°sicas de usu√°rio atrav√©s do ID Token; Servi√ßo 1:
+         * getFoto - Servi√ßo que recupera a foto do usu√°rio;
+		 * Servi√ßo 2: getCategorias - Servi√ßo que recupera as categorias do cidad√£o
+		 * Servi√ßo 3: getConfiabilidade - Servi√ßo que recupera os selos de confiabilidade
+         * atribuidos ao usu√°rio; Servi√ßo 3: getEmpresasVinculadas - Servi√ßo que recupera a lista de empresas vinculadas ao usu√°rio;
+         * Servi√ßo 4: getDadosEmpresa - Servi√ßo que detalha a empresa e o papel do usu√°rio nesta
          * empresa.
-         * CÛdigo termina com chamada do Cat·logo de Confiabildides.
+         * C√≥digo termina com chamada do Cat√°logo de Confiabildides.
          *
          * *************************************************************************************************
          *
-         * InformaÁıes de uso ------------------ Atribua ‡s vari·veis abaixo os valores
+         * Informa√ß√µes de uso ------------------ Atribua √†s vari√°veis abaixo os valores
          * de acordo com o seu sistema.
          *
          */
@@ -61,10 +61,10 @@ public class ExemploIntegracaoGovBr {
         private static final String URL_PROVIDER = "https://sso.staging.acesso.gov.br";
         private static final String URL_SERVICOS = "https://api.staging.acesso.gov.br";
 		private static final String URL_CATALOGO_SELOS = "https://confiabilidades.staging.acesso.gov.br";
-        private static final String REDIRECT_URI = "<coloque-aqui-a-uri>";                                                      //redirectURI informada na chamada do serviÁo do authorize.
-        private static final String SCOPES = "openid+email+phone+profile+govbr_empresa+govbr_confiabilidades";  // Escopos pedidos para a aplicaÁ„o.
-        private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do serviÁo do authorize.
-        private static final String SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";                           //secret de conhecimento apenas do backend da aplicaÁ„o.
+        private static final String REDIRECT_URI = "<coloque-aqui-a-uri>";                                                      //redirectURI informada na chamada do servi√ßo do authorize.
+        private static final String SCOPES = "openid+email+phone+profile+govbr_empresa+govbr_confiabilidades";  // Escopos pedidos para a aplica√ß√£o.
+        private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do servi√ßo do authorize.
+        private static final String SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";                           //secret de conhecimento apenas do backend da aplica√ß√£o.
 		private static final String CATEGORIAS = "<coloque-aqui-as-categorias-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
 		private static final String CONFIABILIDADES = "<coloque-aqui-as-confiabilidades-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
 		
@@ -75,35 +75,35 @@ public class ExemploIntegracaoGovBr {
                  * Etapa 1: No Browser, chamar a URL do Authorize para recuperar o code e o
                  * state (opcional) conforme o exemplo abaixo:
                  * https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=<coloque-aqui-o-client-id>&scope=openid+profile+phone+email+govbr_empresa&redirect_uri=<coloque-aqui-a-uri-de-redirecionamento>&nonce=<coloque-aqui-um-numero-aleatorio>&state=<coloque-aqui-um-numero-aleatorio>
-                 * DescriÁ„o dos parametros: response_type: Sempre "code"; client_id:
-                 * Identificador do sistema que usa o Gov.br. Este identificador È ˙nico para
-                 * cada sistema; scope: Lista de escopos requisitados pelo sistema. Escopos s„o
-                 * agrupamentos de informaÁıes cujo acesso dever· ser autorizado pelo cidad„o
-                 * que acessa o sistema. Cada sistema dever· informar que conjunto de
-                 * informaÁıes (escopos) deseja; redirect_uri: Uri para qual ser· feito o
-                 * redirect apÛs o login do cidad„o (usu·rio). Para Celulares, usamos uma pseudo
-                 * URI; nonce: n˙mero aleatÛrio; state: n˙mero aleatÛrio (opcional)
+                 * Descri√ß√£o dos parametros: response_type: Sempre "code"; client_id:
+                 * Identificador do sistema que usa o Gov.br. Este identificador √© √∫nico para
+                 * cada sistema; scope: Lista de escopos requisitados pelo sistema. Escopos s√£o
+                 * agrupamentos de informa√ß√µes cujo acesso dever√° ser autorizado pelo cidad√£o
+                 * que acessa o sistema. Cada sistema dever√° informar que conjunto de
+                 * informa√ß√µes (escopos) deseja; redirect_uri: Uri para qual ser√° feito o
+                 * redirect ap√≥s o login do cidad√£o (usu√°rio). Para Celulares, usamos uma pseudo
+                 * URI; nonce: n√∫mero aleat√≥rio; state: n√∫mero aleat√≥rio (opcional)
                  *
-                 * ObservaÁ„o: Sem o escopo "govbr_empresa", n„o ser· possÌvel utilizar
-                 * o serviÁo de recuperaÁ„o de informaÁıes de empresas.
+                 * Observa√ß√£o: Sem o escopo "govbr_empresa", n√£o ser√° poss√≠vel utilizar
+                 * o servi√ßo de recupera√ß√£o de informa√ß√µes de empresas.
                  */
 
-                System.out.println("--------------------Etapa 1 - URL do ServiÁo Authorize------------------");
+                System.out.println("--------------------Etapa 1 - URL do Servi√ßo Authorize------------------");
                 System.out.println("Abra um Browser (Chrome ou Firefox), aperte F12. Clique na aba 'Network'.");
                 System.out.println(
-                                "Cole a URL abaixo no Browser (Chrome ou Firefox) e entre com um usu·rio cadastrado no Gov.br");
+                                "Cole a URL abaixo no Browser (Chrome ou Firefox) e entre com um usu√°rio cadastrado no Gov.br");
                 System.out.println(URL_PROVIDER + "/authorize?response_type=code&client_id=" + CLIENT_ID + "&scope="
                                 + SCOPES + "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, "UTF-8") + "&nonce="
                                 + createRandomNumber() + "&state=" + createRandomNumber());
 
                 /**
-                 * Etapa 2: De posse do code retornado pelo passo 1, chame o serviÁo para
-                 * recuperar os tokens disponÌveis para sua aplicaÁ„o (Access Token, Id Token) conforme o exemplo abaixo.
+                 * Etapa 2: De posse do code retornado pelo passo 1, chame o servi√ßo para
+                 * recuperar os tokens dispon√≠veis para sua aplica√ß√£o (Access Token, Id Token) conforme o exemplo abaixo.
                  */
 
-                System.out.println("\n--------------------Etapa 2 - RecuperaÁ„o dos Tokens de Acesso------------------");
-                System.out.println("Digite abaixo o par‚metro 'code' retornado pelo redirect da etapa 1");
-                System.out.print("Digite o valor do par‚metro code retornado:");
+                System.out.println("\n--------------------Etapa 2 - Recupera√ß√£o dos Tokens de Acesso------------------");
+                System.out.println("Digite abaixo o par√¢metro 'code' retornado pelo redirect da etapa 1");
+                System.out.print("Digite o valor do par√¢metro code retornado:");
                 BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
                 String code = br.readLine();
 
@@ -118,17 +118,17 @@ public class ExemploIntegracaoGovBr {
                 String idToken = (String) tokensJson.get("id_token");
 
                 /**
-                 * Etapa 3: De posse do access token, podemos extrair algumas informaÁıes acerca
-                 * do usu·rio. Aproveitamos tambÈm para checar a assinatura e tempo de expiraÁ„o
+                 * Etapa 3: De posse do access token, podemos extrair algumas informa√ß√µes acerca
+                 * do usu√°rio. Aproveitamos tamb√©m para checar a assinatura e tempo de expira√ß√£o
                  * do token. Para isso, este exemplo usa a biblioteca Open Source chamada
-                 * "jose4j" mas qualquer outra biblioteca que implemente a especificaÁ„o pode
+                 * "jose4j" mas qualquer outra biblioteca que implemente a especifica√ß√£o pode
                  * ser usada.
                  *
-                 * O Access Token fornece as seguintes informaÁıes acerca do usu·rio: 1- id
-                 * client da aplicaÁ„o ‡ qual o usu·rio se autenticou; 2- Escopos requeridos
-                 * pela aplicaÁ„o autorizados pelo usu·rio; 3- CPF do usu·rio autenticado 4-
-                 * Nome completo do usu·rio cadastrado no Gov.br. AtenÁ„o, este È o nome que foi
-                 * fornecido pelo usu·rio no momento do seu cadastro
+                 * O Access Token fornece as seguintes informa√ß√µes acerca do usu√°rio: 1- id
+                 * client da aplica√ß√£o √† qual o usu√°rio se autenticou; 2- Escopos requeridos
+                 * pela aplica√ß√£o autorizados pelo usu√°rio; 3- CPF do usu√°rio autenticado 4-
+                 * Nome completo do usu√°rio cadastrado no Gov.br. Aten√ß√£o, este √© o nome que foi
+                 * fornecido pelo usu√°rio no momento do seu cadastro
                  *
                  */
 
@@ -138,97 +138,97 @@ public class ExemploIntegracaoGovBr {
                         accessTokenJwtClaims = processToClaims(accessToken);
                         idTokenJwtClaims = processToClaims(idToken);
                 } catch (Exception e) {
-                        System.out.println("Access Token inv·lido!");
+                        System.out.println("Access Token inv√°lido!");
                         throw new Exception(e);
                 }
 
                 String idClient = accessTokenJwtClaims.getAudience().get(0); // Client Id
-                List<String> scopes = accessTokenJwtClaims.getStringListClaimValue("scope"); // Escopos autorizados pelo usu·rio
-                String nomeCompleto = idTokenJwtClaims.getStringClaimValue("name"); // Nome Completo do cadastro feito pelo usu·rio no Gov.br.
+                List<String> scopes = accessTokenJwtClaims.getStringListClaimValue("scope"); // Escopos autorizados pelo usu√°rio
+                String nomeCompleto = idTokenJwtClaims.getStringClaimValue("name"); // Nome Completo do cadastro feito pelo usu√°rio no Gov.br.
                 String fotoUrl = idTokenJwtClaims.getStringClaimValue("picture"); //
 
-                System.out.println("\n--------------------Etapa 3 - InformaÁıes obtidas do Access Token------------------");
-                System.out.printf("O usu·rio " + nomeCompleto + " foi autenticado pelo Gov.br para usar o sistema " + idClient
-                                + ". Este usu·rio tambÈm autorizou este mesmo sistema ‡ utilizar as informaÁıes representadas pelos escopos "
+                System.out.println("\n--------------------Etapa 3 - Informa√ß√µes obtidas do Access Token------------------");
+                System.out.printf("O usu√°rio " + nomeCompleto + " foi autenticado pelo Gov.br para usar o sistema " + idClient
+                                + ". Este usu√°rio tamb√©m autorizou este mesmo sistema √† utilizar as informa√ß√µes representadas pelos escopos "
                                 + String.join(",", scopes) + ". \n");
 
                 /**
-                 * De posse do token de resposta, a aplicaÁ„o pode usar o id token para extrair
-                 * as informaÁıes do usu·rio.
+                 * De posse do token de resposta, a aplica√ß√£o pode usar o id token para extrair
+                 * as informa√ß√µes do usu√°rio.
                  *
                  */
 
                 System.out
-                                .println("\n--------------------InformaÁıes do usu·rio obtidas atravÈs do ID Token------------------");
+                                .println("\n--------------------Informa√ß√µes do usu√°rio obtidas atrav√©s do ID Token------------------");
                 System.out.println("JSON retornado (base 64):");
                 System.out.println(idToken);
-                System.out.println("\n\nDados do usu·rio:");
-                System.out.println("CPF: " + idTokenJwtClaims.getSubject()); //CPF do usu·rio autenticado.
-                System.out.println("Nome: " + nomeCompleto); // Nome Completo do cadastro feito pelo usu·rio no Gov.br.
-                System.out.println("Email Validado: " + idTokenJwtClaims.getClaimValue("email_verified")); //(Confirma se o email foi validado no cadastro do Gov.br. Poder· ter o valor "true" ou "false")
-                System.out.println("E-Mail: " + idTokenJwtClaims.getClaimValue("email")); //(EndereÁo de e-mail cadastrado no Gov.br do usu·rio autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email n„o vir· no ID_TOKEN)
-                System.out.println("Telefone Validado: " + idTokenJwtClaims.getClaimValue("phone_number_verified")); //(Confirma se o telefone foi validado no cadastro do Gov.br. Poder· ter o valor "true" ou "false")
-                System.out.println("Telefone: " + idTokenJwtClaims.getClaimValue("phone_number")); //(N˙mero de telefone cadastrado no Gov.br do usu·rio autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number n„o vir· no ID_TOKEN)
-                System.out.println("Link para a foto: " + fotoUrl); //URL de acesso ‡ foto do usu·rio cadastrada no Gov.br. A mesma È protegida e pode ser acessada passando o access token recebido.
-                System.out.println("CNPJ: " + idTokenJwtClaims.getClaimValue("cnpj")); // CNPJ vinculado ao usu·rio autenticado. Atributo ser· preenchido quando autenticaÁ„o ocorrer por certificado digital de pessoal jurÌdica.
-                System.out.println("Nome Empresa CNPJ " + idTokenJwtClaims.getClaimValue("cnpj_certificate_name")); //Nome da empresa vinculada ao usu·rio autenticado. Atributo ser· preenchido quando autenticaÁ„o ocorrer por certificado digital de pessoal jurÌdica.
+                System.out.println("\n\nDados do usu√°rio:");
+                System.out.println("CPF: " + idTokenJwtClaims.getSubject()); //CPF do usu√°rio autenticado.
+                System.out.println("Nome: " + nomeCompleto); // Nome Completo do cadastro feito pelo usu√°rio no Gov.br.
+                System.out.println("Email Validado: " + idTokenJwtClaims.getClaimValue("email_verified")); //(Confirma se o email foi validado no cadastro do Gov.br. Poder√° ter o valor "true" ou "false")
+                System.out.println("E-Mail: " + idTokenJwtClaims.getClaimValue("email")); //(Endere√ßo de e-mail cadastrado no Gov.br do usu√°rio autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email n√£o vir√° no ID_TOKEN)
+                System.out.println("Telefone Validado: " + idTokenJwtClaims.getClaimValue("phone_number_verified")); //(Confirma se o telefone foi validado no cadastro do Gov.br. Poder√° ter o valor "true" ou "false")
+                System.out.println("Telefone: " + idTokenJwtClaims.getClaimValue("phone_number")); //(N√∫mero de telefone cadastrado no Gov.br do usu√°rio autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number n√£o vir√° no ID_TOKEN)
+                System.out.println("Link para a foto: " + fotoUrl); //URL de acesso √† foto do usu√°rio cadastrada no Gov.br. A mesma √© protegida e pode ser acessada passando o access token recebido.
+                System.out.println("CNPJ: " + idTokenJwtClaims.getClaimValue("cnpj")); // CNPJ vinculado ao usu√°rio autenticado. Atributo ser√° preenchido quando autentica√ß√£o ocorrer por certificado digital de pessoal jur√≠dica.
+                System.out.println("Nome Empresa CNPJ " + idTokenJwtClaims.getClaimValue("cnpj_certificate_name")); //Nome da empresa vinculada ao usu√°rio autenticado. Atributo ser√° preenchido quando autentica√ß√£o ocorrer por certificado digital de pessoal jur√≠dica.
 
                 List<String> listaAMR = accessTokenJwtClaims.getStringListClaimValue("amr");
 
-                System.out.println("\n\nDados da AutenticaÁ„o:");
-                System.out.println("Amr: " + String.join(",", listaAMR)); // Lista com os fatores de autenticaÁ„o do usu·rio. Pode ser ìpasswdî se o mesmo logou fornecendo a senha, ou ìx509î se o mesmo utilizou certificado digital ou certificado em nuvem.
+                System.out.println("\n\nDados da Autentica√ß√£o:");
+                System.out.println("Amr: " + String.join(",", listaAMR)); // Lista com os fatores de autentica√ß√£o do usu√°rio. Pode ser ¬ìpasswd¬î se o mesmo logou fornecendo a senha, ou ¬ìx509¬î se o mesmo utilizou certificado digital ou certificado em nuvem.
 
                 /**
-                 * ServiÁo 1: De posse do access token, a aplicaÁ„o pode chamar o serviÁo para receber a foto do usu·rio.
+                 * Servi√ßo 1: De posse do access token, a aplica√ß√£o pode chamar o servi√ßo para receber a foto do usu√°rio.
                  */
 
                 String resultadoFoto = getFoto(fotoUrl, accessToken);
 
                 System.out.println(
-                                "\n--------------------ServiÁo 1 - Foto do usu·rio------------------");
+                                "\n--------------------Servi√ßo 1 - Foto do usu√°rio------------------");
                 System.out.println("Foto retornada:");
                 System.out.println(resultadoFoto);
 
 				/**
-                 * ServiÁo 2: De posse do access token, a aplicaÁ„o pode chamar o serviÁo para
-                 * saber quais categorias o usu·rio logado possui.
+                 * Servi√ßo 2: De posse do access token, a aplica√ß√£o pode chamar o servi√ßo para
+                 * saber quais categorias o usu√°rio logado possui.
                  */
 
                 String categoriasJson = getCategorias(accessToken,idTokenJwtClaims.getSubject());
 
                 System.out.println(
-                                "\n--------------------ServiÁo 2 - InformaÁıes acerca das categorias do usu·rio------------------");
+                                "\n--------------------Servi√ßo 2 - Informa√ß√µes acerca das categorias do usu√°rio------------------");
                 System.out.println("JSON retornado:");
                 System.out.println(categoriasJson);
 				
 				
                 /**
-                 * ServiÁo 3: De posse do access token, a aplicaÁ„o pode chamar o serviÁo para
-                 * saber quais selos o usu·rio logado possui.
+                 * Servi√ßo 3: De posse do access token, a aplica√ß√£o pode chamar o servi√ßo para
+                 * saber quais selos o usu√°rio logado possui.
                  */
 
                 String confiabilidadeJson = getConfiabilidade(accessToken,idTokenJwtClaims.getSubject());
 
                 System.out.println(
-                                "\n--------------------ServiÁo 2 - InformaÁıes acerca da confiabilidade do usu·rio------------------");
+                                "\n--------------------Servi√ßo 2 - Informa√ß√µes acerca da confiabilidade do usu√°rio------------------");
                 System.out.println("JSON retornado:");
                 System.out.println(confiabilidadeJson);
                 
                 /**
-                 * ServiÁo 4: De posse do access token, a aplicaÁ„o pode chamar o serviÁo para
-                 * saber quais empresas se encontram vinculadas ao usu·rio logado.
+                 * Servi√ßo 4: De posse do access token, a aplica√ß√£o pode chamar o servi√ßo para
+                 * saber quais empresas se encontram vinculadas ao usu√°rio logado.
                  *
                  */
 
                 String empresasJson = getEmpresasVinculadas(accessToken,idTokenJwtClaims.getSubject());
 
-                System.out.println("\n--------------------ServiÁo 3 - Empresas vinculadas ao usu·rio------------------");
+                System.out.println("\n--------------------Servi√ßo 3 - Empresas vinculadas ao usu√°rio------------------");
                 System.out.println("JSON retornado:");
                 System.out.println(empresasJson);
 
                 /**
-                 * ServiÁo 5: De posse do access token, a aplicaÁ„o pode chamar o serviÁo para
-                 * obter dados de uma empresa especÌfica e o papel do usu·rio logado nesta
+                 * Servi√ßo 5: De posse do access token, a aplica√ß√£o pode chamar o servi√ßo para
+                 * obter dados de uma empresa espec√≠fica e o papel do usu√°rio logado nesta
                  * empresa.
                  */
 
@@ -242,7 +242,7 @@ public class ExemploIntegracaoGovBr {
                         String dadosEmpresaJson = getDadosEmpresa(accessToken, cnpj.get("cnpj").toString() ,idTokenJwtClaims.getSubject());
 
                         System.out.printf(
-                                        "\n--------------------ServiÁo 4 - InformaÁıes acerca da empresa %s------------------",
+                                        "\n--------------------Servi√ßo 4 - Informa√ß√µes acerca da empresa %s------------------",
                                         cnpjs.get(0));
                         System.out.println("JSON retornado:");
                         System.out.println(dadosEmpresaJson);
@@ -251,7 +251,7 @@ public class ExemploIntegracaoGovBr {
 				
 				System.out.println("--------------------Catalogo de Confiabildiades (Selos)------------------");
                 System.out.println("Abra um Browser (Chrome ou Firefox), aperte F12. Clique na aba 'Network'.");
-                System.out.println("Cole a URL abaixo no Browser (Chrome ou Firefox) para verificar apresentaÁ„o do cat·logo de confiabilidades (selos).");
+                System.out.println("Cole a URL abaixo no Browser (Chrome ou Firefox) para verificar apresenta√ß√£o do cat√°logo de confiabilidades (selos).");
 				System.out.println(URL_CATALOGO_SELOS + "/?client_id=" + CLIENT_ID + "&categorias=" + CATEGORIAS + "&confiabilidades=" + CONFIABILIDADES);
 
 
@@ -318,14 +318,14 @@ public class ExemploIntegracaoGovBr {
                 JwtConsumer jwtConsumer = new JwtConsumerBuilder().setRequireExpirationTime() // Exige que o token tenha um
                                                                                                                                                                                 // tempo de validade
                                 .setExpectedAudience(CLIENT_ID).setMaxFutureValidityInMinutes(60) // Testa se o tempo de validade do
-                                                                                                                                                                        // access token È inferior ou igual
-                                                                                                                                                                        // ao tempo m·ximo estipulado (Tempo
-                                                                                                                                                                        // padr„o de 60 minutos)
-                                .setAllowedClockSkewInSeconds(30) // Esta È uma boa pr·tica.
+                                                                                                                                                                        // access token √© inferior ou igual
+                                                                                                                                                                        // ao tempo m√°ximo estipulado (Tempo
+                                                                                                                                                                        // padr√£o de 60 minutos)
+                                .setAllowedClockSkewInSeconds(30) // Esta √© uma boa pr√°tica.
                                 .setRequireSubject() // Exige que o token tenha um Subject.
-                                .setExpectedIssuer(URL_PROVIDER + "/") // Verifica a procedÍncia do token.
+                                .setExpectedIssuer(URL_PROVIDER + "/") // Verifica a proced√™ncia do token.
                                 .setVerificationKey(pjwk.getPublicKey()) // Verifica a assinatura com a public key fornecida.
-                                .build(); // Cria a inst‚ncia JwtConsumer.
+                                .build(); // Cria a inst√¢ncia JwtConsumer.
 
                 return jwtConsumer.processToClaims(token);
         }
@@ -333,7 +333,7 @@ public class ExemploIntegracaoGovBr {
         private static String getEmpresasVinculadas(String accessToken, String cpf) throws Exception {
                 String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante="+cpf);
+				URL url = new URL(URL_SERVICOS + "/empresas/v2/empresas?filtrar-por-participante="+cpf);
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
