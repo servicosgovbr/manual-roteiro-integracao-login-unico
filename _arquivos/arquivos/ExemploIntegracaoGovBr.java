@@ -44,10 +44,11 @@ public class ExemploIntegracaoGovBr {
          * presente código exemplifica a chamada aos seguintes serviços: getUserInfo -
          * Extração das informações básicas de usuário através do ID Token; Serviço 1:
          * getFoto - Serviço que recupera a foto do usuário;
-		 * Serviço 2: getCategorias - Serviço que recupera as categorias do cidadão
-		 * Serviço 3: getConfiabilidade - Serviço que recupera os selos de confiabilidade
-         * atribuidos ao usuário; Serviço 3: getEmpresasVinculadas - Serviço que recupera a lista de empresas vinculadas ao usuário;
-         * Serviço 4: getDadosEmpresa - Serviço que detalha a empresa e o papel do usuário nesta
+		 * Serviço 2: getNiveis - Serviço que recupera os niveis do cidadão
+		 * Serviço 3: getCategorias - Serviço que recupera as categorias do cidadão
+		 * Serviço 4: getConfiabilidade - Serviço que recupera os selos de confiabilidade
+         * atribuidos ao usuário; Serviço 5: getEmpresasVinculadas - Serviço que recupera a lista de empresas vinculadas ao usuário;
+         * Serviço 5: getDadosEmpresa - Serviço que detalha a empresa e o papel do usuário nesta
          * empresa.
          * Código termina com chamada do Catálogo de Confiabildides.
          *
@@ -65,6 +66,7 @@ public class ExemploIntegracaoGovBr {
         private static final String SCOPES = "openid+email+phone+profile+govbr_empresa+govbr_confiabilidades";  // Escopos pedidos para a aplicação.
         private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do serviço do authorize.
         private static final String SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";                           //secret de conhecimento apenas do backend da aplicação.
+		private static final String NIVEIS = "<coloque-aqui-os-niveis-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
 		private static final String CATEGORIAS = "<coloque-aqui-as-categorias-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
 		private static final String CONFIABILIDADES = "<coloque-aqui-as-confiabilidades-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
 		
@@ -189,8 +191,21 @@ public class ExemploIntegracaoGovBr {
                 System.out.println("Foto retornada:");
                 System.out.println(resultadoFoto);
 
+				
 				/**
                  * Serviço 2: De posse do access token, a aplicação pode chamar o serviço para
+                 * saber quais níveis o usuário logado possui.
+                 */
+
+                String niveisJson = getNiveis(accessToken,idTokenJwtClaims.getSubject());
+
+                System.out.println(
+                                "\n--------------------Serviço 2 - Informações acerca dos níveis do usuário------------------");
+                System.out.println("JSON retornado:");
+                System.out.println(niveisJson);
+				
+				/**
+                 * Serviço 3: De posse do access token, a aplicação pode chamar o serviço para
                  * saber quais categorias o usuário logado possui.
                  */
 
@@ -203,7 +218,7 @@ public class ExemploIntegracaoGovBr {
 				
 				
                 /**
-                 * Serviço 3: De posse do access token, a aplicação pode chamar o serviço para
+                 * Serviço 4: De posse do access token, a aplicação pode chamar o serviço para
                  * saber quais selos o usuário logado possui.
                  */
 
@@ -215,7 +230,7 @@ public class ExemploIntegracaoGovBr {
                 System.out.println(confiabilidadeJson);
                 
                 /**
-                 * Serviço 4: De posse do access token, a aplicação pode chamar o serviço para
+                 * Serviço 5: De posse do access token, a aplicação pode chamar o serviço para
                  * saber quais empresas se encontram vinculadas ao usuário logado.
                  *
                  */
@@ -227,7 +242,7 @@ public class ExemploIntegracaoGovBr {
                 System.out.println(empresasJson);
 
                 /**
-                 * Serviço 5: De posse do access token, a aplicação pode chamar o serviço para
+                 * Serviço 6: De posse do access token, a aplicação pode chamar o serviço para
                  * obter dados de uma empresa específica e o papel do usuário logado nesta
                  * empresa.
                  */
@@ -252,7 +267,7 @@ public class ExemploIntegracaoGovBr {
 				System.out.println("--------------------Catalogo de Confiabildiades (Selos)------------------");
                 System.out.println("Abra um Browser (Chrome ou Firefox), aperte F12. Clique na aba 'Network'.");
                 System.out.println("Cole a URL abaixo no Browser (Chrome ou Firefox) para verificar apresentação do catálogo de confiabilidades (selos).");
-				System.out.println(URL_CATALOGO_SELOS + "/?client_id=" + CLIENT_ID + "&categorias=" + CATEGORIAS + "&confiabilidades=" + CONFIABILIDADES);
+				System.out.println(URL_CATALOGO_SELOS + "/?client_id=" + CLIENT_ID + "&niveis=" + NIVEIS + "&categorias=" + CATEGORIAS + "&confiabilidades=" + CONFIABILIDADES);
 
 
         }
@@ -403,10 +418,35 @@ public class ExemploIntegracaoGovBr {
                 return foto;
         }
 
+		private static String getNiveis(String accessToken,String cpf) throws Exception {
+                String retorno = "";
+
+				URL url = new URL(URL_SERVICOS + "/confiabilidades/v3/contas/" + cpf + "/niveis?response-type=ids");
+                HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/json");
+                conn.setRequestProperty("Authorization", "Bearer "+accessToken);
+
+                if (conn.getResponseCode() != 200) {
+                        throw new RuntimeException("Falhou : HTTP error code : " + conn.getResponseCode());
+                }
+
+                String output;
+                BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+
+                while ((output = br.readLine()) != null) {
+                        retorno += output;
+                }
+
+                conn.disconnect();
+
+                return retorno;
+        }
+		
 		private static String getCategorias(String accessToken,String cpf) throws Exception {
                 String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/confiabilidades/v2/contas/" + cpf + "/categorias");
+				URL url = new URL(URL_SERVICOS + "/confiabilidades/v3/contas/" + cpf + "/categorias?response-type=ids");
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
@@ -431,7 +471,7 @@ public class ExemploIntegracaoGovBr {
         private static String getConfiabilidade(String accessToken,String cpf) throws Exception {
                 String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "/confiabilidades/v2/contas/" + cpf + "/confiabilidades");
+				URL url = new URL(URL_SERVICOS + "/confiabilidades/v3/contas/" + cpf + "/confiabilidades?response-type=ids");
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");

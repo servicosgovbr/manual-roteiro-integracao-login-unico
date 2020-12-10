@@ -148,9 +148,9 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
 
-11. Para verificar quais catagorias o cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v2/contas/cpf/categorias
+11. Para verificar quais níveis da conta do cidadão está localizada, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v2/contas/**cpf**/categorias 
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids 
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -164,22 +164,41 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 .. code-block:: JSON
 
 	[
-	  {
-		"categoria": {
-			"id": "(Identificação para reconhecer a categoria)",
-			"nivel": "(Identifica qual nível pertence a categoria adicionada pelo cidadão)",
-			"titulo": "(Identificação da categoria em tela para o cidadão)",
-			"descricao": "(Descrição padrão do significado da categoria)"
-		},
-		"dataUltimaAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-	  }
-    ]
+		{
+		"id": "(Identificação para reconhecer o nível)",
+		"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização do nível na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		}
+	]
+
+Verificar quais níveis estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
+
+12. Para verificar quais catagorias da conta do cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/categorias?response-type=ids
+
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/categorias?response-type=ids 
+
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**cpf**            CPF do cidadão (sem ponto, barra etc).
+=================  ======================================================================
+
+A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seguinte formato:
+
+.. code-block:: JSON
+
+	[
+		{
+		"id": "(Identificação para reconhecer a categoria)",
+		"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		}
+	]
 	
 Verificar quais categorias estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)`_
 
-12. Para verificar quais selos de confiabilidade o cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v2/contas/**cpf**/confiabilidades 
+13. Para verificar quais selos de confiabilidade a conta do cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v2/contas/**cpf**/confiabilidades 
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -193,19 +212,38 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 .. code-block:: JSON
 
 	[
-	  {
-		"confiabilidade": {
-		  "id": "(Identificação para reconhecer o selo)",
-		  "categoria": "(Identifica qual categoria pertence o selo adquirido pelo cidadão)", 
-		  "titulo": "(Identificação do selo em tela para o cidadão)",
-		  "descricao": "(Descrição padrão do significado do selo)"
-		  },
-		"dataCriacao": "(Mostra a data e hora da criação do selo na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)",
-		"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização do selo na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-	   }
-	] 
+		{
+		"id": "(Identificação para reconhecer a confiabilidade)",
+		"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		}
+	]
 
 Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
+
+Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)
+---------------------------------------------------------------------------
+
+As categorias existentes no Login Único são:
+
+.. code-block:: JSON
+
+	[
+		{
+			"id": "1 (conta_basica)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": "2 (verificada)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": "3 (comprovada)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		}
+	]
+
 
 Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)
 -------------------------------------------------------------------------------
@@ -216,83 +254,41 @@ As categorias existentes no Login Único são:
 
 	[
 		{
-		"categoria": {
-		"id": "carrossel_perguntas",
-		"nivel": "basica",
-		"titulo": "Cadastro via Carrossel de Perguntas",
-		"descricao": "Cadastro via Carrossel de Perguntas"
-		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+			"id": "101 (carrosel_perguntas_previdencia)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"categoria": {
-		"id": "carrossel_perguntas_previdencia",
-		"nivel": "basica",
-		"titulo": "Confiabilidade adquirida por meio de validação de informações da Previdência Social.",
-		"descricao": "Validação através de formulário On-Line da Previdência"
-		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+			"id": "102 (carrosel_perguntas)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"categoria": {
-		"id": "balcao_presencial",
-		"nivel": "verificada",
-		"titulo": "Cadastro Presencial",
-		"descricao": "Validação e autenticação do cadastro via balcão" 
+			"id": "201 (servidor_publico)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
-		},
-
 		{
-		"categoria": {
-		"id": "internet_banking",
-		"nivel": "verificada",
-		"titulo": "Cadastro via Internet Banking",
-		"descricao": "Validação por meio de Internet Banking"
-		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
-		},
-
-		{
-		"categoria": {
-		"id": "biometria_facial",
-		"nivel": "verificada",
-		"titulo": "Cadastro via validação biométrica", 
-		"descricao":  "Validação e autenticação do cadastro via reconhecimento facial"
-		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+			"id": "202 (biometria_facial)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"categoria": {
-		"id": "servidor_publico",
-		"nivel": "verificada",
-		"titulo": "Cadastro via Sigepe", 
-		"descricao":   "Validação e autenticação do cadastro via usuário e senha do Sigepe"
-		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+			"id": "203 (balcao_presencial)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"categoria": {
-		"id": "certificado_digital",
-		"nivel": "comprovada",
-		"titulo": "Cadastro via certificado digital", 
-		"descricao": "Validação e autenticação do cadastro via Certificado Digital compatível com as especificações da Infraestrutura de Chaves Públicas Brasileira (ICP-BRASIL)." 
+			"id": "204 (internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+		{
+			"id": "301 (biometria_individualizada)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"categoria": {
-		"id": "biometria_individualizada",
-		"nivel": "comprovada",
-		"titulo": "Cadastro via validação biométrica", 
-		"descricao":  "Validação do cadastro via biometria facial através de balcão do Tribunal Superior Eleitoral (TSE)" 
-		},
-		"dataUltimaAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e hora da atualização da categoria)"
+			"id": " 302 (certificado_digital)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		}
 				
 	]
@@ -307,116 +303,67 @@ Os selos existentes no Login Único são:
 
 	[
 		{
-		"confiabilidade": {
-		"id": "cadastro_basico",
-		"categoria": "carrossel_perguntas",
-        "titulo": "Cadastro com validação de dados na Receita Federal",
-		"descricao": "Validação do cadastro via base de Cadastro de Pessoas Físicas."
-		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
+			"id": "101 (kba_previdencia)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"confiabilidade": {
-		 "id": "kba_previdencia",
-         "categoria": "carrossel_perguntas_previdencia",
-         "titulo": "Cadastro com validação de dados no INSS",
-         "descricao": "Validação através de formulário On-Line da Previdência"
-		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
+			"id": "201 (cadastro_basico)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"confiabilidade": {
-		 "id": "balcao_correios",
-         "categoria": "balcao_presencial",
-         "titulo": "Cadastro via Balcão dos Correios",
-         "descricao": "Validação por meio da apresentação de documento de identificação em Agências dos Correios"
+			"id": "301 (servidor_publico)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
-		},
-
 		{
-		"confiabilidade": {
-		 "id": "balcao_sat_previdencia",
-         "categoria": "balcao_presencial",
-         "titulo": "Cadastro via Balcão do INSS",
-         "descricao":  "Validação por meio da apresentação de documento de identificação em Agências do INSS"
-		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
-		},
-		
-		
-		{
-		"confiabilidade": {
-		 "id": "balcao_nai_previdencia",
-         "categoria": "internet_banking",
-         "titulo": "Cadastro via Internet Banking",
-         "descricao": "Validação por meio de Internet Banking" 
-		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
+			"id": "401 (biovalid_facial)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"confiabilidade": {
-		 "id": "bb_internet_banking",
-         "categoria": "internet_banking",
-         "titulo": "Cadastro via Internet Banking do Banco do Brasil",
-         "descricao": "Validação através Autenticação no Internet Banking do Banco do Brasil"
-		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
-		},
-
-		{
-		"confiabilidade": {
-		"id": "biovalid_facial",
-		"categoria": "biometria_facial",
-		"titulo": "Cadastro validado por Biometria Facial (Denatran)",
-		"descricao": "Validação através da Biometria Facial usando o Biovalid",
-		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
+			"id": "501 (balcao_sat_previdencia)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"confiabilidade": {
-		"id": "servidor_publico",
-		"categoria": "servidor_publico",
-        "titulo": "Cadastro validado em base de dados de servidores públicos da União",
-		"descricao": "Validação e autenticação do cadastro via base de dados de Servidores Públicos da União."
+			"id": "502 (balcao_denatran)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
+		{
+			"id": "503 (balcao_correios)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-		"confiabilidade": {
-		"id": "certificado_digital",
-		"categoria": "certificado_digital",
-		"titulo": "Cadastro validado por certificado digital",
-		"descricao": "Validação e autenticação do cadastro via Certificado Digital compatível com as especificações da Infraestrutura de Chaves Públicas Brasileira (ICP-BRASIL)." 
+			"id": "601 (balcao_nai_previdencia)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
-		}
 		
 		{
-		"confiabilidade": {
-		 "id": "tse_facial",
-         "categoria": "biometria_individualizada",
-         "titulo": "Cadastro validado por Biometria Facial (TSE)",
-         "descricao": "Confiabilidade adquirida no TSE"
+			"id": "602 (bb_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
-		"dataCriacao": "YYYY-MM-DD HH:MM:SS (Data e hora do cadastro do selo)",
-		"dataAtualizacao": "YYYY-MM-DD HH:MM:SS (Data e Hora da atualização do selo)"
-		}
-				
+		
+		{
+			"id": "603 (banrisul_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": "604 (bradesco_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": "701 (tse_facial)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": "801 (certificado_digital)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		}		
 	]
 
 
@@ -440,8 +387,8 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 
 **Observações sobre as variáveis do serviço de catálogo**
 
-1. Conteúdo para variável *niveis* : **basica**, **verificada**, **comprovada**
-2. Conteúdo para variável *categorias* : **carrossel_perguntas** , **carrossel_perguntas_previdencia** , **balcao_presencial**, **biometria_facial**, **internet_banking**, **servidor_publico**, **certificado_digital**, **biometria_individualizada**
+1. Conteúdo para variável *niveis* : Será a informação do atributo id presente em cada nível no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
+2. Conteúdo para variável *categorias* : Será a informação do atributo id presente em cada categoria no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)`_
 3. Contéudo para variável *confiabilidades*: Será a informação do atributo id presentes em cada confiabilidade no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_
 4. Tratamento do conteúdo para cada variável:
 
