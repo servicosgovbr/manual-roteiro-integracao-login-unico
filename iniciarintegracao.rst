@@ -112,7 +112,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 		"sub": "(CPF do usuário autenticado)",
 		"aud": "Client ID da aplicação onde o usuário se autenticou",
 		"scope": ["(Escopos autorizados pelo provedor de autenticação.)"],
-		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.)"],
+		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
 		"iss": "(URL do provedor de autenticação que emitiu o token.)",
 		"exp": "(Data/hora de expiração do token)",
 		"iat": "(Data/hora em que o token foi emitido.)",
@@ -120,13 +120,18 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 		"cnpj": "CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica."
 	}
 
+**Observações para ACCESS_TOKEN:**
+
+- Caso conta do cidadão esteja com segundo fator de autenticação ativado, quando o atributo *AMR* vier com *passwd*, aparecerão os conteúdos *mfa* (indica presença de segundo fator) e *otp* (forma de segundo fator com código encaminhado pelo aplicativo gov.br).
+- Documento para verificação do Código de Compensação dos possíveis bancos integrados ao Login Único:`Documento verificar Código de Compensação dos Bancos`_.
+	
 **JSON do ID_TOKEN**
 
 .. code-block:: JSON
 
 	{
 		"sub": "(CPF do usuário autenticado.)",
-		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, ou “x509” se o mesmo utilizou certificado digital ou certificado em nuvem.)"],
+		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
 		"picture": "(URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.)",
 		"name": "(Nome cadastrado no Gov.br do usuário autenticado.)",
 		"phone_number_verified": "(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
@@ -136,7 +141,11 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 		"cnpj": "(CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.)"
 	}
 
-**Os paramêtros email,phone_number,picture não são obrigatórios. Ambos podem estar preenchidos ou não.**	
+**Observações para ID_TOKEN:**
+
+- Os paramêtros email,phone_number,picture não são obrigatórios. Ambos podem estar preenchidos ou não.
+- Caso conta do cidadão esteja com segundo fator de autenticação ativado, quando o atributo *AMR* vier com *passwd*, aparecerão os conteúdos *mfa* (indica presença de segundo fator) e *otp* (forma de segundo fator com código encaminhado pelo aplicativo gov.br).
+- Documento para verificação do Código de Compensação dos possíveis bancos integrados ao Login Único:`Documento verificar Código de Compensação dos Bancos`_.
 	
 10. Para solicitação do conteúdo da foto salva no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/picture e acrescentar o atributo Authorization ao header do HTTP da requisição:
 	
@@ -392,8 +401,8 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 3. Contéudo para variável *confiabilidades*: Será a informação do atributo id presentes em cada confiabilidade no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_
 4. Tratamento do conteúdo para cada variável:
 
-- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (categorias=carrossel_perguntas,carrossel_perguntas_previdencia)**
-- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (confiabilidades=(servidor_publico/certificado_digital)** 	
+- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (categorias=102,101)**
+- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (confiabilidades=(301/801)** 	
 	
 Acesso ao Serviço de Log Out
 ----------------------------
@@ -600,3 +609,4 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`Design System do Governo Federal`: http://dsgov.estaleiro.serpro.gov.br/ds/componentes/button
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`: iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-selos
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)` : iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-categorias
+.. _`Documento verificar Código de Compensação dos Bancos` : arquivos/TabelaBacen.pdf
