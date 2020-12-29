@@ -51,7 +51,11 @@ Confiabilidades
 - **Selo Internet Banking**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking dos bancos conveniados. `Orientações para aquisição do Selo Internet Banking`_.
 - **Selo Cadastro Básico com Validação em Base de Dados de Servidores Públicos da União**: Validação do cadastro por meio de base de dados de Servidores Públicos da União. `Orientações para aquisição do Selo Cadastro Básico com Validação em Base de Dados de Servidores Públicos da União`_.
 - **Selo Validação Facial**: Validação do cadastro do cidadão por meio de biometria facial. A base utilizada para comparação é a da Carteira Nacional de Habilitação (Ministério da Infraestrutura / Denatran). `Orientações para aquisição do Selo Validação Facial`_.
-- **Selo Internet Banking (Banco do Brasil)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Banco do Brasil. `Orientações para aquisição do Selo Internet Banking (Banco do Brasil)`_.
+- **Selo Internet Banking (Banco do Brasil)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Banco do Brasil. `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+- **Selo Internet Banking (Banrisul)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Banco do Estado do Rio Grande do Sul (BANRISUL). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+- **Selo Internet Banking (Bradesco)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Bradesco. `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+- **Selo Internet Banking (BRB)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Banco de Brasília (BRB). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+
 .. - **Selo de Validação de Biometria da Digital**: Validação do cadastro do cidadão por meio de chegagem da biometria da digital. `Orientações para aquisição do Selo de Validação de Biometria da Digital`_.
 
 3. Nível Comprovado
@@ -70,6 +74,7 @@ Confiabilidades
 .. _`Orientações para aquisição do Selo Balcão Presencial (Correios)` : http://faq-login-unico.servicos.gov.br/en/latest/_perguntasdafaq/comoadquirirseloselobalcaopresenciaCORREIOS.html
 .. _`Orientações para aquisição do Selo Internet Banking` : http://faq-login-unico.servicos.gov.br/en/latest/_perguntasdafaq/comoadquirirselointernetbanking.html
 .. _`Orientações para aquisição do Selo Internet Banking (Banco do Brasil)` : http://faq-login-unico.servicos.gov.br/en/latest/_perguntasdafaq/comoadquirircadastroviainternetbankingbancobrasil.html
+.. _`Orientações para aquisição do Selo Internet Banking do Bancos Credenciados` : http://faq-login-unico.servicos.gov.br/en/latest/_perguntasdafaq/comoadquirircadastroviainternetbankingbancoscredenciados.html
 .. _`Orientações para aquisição do Selo Validação Facial` : http://faq-login-unico.servicos.gov.br/en/latest/_perguntasdafaq/comoadquirirvalidacaofacial.html
 .. _`Orientações para aquisição do Selo Cadastro Básico com Validação em Base de Dados de Servidores Públicos da União` : http://faq-login-unico.servicos.gov.br/en/latest/_perguntasdafaq/comoadquirircadastrobasicovalidacaobasedadosservidorespublicosuniao.html
 .. _`Orientações para aquisição do Selo de Validação de Biometria da Digital` : comoadquirirvalidacaobiometriadigital.html

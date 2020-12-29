@@ -365,6 +365,12 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
+			"id": "605 (brb_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		
+		{
 			"id": "701 (tse_facial)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
