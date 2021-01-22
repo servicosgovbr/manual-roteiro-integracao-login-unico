@@ -55,6 +55,8 @@ Confiabilidades
 - **Selo Internet Banking (Banrisul)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Banco do Estado do Rio Grande do Sul (BANRISUL). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
 - **Selo Internet Banking (Bradesco)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Bradesco. `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
 - **Selo Internet Banking (BRB)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Banco de Brasília (BRB). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+- **Selo Internet Banking (CAIXA)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking da Caixa Econômica Federal (CAIXA). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+
 
 .. - **Selo de Validação de Biometria da Digital**: Validação do cadastro do cidadão por meio de chegagem da biometria da digital. `Orientações para aquisição do Selo de Validação de Biometria da Digital`_.
 
