@@ -365,12 +365,17 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
-			"id": "605 (brb_internet_banking)",
+			"id": "605 (caixa_internet_banking)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-			"id": "606 (caixa_internet_banking)",
+			"id": "606 (brb_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": "607 (sicoob_internet_banking)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
@@ -597,6 +602,42 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 5. Antes de utilizar as informações do JSON anterior, de forma especifica o **ACCESS_TOKEN**, para revalidação da senha, há necessidade da aplicação consumidora validar se as informações foram geradas pelos serviços do Login Único. Esta validação ocorrerá por meio da consulta da chave pública disponível no serviço https://oauth.staging.acesso.gov.br/v1/jwks. Para isso, verificar o método **processToClaims** dos `Exemplos de Integração`_.
 
 6. Verificado o access token, a aplicação cliente consegue, através do atributo **sub**, saber qual usuário confirmou sua identidade gov.br com sucesso e continuar o processo no sistema integrado.
+
+Acesso ao Serviço de Recuperação do Tipo de Certificado
+-------------------------------------------------------
+
+1. Na requisição de autenticação, adicionar o escopo “govbr_recupera_certificadox509“, conforme exemplo:
+
+Exemplo de requisição
+
+.. code-block:: console
+
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_recupera_certificadox509&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+
+2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://sso.staging.acesso.gov.br/api/x509/info enviando as seguintes informações:
+
+Parâmetros para requisição GET https://sso.staging.acesso.gov.br/api/x509/info
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+============================  ======================================================================
+
+3. O resultado em formato JSON é tipo de certificado da autenticação, conforme o exemplo abaixo:
+
+Exemplo de requisição
+
+.. code-block:: JSON
+
+	[
+		{
+		  "provider":"(Indicará qual o provedor disponibilizará o certificado. Aparecerá para certificado em nuvem)",
+		  "amr":["(Lista de forma de certificados autenticados. Padrão é x509)"],
+		  "certificate":"(Demonstra o nome do cerfificado da autenticação)",
+		  "type":"(Informa qual tipo de certificado utilizado para autenticação. O contéudo será <device> para certificados A1 e A3 e <cloud> para indicar certificado em núvem)"
+		}
+	]
 	
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
 ------------------------------------------------------------------
