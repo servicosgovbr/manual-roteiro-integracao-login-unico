@@ -4,9 +4,9 @@
 Solicitação de Configuração
 +++++++++++++++++++++++++++
 
-Para utilização do sistema Login Único, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Integração`_.
+Para utilização do sistema Login Único, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Integração`_. Leia atentamente as instruções de preenchimento que constam no próprio documento.
 
-O formulário deverá ser encaminhado para os integrantes da Secretaria de Governança Digital (SGD) do Ministério da Economia (ME) para realizar configuração da utilização do Login Único.
+O formulário deverá ser encaminhado para os integrantes da Secretaria de Governança Digital (SGD) do Ministério da Economia (ME) para realizar configuração da utilização do Login Único. O endereço de envio encontra-se no Plano de Integração.
 
 Métodos e interfaces de integração (Passo-a-Passo para Integrar)
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -653,7 +653,7 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
-.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_final.doc
+.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-2.doc
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#TokenResponse
 .. _`auth 2.0 Redirection Endpoint`: https://tools.ietf.org/html/rfc6749#section-3.1.2
 .. _`Exemplos de Integração`: exemplointegracao.html
