@@ -32,7 +32,7 @@ A utilização da autenticação do Login Único depende dos seguintes passos:
 **scope**          Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+email+phone+profile+govbr_confiabilidades**. 
 **redirect_uri**   URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
 **nonce**          Sequência de caracteres usado para associar uma sessão do serviço consumidor a um *Token* de ID e para atenuar os ataques de repetição. Pode ser um valor aleatório, mas que não seja de fácil dedução. Item obrigatório.
-**state**          Valor usado para manter o estado entre a solicitação e o retorno de chamada. Item não obrigatório. 
+**state**          Valor usado para manter o estado entre a solicitação e o retorno de chamada. Item obrigatório. 
 =================  ======================================================================
 
 Exemplo de requisição:
@@ -47,7 +47,7 @@ Exemplo de requisição:
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
 **code**           Código de autenticação gerado pelo provedor. Será utilizado para obtenção do Token de Resposta. Possui tempo de expiração e só pode ser utilizado uma única vez. 
-**state**          *State* passado anteriormente do https://sso.staging.acesso.gov.br/authorize que pode ser utilizado para controle da aplicação cliente. Pode correlacionar com o *code* gerado.  
+**state**          *State* passado anteriormente do https://sso.staging.acesso.gov.br/authorize que pode ser utilizado para controle da aplicação cliente. Pode correlacionar com o *code* gerado. O cliente consegue saber se o CODE veio de um state gerado por ele.  
 =================  ======================================================================
 
 5. Após autenticado, o provedor redireciona para a página de autorização. O usuário habilitará o consumidor no sistema para os escopos solicitados. Caso o usuário da solicitação autorize o acesso, é gerado um “ticket de acesso”, conforme demonstra na especificação `OpenID Connect`_ ;
@@ -71,7 +71,7 @@ Exemplo de *header*:
 	Authorization: Basic											
 	ZWM0MzE4ZDYtZjc5Ny00ZDY1LWI0ZjctMzlhMzNiZjRkNTQ0OkFJSDRoaXBfTUJYcVJkWEVQSVJkWkdBX2dRdjdWRWZqYlRFT2NWMHlFQll4aE1iYUJzS0xwSzRzdUVkSU5FcS1kNzlyYWpaZ3I0SGJuVUM2WlRXV1lJOA==
 
-Parâmetros da Query para requisição Post https://sso.staging.acesso.gov.br/token
+Parâmetros do Body para requisição Post https://sso.staging.acesso.gov.br/token
 	
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -85,7 +85,7 @@ Exemplo de *query*
 
 .. code-block:: console
 
-	https://sso.staging.acesso.gov.br/token?grant_type=authorization_code&code=Z85qv1&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php	
+	curl -X POST -d 'grant_type=authorization_code&code=Z85qv1&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php' https://sso.staging.acesso.gov.br/token	
 
 O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
 
@@ -422,14 +422,16 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 Acesso ao Serviço de Log Out
 ----------------------------
 
-1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL: https://sso.staging.acesso.gov.br/logout. O acesso ao Log Out deverá ser pelo **Front End** da aplicação a ser integrada com Login Único.
+1. **Implementação obrigatória** a fim de encerrar a sessão do usuário com o Login Único.
+
+2. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL: https://sso.staging.acesso.gov.br/logout. O acesso ao Log Out deverá ser pelo **Front End** da aplicação a ser integrada com Login Único.
 
 Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
 	
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
-**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for inválidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
+**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for invalidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
 ============================  ======================================================================
 
 Exemplo 1 de **execução** no front end em javascript
