@@ -24,9 +24,9 @@ O Catálogo trabalha com as estruturas:
 Níveis
 +++++++
 
-1. **Nível Básico**
-2. **Nível Verificado**
-3. **Nível Comprovado**
+1. **Nível Básico - Nível Bronze** 
+2. **Nível Verificado - Nível Prata**
+3. **Nível Comprovado - Nível Ouro**
 
 Categorias
 +++++++++++
@@ -40,12 +40,12 @@ Permitem manutenção mais facilitada da utilização dos níveis e confiabilida
 Confiabilidades
 +++++++++++++++
  
-1. Nível Básico 
+1. Nível Básico - Nível Bronze
 
 - **Selo Cadastro Básico com Validação de Dados Pessoais**: Validação do cadastro do cidadão por meio da base de Cadastro de Pessoas Físicas (Ministério da Economia / Receita Federal). `Orientações para aquisição do Selo Cadastro Básico com Validação de Dados Pessoais`_.
 - **Selo Cadastro Básico com Validação de Dados Previdênciarios**: Validação do cadastro do cidadão por meio da base de Casdatro Nacional de Informações Sociais (CNIS / INSS). `Orientações para aquisição do Selo Cadastro Básico com Validação de Dados Previdênciarios`_.
 
-2. Nível Verificado
+2. Nível Verificado - Nível Prata
 
 - **Selo Balcão Presencial (INSS)**: Validação do cadastro do cidadão por meio do Balcão presencial localizado nas agências do INSS. `Orientações para aquisição do Selo Balcão Presencial (INSS)`_.  
 - **Selo Internet Banking**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking dos bancos conveniados. `Orientações para aquisição do Selo Internet Banking`_.
@@ -56,11 +56,13 @@ Confiabilidades
 - **Selo Internet Banking (Bradesco)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Bradesco. `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
 - **Selo Internet Banking (BRB)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Banco de Brasília (BRB). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
 - **Selo Internet Banking (CAIXA)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking da Caixa Econômica Federal (CAIXA). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+- **Selo Internet Banking (Sicoob)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Sistema de Cooperativas de Crédito do Brasil (Sicoob). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
+- **Selo Internet Banking (Santander)**: Validação do cadastro do cidadão por meio da plataforma de Internet Banking do Santander (Santander). `Orientações para aquisição do Selo Internet Banking do Bancos Credenciados`_.
 
 
 .. - **Selo de Validação de Biometria da Digital**: Validação do cadastro do cidadão por meio de chegagem da biometria da digital. `Orientações para aquisição do Selo de Validação de Biometria da Digital`_.
 
-3. Nível Comprovado
+3. Nível Comprovado - Nível Ouro
 
 - **Selo de Certificado Digital de Pessoa Física**: Validação do cadastro do cidadão por meio da utilização de certificado digital de pessoal física. `Orientações para aquisição do Selo de Certificado Digital de Pessoa Física`_.  
 - **Selo Validação Facial**: Validação do cadastro do cidadão por meio de biometria facial. A base utilizada para comparação é a da Justiça Eleitoral (Tribunal de Justiça Eleitoral). `Orientações para aquisição do Selo Validação Facial`_.
