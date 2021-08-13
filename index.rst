@@ -20,6 +20,8 @@ Roteiro de Integração do Login Único
    :maxdepth: 3
    :caption: Informações Técnicas para Integração
 
+   solicitarconfiguracao
+   chavepgp
    iniciarintegracao
    exemplointegracao
    execucaoexemplo

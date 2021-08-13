@@ -1,18 +1,8 @@
-﻿Iniciando a Integração
-=====================
-
-Solicitação de Configuração
-+++++++++++++++++++++++++++
-
-Para utilização do sistema Login Único, há necessidade de liberar os ambientes para aplicação cliente possa utilizar. Essa liberação ocorre por meio do preenchimento do `Plano de Integração`_. Leia atentamente as instruções de preenchimento que constam no próprio documento.
-
-O formulário deverá ser encaminhado para os integrantes da Secretaria de Governança Digital (SGD) do Ministério da Economia (ME) para realizar configuração da utilização do Login Único. O endereço de envio encontra-se no Plano de Integração.
-
-Métodos e interfaces de integração (Passo-a-Passo para Integrar)
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+﻿Passo-a-Passo para Integrar
+===========================
 
 Autenticação
-------------
+++++++++++++
 
 Para que a autenticação aconteça, todo o canal de comunicação deve ser realizado com o protocolo HTTPS. Será feito um redirecionamento para uma URL de autorização do Login Único e, após a autenticação ser concluída, retornará um código de autenticação para a aplicação cliente com intuito de adquirir um ticket de acesso para os serviços protegidos.
 
@@ -230,7 +220,7 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
 
 Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)
----------------------------------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 As categorias existentes no Login Único são:
 
@@ -255,7 +245,7 @@ As categorias existentes no Login Único são:
 
 
 Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)
--------------------------------------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 As categorias existentes no Login Único são:
 
@@ -304,7 +294,7 @@ As categorias existentes no Login Único são:
 
 
 Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
----------------------------------------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Os selos existentes no Login Único são:
 
@@ -339,8 +329,14 @@ Os selos existentes no Login Único são:
 			"id": "502 (balcao_denatran)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
+		
 		{
 			"id": "503 (balcao_correios)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": "504 (balcao_cadastro_presencial_govbr)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
@@ -397,7 +393,7 @@ Os selos existentes no Login Único são:
 
 
 Acesso ao serviço de Catálogo de Confiabilidades (Selos)
---------------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.staging.acesso.gov.br/
 
@@ -425,7 +421,7 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 - Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (confiabilidades=(301/801)** 	
 	
 Acesso ao Serviço de Log Out
-----------------------------
+++++++++++++++++++++++++++++
 
 1. **Implementação obrigatória** a fim de encerrar a sessão do usuário com o Login Único.
 
@@ -456,7 +452,7 @@ Exemplo 2 de **execução** no front end em javascript
 	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
 	
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
---------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++
 
 O Login Único disponibiliza dois serviços para acesso a informações de Pessoa Jurídica. O primeiro apresenta todos os CNPJs cadastrados para um determinado usuário. O segundo, utiliza desse CNPJ para extrair informações cadastradas no Login Único para aquela pessoa e empresa.
 
@@ -523,7 +519,7 @@ Exemplo de requisição
 	}
 
 Acesso ao Serviço de Revalidação de Senha
------------------------------------------
++++++++++++++++++++++++++++++++++++++++++
 
 Para que a revalidação aconteça, todo o canal de comunicação deve ser realizado com o protocolo HTTPS. Será feito um redirecionamento para URL de autorização especifica do Login Único e, após a revalidação ser concluída, retornará um código de autenticação para a aplicação cliente com intuito de adquirir um ticket de acesso para revalidação da senha e continuação do fluxo do sistema.
 
@@ -611,7 +607,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 6. Verificado o access token, a aplicação cliente consegue, através do atributo **sub**, saber qual usuário confirmou sua identidade gov.br com sucesso e continuar o processo no sistema integrado.
 
 Acesso ao Serviço de Recuperação do Tipo de Certificado
--------------------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 1. Na requisição de autenticação, adicionar o escopo “govbr_recupera_certificadox509“, conforme exemplo:
 
@@ -647,20 +643,20 @@ Exemplo de requisição
 	]
 	
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
-------------------------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e as respostas são códigos presentes conforme padrão do protocolo http por meio do retorno JSON, conforme exemplo:
 
 .. code-block:: JSON
 
   {
-	"codigo": "(Código HTTP do erro)",
-	"descricao": "(Descrição detalhada do erro ocorrido. )"
+	"error": "(Código HTTP do erro)",
+	"erro_description": "(Descrição detalhada do erro ocorrido. )"
   }
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
-.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-3.doc
+.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.doc
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#TokenResponse
 .. _`auth 2.0 Redirection Endpoint`: https://tools.ietf.org/html/rfc6749#section-3.1.2
 .. _`Exemplos de Integração`: exemplointegracao.html
@@ -668,3 +664,4 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`: iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-selos
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)` : iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-categorias
 .. _`Documento verificar Código de Compensação dos Bancos` : arquivos/TabelaBacen.pdf
+.. _`administrar as chaves PGP para credenciais do Login Único`: chavepgp.html

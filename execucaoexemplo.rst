@@ -1,5 +1,5 @@
-﻿Execução dos Exemplos de Integração
-===================================
+﻿Execução do Exemplo de Integração
+=================================
 
 JAVA
 ++++
