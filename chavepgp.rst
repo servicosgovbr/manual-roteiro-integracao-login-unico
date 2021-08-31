@@ -54,7 +54,7 @@ Sigam os passos para criação:
 Como ler arquivo da credencial com chave PGP
 ++++++++++++++++++++++++++++++++++++++++++++
 
-Orientaremos como ler arquivo por meio do programa Gpg4win (versão windows), porém existem outras aplicativos permitem geração.
+Orientaremos como ler arquivo por meio do programa Gpg4win (versão windows), porém existem outros aplicativos que podem ser empregados para esta finalidade.
 
 Sigam os passos para criação:
 
