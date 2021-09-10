@@ -8,11 +8,17 @@ Para que a autenticação aconteça, todo o canal de comunicação deve ser real
 
 A utilização da autenticação do Login Único depende dos seguintes passos:
 
-1. A chamada para autenticação deverá ocorrer pelo botão com o conteúdo **Entrar com GOV.BR**. Para o formato do botão, seguir as orientações do `Design System do Governo Federal`_ |site externo|. 
+Passo 1
+-------
+A chamada para autenticação deverá ocorrer pelo botão com o conteúdo **Entrar com GOV.BR**. Para o formato do botão, seguir as orientações do `Design System do Governo Federal`_ |site externo|. 
 
-2. Ao requisitar autenticação via Provedor, o mesmo verifica se o usuário está logado. Caso o usuário não esteja logado o provedor redireciona para a página de login. 
+Passo 2
+-------
+Ao requisitar autenticação via Provedor, o mesmo verifica se o usuário está logado. Caso o usuário não esteja logado o provedor redireciona para a página de login. 
 
-3. A requisição é feita através de um GET para o endereço https://sso.staging.acesso.gov.br/authorize passando as seguintes informações:
+Passo 3
+-------
+A requisição é feita através de um GET para o endereço https://sso.staging.acesso.gov.br/authorize passando as seguintes informações:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -31,7 +37,9 @@ Exemplo de requisição:
 
 	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+phone+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-4. Após a autorização, a requisição é retornada para a URL especificada no redirect_uri do serviço https://sso.staging.acesso.gov.br/authorize, enviando os parâmetros:
+Passo 4
+-------	
+Após a autorização, a requisição é retornada para a URL especificada no redirect_uri do serviço https://sso.staging.acesso.gov.br/authorize, enviando os parâmetros:
 
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -40,9 +48,13 @@ Exemplo de requisição:
 **state**          *State* passado anteriormente do https://sso.staging.acesso.gov.br/authorize que pode ser utilizado para controle da aplicação cliente. Pode correlacionar com o *code* gerado. O cliente consegue saber se o CODE veio de um state gerado por ele.  
 =================  ======================================================================
 
-5. Após autenticado, o provedor redireciona para a página de autorização. O usuário habilitará o consumidor no sistema para os escopos solicitados. Caso o usuário da solicitação autorize o acesso, é gerado um “ticket de acesso”, conforme demonstra na especificação `OpenID Connect`_ ;
+Passo 5
+-------
+Após autenticado, o provedor redireciona para a página de autorização. O usuário habilitará o consumidor no sistema para os escopos solicitados. Caso o usuário da solicitação autorize o acesso, é gerado um “ticket de acesso”, conforme demonstra na especificação `OpenID Connect`_ ;
 
-6. Para obter o *ticket de acesso*, o consumidor deve fazer uma requisição POST para o endereço https://sso.staging.acesso.gov.br/token passando as seguintes informações:
+Passo 6
+-------
+Para obter o *ticket de acesso*, o consumidor deve fazer uma requisição POST para o endereço https://sso.staging.acesso.gov.br/token passando as seguintes informações:
 
 Parâmetros do Header para requisição Post https://sso.staging.acesso.gov.br/token
 
@@ -88,11 +100,17 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 		"expires_in": "(Tempo de vida do token em segundos.)" 
 	} 
 
-7. De posse das informações do json anterior, a aplicação consumidora está habilitada para consultar dados de recursos protegidos, que são as informações e método de acesso do usuário ou serviços externos do Login Único. 
+Passo 7
+-------
+De posse das informações do json anterior, a aplicação consumidora está habilitada para consultar dados de recursos protegidos, que são as informações e método de acesso do usuário ou serviços externos do Login Único. 
 
-8. Antes de utilizar as informações do JSON anterior, de forma especifica os **ACCESS_TOKEN** e **ID_TOKEN**, para buscar informações referente ao método de acesso e cadastro básico do usuário, há necessidade da aplicação consumidora validar se as informações foram geradas pelos serviços do Login Único. Esta validação ocorrerá por meio da consulta da chave pública disponível no serviço https://sso.staging.acesso.gov.br/jwk. Para isso, verificar o método **processToClaims** dos `Exemplos de Integração`_.    
+Passo 8
+-------
+Antes de utilizar as informações do JSON anterior, de forma especifica os **ACCESS_TOKEN** e **ID_TOKEN**, para buscar informações referente ao método de acesso e cadastro básico do usuário, há necessidade da aplicação consumidora validar se as informações foram geradas pelos serviços do Login Único. Esta validação ocorrerá por meio da consulta da chave pública disponível no serviço https://sso.staging.acesso.gov.br/jwk. Para isso, verificar o método **processToClaims** dos `Exemplos de Integração`_.    
 
-9. A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao extrair do JSON codificado os seguintes parâmetros: 
+Passo 9
+-------
+A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao extrair do JSON codificado os seguintes parâmetros: 
 
 **JSON do ACCESS_TOKEN**
 
@@ -137,7 +155,9 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 - Caso conta do cidadão esteja com segundo fator de autenticação ativado, quando o atributo *AMR* vier com *passwd*, aparecerão os conteúdos *mfa* (indica presença de segundo fator) e *otp* (forma de segundo fator com código encaminhado pelo aplicativo gov.br).
 - Documento para verificação do Código de Compensação dos possíveis bancos integrados ao Login Único:`Documento verificar Código de Compensação dos Bancos`_.
 	
-10. Para solicitação do conteúdo da foto salva no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/picture e acrescentar o atributo Authorization ao header do HTTP da requisição:
+Passo 10
+--------
+Para solicitação do conteúdo da foto salva no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/picture e acrescentar o atributo Authorization ao header do HTTP da requisição:
 	
 =================  ======================================================================
 **Variavél**  	   **Descrição**
@@ -147,7 +167,9 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
 
-11. Para verificar quais níveis da conta do cidadão está localizada, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
+Passo 11
+--------
+Para verificar quais níveis da conta do cidadão está localizada, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids 
 
@@ -171,7 +193,9 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 
 Verificar quais níveis estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
 
-12. Para verificar quais catagorias da conta do cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/categorias?response-type=ids
+Passo 12
+--------
+Para verificar quais catagorias da conta do cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/categorias?response-type=ids
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/categorias?response-type=ids 
 
@@ -195,7 +219,9 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 	
 Verificar quais categorias estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)`_
 
-13. Para verificar quais selos de confiabilidade a conta do cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
+Passo 13
+--------
+Para verificar quais selos de confiabilidade a conta do cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
 
