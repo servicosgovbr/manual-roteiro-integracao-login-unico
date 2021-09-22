@@ -120,7 +120,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 		"sub": "(CPF do usuário autenticado)",
 		"aud": "Client ID da aplicação onde o usuário se autenticou",
 		"scope": ["(Escopos autorizados pelo provedor de autenticação.)"],
-		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
+		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “app” se logou por QR-CODE do aplicativo gov.br, “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
 		"iss": "(URL do provedor de autenticação que emitiu o token.)",
 		"exp": "(Data/hora de expiração do token)",
 		"iat": "(Data/hora em que o token foi emitido.)",
@@ -130,6 +130,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 
 **Observações para ACCESS_TOKEN:**
 
+- Caso um novo método de autenticação seja adicionado, será listado no atributo *AMR*. As integrações devem contemplar futuras adições.
 - Caso conta do cidadão esteja com segundo fator de autenticação ativado, quando o atributo *AMR* vier com *passwd*, aparecerão os conteúdos *mfa* (indica presença de segundo fator) e *otp* (forma de segundo fator com código encaminhado pelo aplicativo gov.br).
 - Documento para verificação do Código de Compensação dos possíveis bancos integrados ao Login Único:`Documento verificar Código de Compensação dos Bancos`_.
 	
@@ -139,7 +140,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 
 	{
 		"sub": "(CPF do usuário autenticado.)",
-		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
+		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “app” se logou por QR-CODE do aplicativo gov.br, “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
 		"picture": "(URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.)",
 		"name": "(Nome cadastrado no Gov.br do usuário autenticado.)",
 		"phone_number_verified": "(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
@@ -152,6 +153,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 **Observações para ID_TOKEN:**
 
 - Os paramêtros email,phone_number,picture não são obrigatórios. Ambos podem estar preenchidos ou não.
+- Caso um novo método de autenticação seja adicionado, será listado no atributo *AMR*. As integrações devem contemplar futuras adições.
 - Caso conta do cidadão esteja com segundo fator de autenticação ativado, quando o atributo *AMR* vier com *passwd*, aparecerão os conteúdos *mfa* (indica presença de segundo fator) e *otp* (forma de segundo fator com código encaminhado pelo aplicativo gov.br).
 - Documento para verificação do Código de Compensação dos possíveis bancos integrados ao Login Único:`Documento verificar Código de Compensação dos Bancos`_.
 	
