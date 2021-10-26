@@ -133,7 +133,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'RoteirodeIntegraodoBrasilCidado.tex', u'Roteiro de Integração do Login Único',
-     u'Higo', 'manual', False),
+     u'Higo', 'manual', True),
 ]
 
 
