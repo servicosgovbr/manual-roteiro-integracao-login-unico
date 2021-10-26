@@ -7,7 +7,7 @@ Roteiro de Integração do Login Único
 ===================================================================
 
 .. toctree::
-   :maxdepth: 4
+
    :caption: Legislação e Conceitos
 
    contexto
@@ -16,7 +16,7 @@ Roteiro de Integração do Login Único
    catalogoconfiabilidades
    
 .. toctree::
-   :maxdepth: 4
+
    :caption: Informações Técnicas para Integração
 
    solicitarconfiguracao
