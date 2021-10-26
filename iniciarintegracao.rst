@@ -4,7 +4,7 @@
 Autenticação
 ++++++++++++
 
-Para que a autenticação aconteça, todo o canal de comunicação deve ser realizado com o protocolo HTTPS e, ambiente Mobile, não utilizar a tecnolgia *WebView*, mas navegador nativo. Será feito um redirecionamento para uma URL de autorização do Login Único e, após a autenticação ser concluída, retornará um código de autenticação para a aplicação cliente com intuito de adquirir um ticket de acesso para os serviços protegidos.
+Para que a autenticação aconteça, todo o canal de comunicação deve ser realizado com o protocolo HTTPS e, não utilizar a tecnologia *WebView* no ambiente mobile, mas navegador nativo. Será feito um redirecionamento para uma URL de autorização do Login Único e, após a autenticação ser concluída, retornará um código de autenticação para a aplicação cliente com intuito de adquirir um ticket de acesso para os serviços protegidos.
 
 A utilização da autenticação do Login Único depende dos seguintes passos:
 
