@@ -17,7 +17,7 @@ Caso você queira ver o exemplo JAVA funcionando execute com o Docker instalado:
 
 Gif mostrando como executa o exemplo:
 
-.. figure:: _static/exemplo-docker.gif
+.. image:: _static/exemplo-docker.gif
    :alt: Exemplo com o comando docker em JAVA.
 
    Exemplo com o comando docker em JAVA.
