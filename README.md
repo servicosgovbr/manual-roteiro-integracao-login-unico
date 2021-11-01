@@ -48,6 +48,7 @@ $ pip install -r requirements.txt
 $ sphinx-autobuild . _build
 
 # O servidor inciará na porta:8000 - acesse <http://localhost:8000>
+$ xdg-open http://localhost:8000
 ```
 
 Como contribuir
