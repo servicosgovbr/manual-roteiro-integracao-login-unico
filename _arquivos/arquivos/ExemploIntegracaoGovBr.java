@@ -63,7 +63,7 @@ public class ExemploIntegracaoGovBr {
         private static final String URL_SERVICOS = "https://api.staging.acesso.gov.br";
 		private static final String URL_CATALOGO_SELOS = "https://confiabilidades.staging.acesso.gov.br";
         private static final String REDIRECT_URI = "<coloque-aqui-a-uri>";                                                      //redirectURI informada na chamada do serviço do authorize.
-        private static final String SCOPES = "openid+email+phone+profile+govbr_empresa+govbr_confiabilidades";  // Escopos pedidos para a aplicação.
+        private static final String SCOPES = "openid+(email/phone)+profile+govbr_empresa+govbr_confiabilidades";  // Escopos pedidos para a aplicação.
         private static final String CLIENT_ID = "<coloque-aqui-o-clientid-cadastrado-para-o-seu-sistema>";                      //clientId informado na chamada do serviço do authorize.
         private static final String SECRET = "<coloque-aqui-o-secret-cadastrado-para-o-seu-sistema>";                           //secret de conhecimento apenas do backend da aplicação.
 		private static final String NIVEIS = "<coloque-aqui-os-niveis-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
@@ -76,7 +76,7 @@ public class ExemploIntegracaoGovBr {
                 /**
                  * Etapa 1: No Browser, chamar a URL do Authorize para recuperar o code e o
                  * state (opcional) conforme o exemplo abaixo:
-                 * https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=<coloque-aqui-o-client-id>&scope=openid+profile+phone+email+govbr_empresa&redirect_uri=<coloque-aqui-a-uri-de-redirecionamento>&nonce=<coloque-aqui-um-numero-aleatorio>&state=<coloque-aqui-um-numero-aleatorio>
+                 * https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=<coloque-aqui-o-client-id>&scope=openid+profile+(phone/email)+govbr_empresa&redirect_uri=<coloque-aqui-a-uri-de-redirecionamento>&nonce=<coloque-aqui-um-numero-aleatorio>&state=<coloque-aqui-um-numero-aleatorio>
                  * Descrição dos parametros: response_type: Sempre "code"; client_id:
                  * Identificador do sistema que usa o Gov.br. Este identificador é único para
                  * cada sistema; scope: Lista de escopos requisitados pelo sistema. Escopos são
@@ -348,7 +348,7 @@ public class ExemploIntegracaoGovBr {
         private static String getEmpresasVinculadas(String accessToken, String cpf) throws Exception {
                 String retorno = "";
 
-				URL url = new URL(URL_SERVICOS + "https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante="+cpf);
+				URL url = new URL(URL_SERVICOS + "/empresas/v2/empresas?filtrar-por-participante="+cpf);
                 HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/json");
