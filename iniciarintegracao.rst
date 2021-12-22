@@ -494,9 +494,9 @@ Exemplo de requisição
 
 	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+(email/phone)+profile+govbr_empresa&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v2/empresas?ﬁltrar-por-participante=**cpf** enviando as seguintes informações:
+2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante=**cpf** enviando as seguintes informações:
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas?ﬁltrar-por-participante=cpf
+Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante=cpf
 
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
