@@ -551,7 +551,8 @@ Acesso ao Serviço de Revalidação de Senha
 
 Para que a revalidação aconteça, todo o canal de comunicação deve ser realizado com o protocolo HTTPS. Será feito um redirecionamento para URL de autorização especifica do Login Único e, após a revalidação ser concluída, retornará um código de autenticação para a aplicação cliente com intuito de adquirir um ticket de acesso para revalidação da senha e continuação do fluxo do sistema.
 
-Esta estrutura precisará autorização específica a ser solicitada para Ministério da Economia. 
+.. important::
+   É necessário solicitar outro client_id e client_secret específico para esse endpoint. Esta estrutura precisará autorização específica a ser solicitada para Ministério da Economia.
 
 Passos para processo:
 
