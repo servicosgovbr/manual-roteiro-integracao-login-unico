@@ -197,32 +197,6 @@ Verificar quais níveis estão disponíveis, acesse `Resultado Esperado do Acess
 
 Passo 12
 --------
-Para verificar quais catagorias da conta do cidadão está localizado, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/categorias?response-type=ids
-
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/categorias?response-type=ids 
-
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**cpf**            CPF do cidadão (sem ponto, barra etc).
-=================  ======================================================================
-
-A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seguinte formato:
-
-.. code-block:: JSON
-
-	[
-		{
-		"id": "(Identificação para reconhecer a categoria)",
-		"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		}
-	]
-	
-Verificar quais categorias estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)`_
-
-Passo 13
---------
 Para verificar quais selos de confiabilidade a conta do cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
@@ -256,68 +230,19 @@ As categorias existentes no Login Único são:
 
 	[
 		{
-			"id": "1 (conta_basica)",
+			"id": "1 (Bronze)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-			"id": "2 (verificada)",
+			"id": "2 (Prata)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
 		{
-			"id": "3 (comprovada)",
+			"id": "3 (Ouro)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		}
-	]
-
-
-Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-As categorias existentes no Login Único são:
-
-.. code-block:: JSON
-
-	[
-		{
-			"id": "101 (carrosel_perguntas_previdencia)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "102 (carrosel_perguntas)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "201 (servidor_publico)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		{
-			"id": "202 (biometria_facial)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "203 (balcao_presencial)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "204 (internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		{
-			"id": "301 (biometria_individualizada)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": " 302 (certificado_digital)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da categoria na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		}
-				
 	]
 
 
@@ -374,6 +299,11 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
+			"id": " (agi_bank_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
 			"id": "602 (bb_internet_banking)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
@@ -398,7 +328,18 @@ Os selos existentes no Login Único são:
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
+		
 		{
+			"id": "605 (caixa_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
+			"id": " (itau_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+			{
 			"id": "607 (sicoob_internet_banking)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
@@ -441,11 +382,10 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 **Observações sobre as variáveis do serviço de catálogo**
 
 1. Conteúdo para variável *niveis* : Será a informação do atributo id presente em cada nível no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
-2. Conteúdo para variável *categorias* : Será a informação do atributo id presente em cada categoria no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)`_
-3. Contéudo para variável *confiabilidades*: Será a informação do atributo id presentes em cada confiabilidade no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_
-4. Tratamento do conteúdo para cada variável:
+2. Contéudo para variável *confiabilidades*: Será a informação do atributo id presentes em cada confiabilidade no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_
+3. Tratamento do conteúdo para cada variável:
 
-- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (categorias=102,101)**
+- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (confiabilidades=301,801)**
 - Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (confiabilidades=(301/801)** 	
 	
 Acesso ao Serviço de Log Out
@@ -545,94 +485,6 @@ Exemplo de requisição
 	"dataCriacao": "(Mostra a data e hora da vinculação do CPF ao CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)",
 	"dataExpiracao": "(Mostra a data e hora que o CPF poderá atuar com CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)"
 	}
-
-Acesso ao Serviço de Revalidação de Senha
-+++++++++++++++++++++++++++++++++++++++++
-
-Para que a revalidação aconteça, todo o canal de comunicação deve ser realizado com o protocolo HTTPS. Será feito um redirecionamento para URL de autorização especifica do Login Único e, após a revalidação ser concluída, retornará um código de autenticação para a aplicação cliente com intuito de adquirir um ticket de acesso para revalidação da senha e continuação do fluxo do sistema.
-
-Esta estrutura precisará autorização específica a ser solicitada para Ministério da Economia. 
-
-Passos para processo:
-
-1. Requisição GET para  endereço https://oauth.staging.acesso.gov.br/v1/authorize passando as seguintes informações:
-
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**response_type**  Especifica para o provedor o tipo de autorização. Neste caso será **code**
-**client_id**      Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**scope**          Informação ser preenchida: **password-validation**. 
-**redirect_uri**   URL de retorno cadastrada para a aplicação cliente continuar o processo após a revalidação da senha no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
-**state**          Valor usado para manter o estado entre a solicitação e o retorno de chamada. Item não obrigatório.
-=================  ======================================================================
-
-Exemplo de requisição:
-
-.. code-block:: console
-
-	https://oauth.staging.acesso.gov.br/v1/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&scope=password-validationstate=exASJANS12sa
-	
-2. Após a autorização, a requisição é retornada para a URL especificada no redirect_uri do serviço https://oauth.staging.acesso.gov.br/v1/authorize, enviando os parâmetros:
-
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**code**           Código de autenticação gerado pelo provedor. Será utilizado para obtenção do Token de Resposta. Possui tempo de expiração de 2 minutos e só pode ser utilizado uma única vez. 
-**state**          *State* passado anteriormente do https://oauth.staging.acesso.gov.br/v1/authorize que pode ser utilizado para controle da aplicação cliente. Pode correlacionar com o *code* gerado.  
-=================  ======================================================================
-
-3. Para obter o novo *ticket de acesso*, o consumidor deve fazer uma requisição POST para o endereço https://oauth.staging.acesso.gov.br/v1/token passando as seguintes informações:
-
-Parâmetros do Header para requisição Post https://oauth.staging.acesso.gov.br/v1/token
-
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Content-Type**   Tipo do conteúdo da requisição que está sendo enviada. Nesse caso estamos enviando como um formulário (**application/x-www-form-urlencoded**)
-**Authorization**  Informação codificada em *Base64*, no seguinte formato: CLIENT_ID:CLIENT_SECRET (senha de acesso do serviço consumidor)(utilizar `codificador para Base64`_ |site externo|  para gerar codificação). A palavra Basic deve está antes da informação. 
-=================  ======================================================================
-	
-Exemplo de *header*:
-
-.. code-block:: console
-
-	Content-Type:application/x-www-form-urlencoded
-	Authorization: Basic											
-	ZWM0MzE4ZDYtZjc5Ny00ZDY1LWI0ZjctMzlhMzNiZjRkNTQ0OkFJSDRoaXBfTUJYcVJkWEVQSVJkWkdBX2dRdjdWRWZqYlRFT2NWMHlFQll4aE1iYUJzS0xwSzRzdUVkSU5FcS1kNzlyYWpaZ3I0SGJuVUM2WlRXV1lJOA==
-
-Parâmetros da Query para requisição Post https://oauth.staging.acesso.gov.br/v1/token
-	
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**grant_type**     Especifica para o provedor o tipo de autorização. Neste caso será **authorization_code**
-**code**           Código retornado pela requisição anterior (exemplo: 8bfac143-c4ca-daf-8ea8-517f0d93db7a)
-**redirect_uri**   URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
-**state**          Valor usado para manter o estado entre a solicitação e o retorno de chamada. Item não obrigatório.
-=================  ======================================================================
-
-Exemplo de *query*
-
-.. code-block:: console
-
-	https://oauth.staging.acesso.gov.br/v1/token?grant_type=authorization_code&code=8bfac143-c4ca-daf-8ea8-517f0d93db7a&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544
-
-O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
-
-.. code-block:: JSON
-
-	{ 
-		"access_token": "(Token de acesso a recursos protegidos do autenticador, bem como serviços do Login Único.)", 
-		"token_type": "(O tipo do token gerado. Padrão: Bearer)", 
-		"expires_in": "(Tempo de vida do token em segundos.)" 
-	} 
-
-4. De posse das informações do json anterior, a aplicação consumidora está habilitada para concluir revalidação da senha. 
-
-5. Antes de utilizar as informações do JSON anterior, de forma especifica o **ACCESS_TOKEN**, para revalidação da senha, há necessidade da aplicação consumidora validar se as informações foram geradas pelos serviços do Login Único. Esta validação ocorrerá por meio da consulta da chave pública disponível no serviço https://oauth.staging.acesso.gov.br/v1/jwks. Para isso, verificar o método **processToClaims** dos `Exemplos de Integração`_.
-
-6. Verificado o access token, a aplicação cliente consegue, através do atributo **sub**, saber qual usuário confirmou sua identidade gov.br com sucesso e continuar o processo no sistema integrado.
 
 Acesso ao Serviço de Recuperação do Tipo de Certificado
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++

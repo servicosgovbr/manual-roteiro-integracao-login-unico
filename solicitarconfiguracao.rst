@@ -11,7 +11,7 @@ Para utilização do sistema Login Único, há necessidade de liberar os ambient
 
 Para encaminhamento das informações aos integrantes da Secretaria de Governança Digital (SGD) do Ministério da Economia (ME), deverá seguir as orientações:
 
-1. A assinatura do documento deverá ser pelo Representante Legal do órgão ou entidade dona do serviço a ser integrado, e Representante Técnico. Ambos devem constar na tabela do item 3. O documento deve ter o formato .doc, .pdf ou .odt;
+1. A assinatura digital do documento deverá ser pelo Representante Legal do órgão ou entidade dona do serviço a ser integrado, e Representante Técnico. Ambos devem constar na tabela do item 3. O documento deve ter o formato .doc, .pdf ou .odt. Não serão aceitos documentos escaneados.;
 2. A chave púbica PGP deverá ser gerada pelo Representante Legal do órgão ou entidade dona do serviço a ser integrado, e Representante Técnico. Ambos devem constar na tabela do item 3;
 3. Com recebimento do documento e da chave pública PGP, todos com correta completude das informações, a credencial de teste ou produção será gerada e encaminhada aos e-mails dos representantes descritos na tabela do item 3 deste documento;
 4. O Assunto do e-mail de liberação de chaves terá o padrão: **CHAVE DO AMBIENTE [nome do ambiente] – [Nome do Órgão/Entidade] – UF**;
