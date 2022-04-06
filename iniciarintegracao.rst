@@ -299,7 +299,7 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
-			"id": " (agi_bank_internet_banking)",
+			"id": "609 (agi_bank_internet_banking)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
@@ -335,7 +335,7 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
-			"id": " (itau_internet_banking)",
+			"id": "610 (itau_internet_banking)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
 		
