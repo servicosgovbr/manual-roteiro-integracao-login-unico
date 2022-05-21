@@ -6,6 +6,8 @@ Autenticação
 
 Para que a autenticação aconteça, todo o canal de comunicação deve ser realizado com o protocolo HTTPS e, não utilizar a tecnologia WebView no ambiente mobile, mas navegador nativo. Será feito um redirecionamento para uma URL de autorização do Login Único e, após a autenticação ser concluída, retornará um código de autenticação para a aplicação cliente com intuito de adquirir um ticket de acesso para os serviços protegidos.
 
+Para configuração do ambiente local dos desenvolvedores deve-se considerar a criação de um domínio para o ambiente de desenvolvimento das soluções clientes, por exemplo, "local.minha_aplicacao.gov.br" (configurando nas máquinas dos desenvolvedores - hosts), evitando, desta forma, a necessidade de configuração de URLs de redirecionamento e logout fixadas em IPs dos desenvolvedores.
+
 A utilização da autenticação do Login Único depende dos seguintes passos:
 
 Passo 1
@@ -20,22 +22,30 @@ Passo 3
 -------
 A requisição é feita através de um GET para o endereço https://sso.staging.acesso.gov.br/authorize passando as seguintes informações:
 
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**response_type**  Especifica para o provedor o tipo de autorização. Neste caso será **code**
-**client_id**      Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**scope**          Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+(email/phone)+profile+govbr_confiabilidades**. 
-**redirect_uri**   URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
-**nonce**          Sequência de caracteres usado para associar uma sessão do serviço consumidor a um *Token* de ID e para atenuar os ataques de repetição. Pode ser um valor aleatório, mas que não seja de fácil dedução. Item obrigatório.
-**state**          Valor usado para manter o estado entre a solicitação e o retorno de chamada. Item obrigatório. 
-=================  ======================================================================
+==========================  ======================================================================
+**Variavél**  	            **Descrição**
+--------------------------  ----------------------------------------------------------------------
+**response_type**           Especifica para o provedor o tipo de autorização. Neste caso será **code**
+**client_id**               Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
+**scope**                   Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+(email/phone)+profile+govbr_confiabilidades**. 
+**redirect_uri**            URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
+**nonce**                   Sequência de caracteres usado para associar uma sessão do serviço consumidor a um *Token* de ID e para atenuar os ataques de repetição. Pode ser um valor aleatório, mas que não seja de fácil dedução. Item obrigatório.
+**state**                   Valor usado para manter o estado entre a solicitação e o retorno de chamada.
+**code_challenge**          Senha gerada pelo cliente para proteger o code da requisicao do Authorize. Seguir o padrão BASE64URL-ENCODE(SHA256(ASCII(Valor da Atributo do code_verifier a ser utilizado no /Token))).
+**code_challenge_method**   Será o método para proteger a senha enviada no parâmetro code_challenge. O padrão será "S256".
+==========================  ======================================================================
 
 Exemplo de requisição:
 
 .. code-block:: console
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+(email/phone)+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+(email/phone)+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b%code_challenge=K9LToxk012GYrMAwyspMMZZUdP5fpI81_vedD9dO4bI&code_challenge_method=S256
+
+
+**Observações para Passo 3:**
+
+- Parâmetro **STATE** deve obrigatoriamente ser usado e deve ser validado no cliente (validado que foi previamente emitido pelo cliente)
+- Parâmetros **code_challenge e code_challenge_method** devem obrigatoriamente ser usado evitando que a resposta do "authorize" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
 
 Passo 4
 -------	
@@ -81,13 +91,14 @@ Parâmetros do Body para requisição Post https://sso.staging.acesso.gov.br/tok
 **grant_type**     Especifica para o provedor o tipo de autorização. Neste caso será **authorization_code**
 **code**           Código retornado pela requisição anterior (exemplo: Z85qv1)
 **redirect_uri**   URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
+**code_verifier**  Senha sem criptografia enviada do parâmetro **code_challenge** presente no `Passo 3`_
 =================  ======================================================================
 
 Exemplo de *query*
 
 .. code-block:: console
 
-	curl -X POST -d 'grant_type=authorization_code&code=Z85qv1&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php' https://sso.staging.acesso.gov.br/token	
+	curl -X POST -d 'grant_type=authorization_code&code=Z85qv1&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php'&code_verifier='LoginUnicoAplicacaoCodeVerifier' https://sso.staging.acesso.gov.br/token	
 
 O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
 
@@ -99,6 +110,14 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 		"token_type": "(O tipo do token gerado. Padrão: Bearer)", 
 		"expires_in": "(Tempo de vida do token em segundos.)" 
 	} 
+
+**Observações para Passo 6:**
+
+- Tokens do Acesso gov.br devem ser preferencialmente armazenados no backend ou, na hipótese de necessidade de armazenamento no frontend, devem ser obrigatoriamente criptografados no backend;
+- A tela da aplicação cliente que recebe o parâmetro code deve obrigatoriamente realizar um redirect para outra página
+- A aplicação cliente deve ter sessão com mecanismo próprio, evitando múltiplas solicitações de autorização ao provedor de identidade do Acesso gov.br. O mecanismo próprio isolará a sessão da aplicação cliente de regras de negócio e segurança do Acesso gov.br (ou seja, o token do Acesso gov.br não deve ser utilizado), permitirá autonomia e controle próprios.
+- Parâmetro **code_verifier** deve obrigatoriamente ser usado evitando que a resposta do "token" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
+
 
 Passo 7
 -------
@@ -545,3 +564,5 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)` : iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-categorias
 .. _`Documento verificar Código de Compensação dos Bancos` : arquivos/TabelaBacen.pdf
 .. _`administrar as chaves PGP para credenciais do Login Único`: chavepgp.html
+.. _`RFC PKCE`: https://datatracker.ietf.org/doc/html/rfc7636
+.. _`Passo 3`: iniciarintegracao.html#passo-3

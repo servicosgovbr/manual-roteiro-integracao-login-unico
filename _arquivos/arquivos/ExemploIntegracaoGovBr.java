@@ -68,8 +68,11 @@ public class ExemploIntegracaoGovBr {
 																									// conhecimento
 																									// apenas do backend
 																									// da aplicação.
+	
+	private static final String CODE_CHALLENGE = "<coloque-aqui-secredo-ser-gerado-pelo-cliente-respeitando-o-passo-3-roteiro-integracao-variavel-code-challenge>";
+ 	private static final String CODE_CHALLENGE_METHOD = "S256";
+	private static final String CODE_VERIFIER = "<coloque-aqui-secredo-ser-gerado-pelo-cliente-respeitando-o-passo-6-roteiro-integracao-variavel-code-verifier>";
 	private static final String NIVEIS = "<coloque-aqui-os-niveis-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
-	private static final String CATEGORIAS = "<coloque-aqui-as-categorias-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
 	private static final String CONFIABILIDADES = "<coloque-aqui-as-confiabilidades-repeitando-sintaxe-virgula-barra-parenteses-segundo-roteiro>";
 
 	public static void main(String[] args) throws Exception {
@@ -97,7 +100,8 @@ public class ExemploIntegracaoGovBr {
 				"Cole a URL abaixo no Browser (Chrome ou Firefox) e entre com um usuário cadastrado no Gov.br");
 		System.out.println(URL_PROVIDER + "/authorize?response_type=code&client_id=" + CLIENT_ID + "&scope=" + SCOPES
 				+ "&redirect_uri=" + URLEncoder.encode(REDIRECT_URI, "UTF-8") + "&nonce=" + createRandomNumber()
-				+ "&state=" + createRandomNumber());
+				+ "&state=" + createRandomNumber() + "&code_challenge=" + CODE_CHALLENGE
+				+ "&code_challenge_method="+CODE_CHALLENGE_METHOD);
 
 		/**
 		 * Etapa 2: De posse do code retornado pelo passo 1, chame o serviço para
@@ -331,8 +335,7 @@ public class ExemploIntegracaoGovBr {
 		System.out.println("Abra um Browser (Chrome ou Firefox), aperte F12. Clique na aba 'Network'.");
 		System.out.println(
 				"Cole a URL abaixo no Browser (Chrome ou Firefox) para verificar apresentação do catálogo de confiabilidades (selos).");
-		System.out.println(URL_CATALOGO_SELOS + "/?client_id=" + CLIENT_ID + "&niveis=" + NIVEIS + "&categorias="
-				+ CATEGORIAS + "&confiabilidades=" + CONFIABILIDADES);
+		System.out.println(URL_CATALOGO_SELOS + "/?client_id=" + CLIENT_ID + "&niveis=" + NIVEIS + "&confiabilidades=" + CONFIABILIDADES);
 
 	}
 
@@ -342,7 +345,7 @@ public class ExemploIntegracaoGovBr {
 		String redirectURIEncodedURL = URLEncoder.encode(REDIRECT_URI, "UTF-8");
 
 		URL url = new URL(URL_PROVIDER + "/token?grant_type=authorization_code&code=" + code + "&redirect_uri="
-				+ redirectURIEncodedURL);
+				+ redirectURIEncodedURL + "&code_verifier="+CODE_VERIFIER);
 		HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
 		conn.setRequestMethod("POST");
 		conn.setRequestProperty("Accept", "application/json");
