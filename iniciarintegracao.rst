@@ -12,7 +12,7 @@ A utilização da autenticação do Login Único depende dos seguintes passos:
 
 Passo 1
 -------
-A chamada para autenticação deverá ocorrer pelo botão com o conteúdo **Entrar com GOV.BR**. Para o formato do botão, seguir as orientações do `Design System do Governo Federal`_ |site externo|. 
+A chamada para autenticação deverá ocorrer pelo botão com o conteúdo **Entrar com GOV.BR**. Para o formato do botão, seguir as orientações do `Design System`_ |site externo|. 
 
 Passo 2
 -------
@@ -364,6 +364,11 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
+			"id": "624 (sicred_internet_banking)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
 			"id": "608 (santander_internet_banking)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
@@ -393,7 +398,7 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 **client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
 **niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
 **categorias**				  Permitem manutenção mais facilitada da utilização dos níveis e confiabilidades (selos) do Login Único. **Atributo obrigatório**
-**confiabilidades**			  Consistem em orientar para qualificação das contas com a obtenção dos atributos autoritativos do cidadão a partir das bases oficias de governo, por meio das quais permitirão a utilização da credencial de acesso em sistemas internos dos clientes e serviços providos diretamente ao cidadão. **Atributo obrigatório**
+**confiabilidades**			  Consistem em orientar para qualificação das contas com a obtenção dos atributos autoritativos do cidadão a partir das bases oficias, por meio das quais permitirão a utilização da credencial de acesso em sistemas internos dos clientes e serviços providos diretamente ao cidadão. **Atributo obrigatório**
 ============================  ======================================================================
 
 2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da URL de Lançador de Serviços, conforme `Plano de Integração`_. 
@@ -559,7 +564,7 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`OpenID Connect`: https://openid.net/specs/openid-connect-core-1_0.html#TokenResponse
 .. _`auth 2.0 Redirection Endpoint`: https://tools.ietf.org/html/rfc6749#section-3.1.2
 .. _`Exemplos de Integração`: exemplointegracao.html
-.. _`Design System do Governo Federal`: https://dsgov.estaleiro.serpro.gov.br/components/signin?tab=designer
+.. _`Design System`: https://dsgov.estaleiro.serpro.gov.br/components/signin?tab=designer
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`: iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-selos
 .. _`Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Categorias)` : iniciarintegracao.html#resultado-esperado-do-acesso-ao-servico-de-confiabilidade-cadastral-categorias
 .. _`Documento verificar Código de Compensação dos Bancos` : arquivos/TabelaBacen.pdf
