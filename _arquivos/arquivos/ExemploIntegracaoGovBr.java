@@ -54,7 +54,7 @@ public class ExemploIntegracaoGovBr {
 	private static final String URL_CATALOGO_SELOS = "https://confiabilidades.staging.acesso.gov.br";
 	private static final String REDIRECT_URI = "<coloque-aqui-url-de-retorno>"; // redirectURI informada na chamada do serviço do
 																		// authorize.
-	private static final String SCOPES = "openid+(email/phone)+profile+govbr_empresa+govbr_confiabilidades"; // Escopos
+	private static final String SCOPES = "openid+email+profile+govbr_empresa+govbr_confiabilidades"; // Escopos
 																												// pedidos
 																												// para
 																												// a

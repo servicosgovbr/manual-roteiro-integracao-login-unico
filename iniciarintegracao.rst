@@ -39,7 +39,7 @@ Exemplo de requisição:
 
 .. code-block:: console
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+(email/phone)+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b%code_challenge=K9LToxk012GYrMAwyspMMZZUdP5fpI81_vedD9dO4bI&code_challenge_method=S256
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b%code_challenge=K9LToxk012GYrMAwyspMMZZUdP5fpI81_vedD9dO4bI&code_challenge_method=S256
 
 
 **Observações para Passo 3:**
