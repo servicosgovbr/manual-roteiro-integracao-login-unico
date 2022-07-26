@@ -27,7 +27,7 @@ A requisição é feita através de um GET para o endereço https://sso.staging.
 --------------------------  ----------------------------------------------------------------------
 **response_type**           Especifica para o provedor o tipo de autorização. Neste caso será **code**
 **client_id**               Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**scope**                   Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+(email/phone)+profile+govbr_confiabilidades**. 
+**scope**                   Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+email+profile+govbr_confiabilidades**. 
 **redirect_uri**            URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
 **nonce**                   Sequência de caracteres usado para associar uma sessão do serviço consumidor a um *Token* de ID e para atenuar os ataques de repetição. Pode ser um valor aleatório, mas que não seja de fácil dedução. Item obrigatório.
 **state**                   Valor usado para manter o estado entre a solicitação e o retorno de chamada.
