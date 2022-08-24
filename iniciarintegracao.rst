@@ -39,13 +39,14 @@ Exemplo de requisição:
 
 .. code-block:: console
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b%code_challenge=K9LToxk012GYrMAwyspMMZZUdP5fpI81_vedD9dO4bI&code_challenge_method=S256
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b%code_challenge=J7rD2y0WG26mzgvdEizXMOdDPbB_Z5wpPULzv1KmVEg&code_challenge_method=S256
 
 
 **Observações para Passo 3:**
 
 - Parâmetro **STATE** deve obrigatoriamente ser usado e deve ser validado no cliente (validado que foi previamente emitido pelo cliente)
-- Parâmetros **code_challenge e code_challenge_method** devem obrigatoriamente ser usado evitando que a resposta do "authorize" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
+- Parâmetros **code_challenge e code_challenge_method** devem obrigatoriamente ser usado evitando que a resposta do "authorize" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_
+- O site `Ajuda para geração do code_challenge`_ orientará para geração do conteúdo do code_challenge. 
 
 Passo 4
 -------	
@@ -98,7 +99,7 @@ Exemplo de *query*
 
 .. code-block:: console
 
-	curl -X POST -d 'grant_type=authorization_code&code=Z85qv1&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php'&code_verifier='LoginUnicoAplicacaoCodeVerifier' https://sso.staging.acesso.gov.br/token	
+	curl -X POST -d 'grant_type=authorization_code&code=007f89a9-9982-42c7-960b-b09ea2713f38.81c9c808-1509-438d-9649-eea7d8c63c6e.a4685ae1-46fc-413c-b370-84ab6067a9201&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php'&code_verifier='LUnicoAplicacaoCodeVerifierTamanhoComMinimo' https://sso.staging.acesso.gov.br/token	
 
 O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
 
@@ -116,7 +117,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 - Tokens do Acesso gov.br devem ser preferencialmente armazenados no backend ou, na hipótese de necessidade de armazenamento no frontend, devem ser obrigatoriamente criptografados no backend;
 - A tela da aplicação cliente que recebe o parâmetro code deve obrigatoriamente realizar um redirect para outra página
 - A aplicação cliente deve ter sessão com mecanismo próprio, evitando múltiplas solicitações de autorização ao provedor de identidade do Acesso gov.br. O mecanismo próprio isolará a sessão da aplicação cliente de regras de negócio e segurança do Acesso gov.br (ou seja, o token do Acesso gov.br não deve ser utilizado), permitirá autonomia e controle próprios.
-- Parâmetro **code_verifier** deve obrigatoriamente ser usado evitando que a resposta do "token" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
+- Parâmetro **code_verifier** deverá ter o **tamanho mínimo de 43 caracteres e tamanho máximo de 128 caracteres** e deve obrigatoriamente ser usado evitando que a resposta do "token" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
 
 
 Passo 7
@@ -571,3 +572,4 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`administrar as chaves PGP para credenciais do Login Único`: chavepgp.html
 .. _`RFC PKCE`: https://datatracker.ietf.org/doc/html/rfc7636
 .. _`Passo 3`: iniciarintegracao.html#passo-3
+.. _`Ajuda para geração do code_challenge`: https://tonyxu-io.github.io/pkce-generator/
