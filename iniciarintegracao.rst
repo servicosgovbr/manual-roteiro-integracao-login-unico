@@ -140,7 +140,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 		"sub": "(CPF do usuário autenticado)",
 		"aud": "Client ID da aplicação onde o usuário se autenticou",
 		"scope": ["(Escopos autorizados pelo provedor de autenticação.)"],
-		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “app” se logou por QR-CODE do aplicativo gov.br, “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
+		"amr": ["(Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos.)"],
 		"iss": "(URL do provedor de autenticação que emitiu o token.)",
 		"exp": "(Data/hora de expiração do token)",
 		"iat": "(Data/hora em que o token foi emitido.)",
@@ -151,8 +151,13 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 **Observações para ACCESS_TOKEN:**
 
 - Caso um novo método de autenticação seja adicionado, será listado no atributo *AMR*. As integrações devem contemplar futuras adições.
-- Caso conta do cidadão esteja com segundo fator de autenticação ativado, quando o atributo *AMR* vier com *passwd*, aparecerão os conteúdos *mfa* (indica presença de segundo fator) e *otp* (forma de segundo fator com código encaminhado pelo aplicativo gov.br).
-- Documento para verificação do Código de Compensação dos possíveis bancos integrados ao Login Único:`Documento verificar Código de Compensação dos Bancos`_.
+- O AMR apresentará o detalhamento do método de autenticação com as seguintes informações:
+
+1. **passwd**: Sem detalhamento;
+2. **x509**: Certificado de token A1 ou A3 (**x509_token**), Certificado de Nuvem NeoId (**x509_neoid**), Certificado de Nuvem SAFEID (**x509_safeid**) , Certificado de Nuvem BIRDID (**x509_birdid**), Certificado de Nuvem SERASA (**x509_serasa**), Certificado de Nuvem VIDASS (**x509_vidaas**), Certificado de Nuvem RemoteID (**x509_remoteid**);
+3. **bank**: Banco do Brasil (**bank001**), Agibank (**bank121**), BancoDeBrasilia (**bank070**), Banrisul (**bank041**), Bradesco (**bank237**), CaixaEconomica (**bank104**), Itau (**bank341**), Mercantil (**bank389**), Santander (**bank033**), Sicoob (**bank756**), Sicredi (**bank748**);
+4. **app**: Acesso por QR_CODE do aplicativo gov.br (**app_qrcode**)
+5. **mfa**: Acesso sobre segundo fator de autenticação (**otp**). Aparecerá caso a conta do cidadão esteja com segundo fator de autenticação ativado.
 	
 **JSON do ID_TOKEN**
 
@@ -160,7 +165,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 
 	{
 		"sub": "(CPF do usuário autenticado.)",
-		"amr": ["(Listagem dos fatores de autenticação do usuário. Pode ser “app” se logou por QR-CODE do aplicativo gov.br, “passwd” se o mesmo logou fornecendo a senha, “x509” se o mesmo utilizou certificado digital ou certificado em nuvem, ou “bank” para indicar utilização de conta bancária para autenticar. Esse último seguirá com número de identificação do banco, conforme código de compensação do Bacen presente ao final da explicação.)"],
+		"amr": ["(Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos.)"],
 		"picture": "(URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.)",
 		"name": "(Nome cadastrado no Gov.br do usuário autenticado.)",
 		"phone_number_verified": "(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
@@ -174,8 +179,13 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 
 - Os paramêtros email,phone_number,picture não são obrigatórios. Ambos podem estar preenchidos ou não.
 - Caso um novo método de autenticação seja adicionado, será listado no atributo *AMR*. As integrações devem contemplar futuras adições.
-- Caso conta do cidadão esteja com segundo fator de autenticação ativado, quando o atributo *AMR* vier com *passwd*, aparecerão os conteúdos *mfa* (indica presença de segundo fator) e *otp* (forma de segundo fator com código encaminhado pelo aplicativo gov.br).
-- Documento para verificação do Código de Compensação dos possíveis bancos integrados ao Login Único:`Documento verificar Código de Compensação dos Bancos`_.
+- O AMR apresentará o detalhamento do método de autenticação com as seguintes informações:
+
+1. **passwd**: Sem detalhamento;
+2. **x509**: Certificado de token A1 ou A3 (**x509_token**), Certificado de Nuvem NeoId (**x509_neoid**), Certificado de Nuvem SAFEID (**x509_safeid**) , Certificado de Nuvem BIRDID (**x509_birdid**), Certificado de Nuvem SERASA (**x509_serasa**), Certificado de Nuvem VIDASS (**x509_vidaas**), Certificado de Nuvem RemoteID (**x509_remoteid**);
+3. **bank**: Banco do Brasil (**bank001**), Agibank (**bank121**), BancoDeBrasilia (**bank070**), Banrisul (**bank041**), Bradesco (**bank237**), CaixaEconomica (**bank104**), Itau (**bank341**), Mercantil (**bank389**), Santander (**bank033**), Sicoob (**bank756**), Sicredi (**bank748**);
+4. **app**: Acesso por QR_CODE do aplicativo gov.br (**app_qrcode**)
+5. **mfa**: Acesso sobre segundo fator de autenticação (**otp**). Aparecerá caso a conta do cidadão esteja com segundo fator de autenticação ativado.
 	
 Passo 10
 --------
