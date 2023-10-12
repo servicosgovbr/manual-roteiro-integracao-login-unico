@@ -17,8 +17,10 @@ Roteiro de Integração do Login Único
 .. toctree::
    :caption: Informações Técnicas para Integração
 
+   solicitacaocredencial
    solicitarconfiguracao
    chavepgp
    iniciarintegracao
    exemplointegracao
    execucaoexemplo
+    
