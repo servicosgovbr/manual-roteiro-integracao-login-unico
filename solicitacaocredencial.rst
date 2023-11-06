@@ -164,6 +164,6 @@ Credencial de Produção para Login Único
 7. A credencial será enviada ao email do requisitante técnico informado no documento assinado. **O tempo estimado é de até 72h**
 
 .. |site externo| image:: _images/site-ext.gif
-.. _`Solicitar Integração aos Produtos de Identidade Digital gov.br`: https://www.gov.br/pt-br/servicos/solicitar-integracao-aos-produtos-de-identidade-digital-gov-br-somente-para-gestores-publicos
+.. _`Solicitar Integração aos Produtos de Identidade Digital gov.br`: https://www.gov.br/governodigital/integrarprodutoid
 .. _`Sistema de acompanhamento de solicitações de credencial do Login Único` : https://solicitacao.servicos.gov.br/ 
 .. _`assinador.iti.br` : https://assinador.iti.br           
