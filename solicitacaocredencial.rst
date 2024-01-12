@@ -100,7 +100,7 @@ Credencial de Teste para Login Único
     :align: center
     :alt:	
 
-10. A credencial será enviada ao email do requisitante técnico informado no documento assinado. **O tempo estimado é de até 72h**
+10. A credencial será anexada ao protocolo da solicitação. **O tempo estimado é de até 72h**
 
 Aprovação da Integração para Utilizar Login Único
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -161,7 +161,7 @@ Credencial de Produção para Login Único
     :align: center
     :alt:
 
-7. A credencial será enviada ao email do requisitante técnico informado no documento assinado. **O tempo estimado é de até 72h**
+7. A credencial será anexada ao protocolo da solicitação. **O tempo estimado é de até 72h**
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`Solicitar Integração aos Produtos de Identidade Digital gov.br`: https://www.gov.br/governodigital/integrarprodutoid
