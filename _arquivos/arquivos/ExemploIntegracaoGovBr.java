@@ -154,6 +154,8 @@ public class ExemploIntegracaoGovBr {
 		List<String> scopes = accessTokenJwtClaims.getStringListClaimValue("scope"); // Escopos autorizados pelo usuário
 		String nomeCompleto = idTokenJwtClaims.getStringClaimValue("name"); // Nome Completo do cadastro feito pelo
 																			// usuário no Gov.br.
+		String nomeSocial = idTokenJwtClaims.getStringClaimValue("social_name"); // Nome Social do cadastro feito pelo
+																			// usuário no Gov.br. Lembrar que aparece se estiver cadastrado
 		String fotoUrl = idTokenJwtClaims.getStringClaimValue("picture"); //
 
 		System.out.println("\n--------------------Etapa 3 - Informações obtidas do Access Token------------------");
@@ -174,6 +176,7 @@ public class ExemploIntegracaoGovBr {
 		System.out.println("\n\nDados do usuário:");
 		System.out.println("CPF: " + idTokenJwtClaims.getSubject()); // CPF do usuário autenticado.
 		System.out.println("Nome: " + nomeCompleto); // Nome Completo do cadastro feito pelo usuário no Gov.br.
+		System.out.println("Nome Social: " + nomeSocial); // Nome Social do cadastro feito pelo usuário no Gov.br. Lembrar que aparece se estiver cadastrado
 		System.out.println("Email Validado: " + idTokenJwtClaims.getClaimValue("email_verified")); // (Confirma se o
 																									// email foi
 																									// validado no

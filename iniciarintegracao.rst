@@ -168,6 +168,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 		"amr": ["(Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos.)"],
 		"picture": "(URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.)",
 		"name": "(Nome cadastrado no Gov.br do usuário autenticado.)",
+		"social_name": "(Nome Social cadastrado no Gov.br do usuário autenticado.Aparecerá apenas se existir no cadastro)",
 		"phone_number_verified": "(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
 		"phone_number": "(Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN)",
 		"email_verified": "(Confirma se o email foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
