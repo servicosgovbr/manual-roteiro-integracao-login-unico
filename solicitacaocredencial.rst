@@ -115,7 +115,7 @@ Aprovação da Integração para Utilizar Login Único
    :align: center
    :alt: 
 	
-4. Realizar o Upload do vídeo comprovando a integração. Clicar no botão **Desenvolvimento Concluído** 
+4. Realizar o Upload do vídeo comprovando a integração. Clicar no botão **Desenvolvimento Concluído** . `Modelo de Vídeo para Comprovar a Integração`_
 
 
 .. figure:: _images/tela_envio_video_homologacao_login_unico.jpg
@@ -166,4 +166,5 @@ Credencial de Produção para Login Único
 .. |site externo| image:: _images/site-ext.gif
 .. _`Solicitar Integração aos Produtos de Identidade Digital gov.br`: https://www.gov.br/governodigital/integrarprodutoid
 .. _`Sistema de acompanhamento de solicitações de credencial do Login Único` : https://solicitacao.servicos.gov.br/ 
-.. _`assinador.iti.br` : https://assinador.iti.br           
+.. _`assinador.iti.br` : https://assinador.iti.br
+.. _`Modelo de Vídeo para Comprovar a Integração` : arquivos/exemplo_comprovacao_integracao.mp4           
