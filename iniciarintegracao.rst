@@ -252,6 +252,18 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 
 Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
 
+Sequência Visual Passos Autenticação
+++++++++++++++++++++++++++++++++++++
+
+O objetivo do diagrama de sequência é apresentar, de forma visual, a ordem de implementação das chamadas para autenticação.
+
+Verificar em cada passo os parâmetros necessários.
+
+.. figure:: _images/diagramasequenciaautenticacaobasica.png
+    :align: center
+    :alt: 
+
+
 Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
