@@ -412,6 +412,8 @@ Os selos existentes no Login Único são:
 Acesso ao serviço de Catálogo de Confiabilidades (Selos)
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+Para serviços que precisem acessar de forma obrigatoria com os níveis prata ou ouro, poderão seguir os passos:
+
 1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.staging.acesso.gov.br/
 
 Parâmetros da Query para requisição GET https://confiabilidades.staging.acesso.gov.br/
@@ -421,11 +423,10 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 ----------------------------  ----------------------------------------------------------------------
 **client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
 **niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
-**categorias**				  Permitem manutenção mais facilitada da utilização dos níveis e confiabilidades (selos) do Login Único. **Atributo obrigatório**
 **confiabilidades**			  Consistem em orientar para qualificação das contas com a obtenção dos atributos autoritativos do cidadão a partir das bases oficias, por meio das quais permitirão a utilização da credencial de acesso em sistemas internos dos clientes e serviços providos diretamente ao cidadão. **Atributo obrigatório**
 ============================  ======================================================================
 
-2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da URL de Lançador de Serviços, conforme `Plano de Integração`_. 
+2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da **URL única para página inicial do sistema**, conforme `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_. 
 
 **Observações sobre as variáveis do serviço de catálogo**
 
@@ -448,7 +449,7 @@ Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/log
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
-**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for invalidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente no `Plano de Integração`_.  
+**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for invalidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente na `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_.  
 ============================  ======================================================================
 
 Exemplo 1 de **execução** no front end em javascript
@@ -596,3 +597,5 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`RFC PKCE`: https://datatracker.ietf.org/doc/html/rfc7636
 .. _`Passo 3`: iniciarintegracao.html#passo-3
 .. _`Ajuda para geração do code_challenge`: https://tonyxu-io.github.io/pkce-generator/
+.. _`Credencial de Teste para Login Único`: solicitacaocredencial.html#credencial-de-teste-para-login-unico
+.. _`Credencial de Produção para Login Único`: solicitacaocredencial.html#credencial-de-producao-para-login-unico
