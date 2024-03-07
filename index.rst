@@ -21,7 +21,9 @@ Roteiro de Integração do Login Único
    solicitarconfiguracao
    chavepgp
    iniciarintegracao
+   presenca2faautenticacao
    erroscomuns
    exemplointegracao
    execucaoexemplo
+   
     
