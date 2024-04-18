@@ -6,18 +6,18 @@
 Roteiro de Integração do Login Único
 ===================================================================
 
-.. toctree::
-   :caption: Legislação e Conceitos
+.. .. toctree::
+..   :caption: Legislação e Conceitos
 
-   contexto
-   introducao
-   escopoatributos
-   catalogoconfiabilidades
+..   contexto
+..   introducao
+..   escopoatributos
+..   catalogoconfiabilidades
    
 .. toctree::
    :caption: Informações Técnicas para Integração
 
-   solicitacaocredencial
+   solicitacaocredencialprocesso
    solicitarconfiguracao
    chavepgp
    iniciarintegracao
