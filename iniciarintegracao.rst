@@ -202,6 +202,33 @@ O serviço retornará, em caso de sucesso a informação em formato Base64
 
 Passo 11
 --------
+
+Para serviços que precisem acessar de forma obrigatoria com os níveis prata ou ouro, poderão seguir os passos:
+
+1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.staging.acesso.gov.br/
+
+Parâmetros da Query para requisição GET https://confiabilidades.staging.acesso.gov.br/
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
+**niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
+**redirect_uri**			  URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
+============================  ======================================================================
+
+2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da **Redirect URI adicionada na credencial**, conforme `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_. 
+
+**Observações sobre as variáveis do serviço de catálogo**
+
+1. Conteúdo para variável *niveis* : Será a informação do atributo id presente em cada nível no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
+2. Tratamento do conteúdo para cada variável:
+
+- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (niveis=2,3)**
+- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (niveis=(2/3)** 	
+
+Passo 12
+--------
 Para verificar quais níveis da conta do cidadão está localizada, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids 
@@ -226,7 +253,7 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 
 Verificar quais níveis estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
 
-Passo 12
+Passo 13
 --------
 Para verificar quais selos de confiabilidade a conta do cidadão possui, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/confiabilidades?response-type=ids 
 
@@ -413,6 +440,11 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
+			"id": "901 (cin_facial)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		},
+		
+		{
 			"id": "801 (certificado_digital)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		}		
@@ -433,19 +465,18 @@ Parâmetros da Query para requisição GET https://confiabilidades.staging.acess
 ----------------------------  ----------------------------------------------------------------------
 **client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
 **niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
-**confiabilidades**			  Consistem em orientar para qualificação das contas com a obtenção dos atributos autoritativos do cidadão a partir das bases oficias, por meio das quais permitirão a utilização da credencial de acesso em sistemas internos dos clientes e serviços providos diretamente ao cidadão. **Atributo obrigatório**
+**redirect_uri**			  URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
 ============================  ======================================================================
 
-2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da **URL única para página inicial do sistema**, conforme `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_. 
+2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da **Redirect URI adicionada na credencial**, conforme `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_. 
 
 **Observações sobre as variáveis do serviço de catálogo**
 
 1. Conteúdo para variável *niveis* : Será a informação do atributo id presente em cada nível no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
-2. Contéudo para variável *confiabilidades*: Será a informação do atributo id presentes em cada confiabilidade no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_
-3. Tratamento do conteúdo para cada variável:
+2. Tratamento do conteúdo para cada variável:
 
-- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (confiabilidades=301,801)**
-- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (confiabilidades=(301/801)** 	
+- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (niveis=2,3)**
+- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (niveis=(2/3)** 	
 	
 Acesso ao Serviço de Log Out
 ++++++++++++++++++++++++++++
@@ -607,5 +638,5 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`RFC PKCE`: https://datatracker.ietf.org/doc/html/rfc7636
 .. _`Passo 3`: iniciarintegracao.html#passo-3
 .. _`Ajuda para geração do code_challenge`: https://tonyxu-io.github.io/pkce-generator/
-.. _`Credencial de Teste para Login Único`: solicitacaocredencial.html#credencial-de-teste-para-login-unico
-.. _`Credencial de Produção para Login Único`: solicitacaocredencial.html#credencial-de-producao-para-login-unico
+.. _`Credencial de Teste para Login Único`: solicitacaocredencialprocesso.html
+.. _`Credencial de Produção para Login Único`: solicitacaocredencialprocesso.html
