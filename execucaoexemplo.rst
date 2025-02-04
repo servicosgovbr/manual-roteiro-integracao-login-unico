@@ -1,17 +1,20 @@
-﻿Execução do Exemplo de Integração
-=================================
+﻿.. only:: not hide_mp
 
-JAVA
-++++
+    Execução do Exemplo de Integração
+    =================================
 
-Caso você queira ver o exemplo JAVA funcionando execute com o Docker instalado:
+    JAVA
+    ++++
 
-.. code-block:: console
+    Caso você queira ver o exemplo JAVA funcionando execute com o Docker instalado:
 
-    $ docker run -it \
-      --name meu-login-teste govbr/login-java-exemplo
+    .. code-block:: console
 
-.. warning::
-    Siga os passos que vão aparecer no terminal.
+        $ docker run -it \
+          --name meu-login-teste govbr/login-java-exemplo
 
-   Exemplo com o comando docker em JAVA.
+    .. warning::
+        Siga os passos que vão aparecer no terminal.
+
+       Exemplo com o comando docker em JAVA.
+
