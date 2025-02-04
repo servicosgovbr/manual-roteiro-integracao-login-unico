@@ -1,5 +1,6 @@
 ﻿Exemplo de implementação
 ========================
+.. only:: not hide_mp
 
 O exemplo é básico da forma de realizar as requisições para Login Único. Cabe ao desenvolvedor realizar a organização e aplicação da segurança necessária na aplicação consumidora.
 

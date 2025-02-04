@@ -1,5 +1,6 @@
 ﻿Execução do Exemplo de Integração
 =================================
+.. only:: not hide_mp
 
 JAVA
 ++++

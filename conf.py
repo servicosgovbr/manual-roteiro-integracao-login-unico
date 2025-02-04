@@ -16,6 +16,10 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
+# -- Tag config --------------------------------------------------------------
+from sphinx.application import Tags
+tags = Tags()
+tags.add('hide_mp')
 
 # -- Project information -----------------------------------------------------
 

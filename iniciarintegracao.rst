@@ -514,6 +514,8 @@ Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 
 O Login Único disponibiliza dois serviços para acesso a informações de Pessoa Jurídica. O primeiro apresenta todos os CNPJs cadastrados para um determinado usuário. O segundo, utiliza desse CNPJ para extrair informações cadastradas no Login Único para aquela pessoa e empresa.
 
+.. only:: not hide_mp
+
 Para acessar o serviço que disponibiliza os CNPJs vinculados a um determinado usuário, é necessário o seguinte:
 
 1. Na requisição de autenticação, adicionar o escopo “govbr_empresa“, conforme exemplo:
