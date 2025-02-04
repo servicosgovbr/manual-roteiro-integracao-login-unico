@@ -1,4 +1,4 @@
-﻿.. only:: not hide_mp
+.. only:: not hide_mp
 
     Exemplo de implementação
     ========================
@@ -23,4 +23,3 @@
     .. _`Exemplo para download para ANDROID`: arquivos/android-oauth-sdk-master.zip
     .. _`Exemplo para download em JAVA` : arquivos/ExemploIntegracaoGovBr.java
     .. |site externo| image:: _images/site-ext.gif
-

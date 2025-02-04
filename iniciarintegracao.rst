@@ -1,4 +1,4 @@
-﻿Passo-a-Passo para Integrar
+Passo-a-Passo para Integrar
 ===========================
 
 Autenticação

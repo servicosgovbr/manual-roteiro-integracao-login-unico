@@ -1,4 +1,4 @@
-﻿.. only:: not hide_mp
+.. only:: not hide_mp
 
     Execução do Exemplo de Integração
     =================================
