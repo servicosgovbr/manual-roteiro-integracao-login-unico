@@ -9,8 +9,8 @@ Clicar no botão Iniciar e siga os passos apresentados pelo sistema.
 
 Prazos para envio das credenciais para integração:
 
-- Teste/Homologação : 5 Dias
-- Produção: 5 dias 
+- Teste/Homologação : 5 Dias.
+- Produção: 5 dias.
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`Solicitar Integração aos Produtos de Identidade Digital gov.br`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-integracao-aos-produtos-de-identidade-digital-gov.br
