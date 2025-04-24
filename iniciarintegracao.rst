@@ -1,4 +1,4 @@
-﻿Passo-a-Passo para Integrar
+Passo-a-Passo para Integrar
 ===========================
 
 Autenticação
@@ -508,111 +508,111 @@ Exemplo 2 de **execução** no front end em javascript
 .. code-block:: javascript
 
 	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
-	
-Acesso ao Serviço de Cadastro de Pessoas Jurídicas
-++++++++++++++++++++++++++++++++++++++++++++++++++
-
-O Login Único disponibiliza dois serviços para acesso a informações de Pessoa Jurídica. O primeiro apresenta todos os CNPJs cadastrados para um determinado usuário. O segundo, utiliza desse CNPJ para extrair informações cadastradas no Login Único para aquela pessoa e empresa.
 
 .. only:: not hide_mp
 
-Para acessar o serviço que disponibiliza os CNPJs vinculados a um determinado usuário, é necessário o seguinte:
+    Acesso ao Serviço de Cadastro de Pessoas Jurídicas
+    ++++++++++++++++++++++++++++++++++++++++++++++++++
 
-1. Na requisição de autenticação, adicionar o escopo “govbr_empresa“, conforme exemplo:
+    O Login Único disponibiliza dois serviços para acesso a informações de Pessoa Jurídica. O primeiro apresenta todos os CNPJs cadastrados para um determinado usuário. O segundo, utiliza desse CNPJ para extrair informações cadastradas no Login Único para aquela pessoa e empresa.
 
-Exemplo de requisição
+    Para acessar o serviço que disponibiliza os CNPJs vinculados a um determinado usuário, é necessário o seguinte:
 
-.. code-block:: console
+    1. Na requisição de autenticação, adicionar o escopo “govbr_empresa“, conforme exemplo:
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+(email/phone)+profile+govbr_empresa&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+    Exemplo de requisição
 
-2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante=**cpf** enviando as seguintes informações:
+    .. code-block:: console
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante=cpf
+        https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+(email/phone)+profile+govbr_empresa&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**cpf**                       CPF do cidadão (sem ponto, barra etc).
-============================  ======================================================================
+    2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante=**cpf** enviando as seguintes informações:
 
-3. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
+    Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas?filtrar-por-participante=cpf
 
-Exemplo de requisição
+    ============================  ======================================================================
+    **Variavél**  	              **Descrição**
+    ----------------------------  ----------------------------------------------------------------------
+    **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+    **cpf**                       CPF do cidadão (sem ponto, barra etc).
+    ============================  ======================================================================
 
-.. code-block:: JSON
+    3. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
 
-	[
-		{
-		"cnpj": "(Número de CNPJ da empresa vinculada)",
-		"razaoSocial": "(Razão Social (Nome da empresa) cadastrada na Receita Federal)",
-		"dataCriacao": "(Mostra a data e hora da vinculação do CNPJ a conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		}
-	]
+    Exemplo de requisição
 
-4. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/empresas/v2/empresas/**cnpj**/participantes/**cpf** enviando as seguintes informações:
+    .. code-block:: JSON
 
-Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas/**cnpj**/participantes/**cpf**
+        [
+            {
+            "cnpj": "(Número de CNPJ da empresa vinculada)",
+            "razaoSocial": "(Razão Social (Nome da empresa) cadastrada na Receita Federal)",
+            "dataCriacao": "(Mostra a data e hora da vinculação do CNPJ a conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+            }
+        ]
 
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-**cpf**   					  CPF do cidadão (sem ponto, barra etc).
-**cnpj**					  CNPJ da empresa (sem ponto, barra etc).
-============================  ======================================================================
+    4. Com o usuário autenticado, a aplicação cliente deverá acessar, por meio do método GET, a URL https://api.staging.acesso.gov.br/empresas/v2/empresas/**cnpj**/participantes/**cpf** enviando as seguintes informações:
 
-5. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
+    Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/empresas/**cnpj**/participantes/**cpf**
 
-Exemplo de requisição
+    ============================  ======================================================================
+    **Variavél**  	              **Descrição**
+    ----------------------------  ----------------------------------------------------------------------
+    **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+    **cpf**   					  CPF do cidadão (sem ponto, barra etc).
+    **cnpj**					  CNPJ da empresa (sem ponto, barra etc).
+    ============================  ======================================================================
 
-.. code-block:: JSON
+    5. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
 
-	{
-	"cpf": "(Número do CPF que pode atuar com empresa)",
-	"atuacao": "(Papel do CPF na empresa na Receita Federal. O conteúdo será SOCIO, CONTADOR, REPRESENTANTE_LEGAL ou NAO_ATUANTE. O NAO_ATUANTE representa CPF possui certificado digital de pessoa jurídica, porém não possui um papel na empresa na base da Receita Federal. Se CPF for colaborador, atributo atuacao não aparecerá)",
-	"cadastrador": "(Identifica se o CPF pode realizar cadastro de colaboradores para CNPJ. O conteúdo false determinar que o CPF é um colaborador da empresa. O conteúdo true determina CPF é representante da empresa com certificado digital de pessoal jurídica)",
-	"cpfCadastrador": "(CPF responsável por realizar cadastro do Colaborador. Se CPF apresentar atributo cadastrador com conteúdo true, o atributo cpfCadastrador não aparecerá)",
-	"dataCriacao": "(Mostra a data e hora da vinculação do CPF ao CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)",
-	"dataExpiracao": "(Mostra a data e hora que o CPF poderá atuar com CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)"
-	}
+    Exemplo de requisição
 
-Acesso ao Serviço de Recuperação do Tipo de Certificado
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    .. code-block:: JSON
 
-1. Na requisição de autenticação, adicionar o escopo “govbr_recupera_certificadox509“, conforme exemplo:
+        {
+        "cpf": "(Número do CPF que pode atuar com empresa)",
+        "atuacao": "(Papel do CPF na empresa na Receita Federal. O conteúdo será SOCIO, CONTADOR, REPRESENTANTE_LEGAL ou NAO_ATUANTE. O NAO_ATUANTE representa CPF possui certificado digital de pessoa jurídica, porém não possui um papel na empresa na base da Receita Federal. Se CPF for colaborador, atributo atuacao não aparecerá)",
+        "cadastrador": "(Identifica se o CPF pode realizar cadastro de colaboradores para CNPJ. O conteúdo false determinar que o CPF é um colaborador da empresa. O conteúdo true determina CPF é representante da empresa com certificado digital de pessoal jurídica)",
+        "cpfCadastrador": "(CPF responsável por realizar cadastro do Colaborador. Se CPF apresentar atributo cadastrador com conteúdo true, o atributo cpfCadastrador não aparecerá)",
+        "dataCriacao": "(Mostra a data e hora da vinculação do CPF ao CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)",
+        "dataExpiracao": "(Mostra a data e hora que o CPF poderá atuar com CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)"
+        }
 
-Exemplo de requisição
+    Acesso ao Serviço de Recuperação do Tipo de Certificado
+    +++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-.. code-block:: console
+    1. Na requisição de autenticação, adicionar o escopo “govbr_recupera_certificadox509“, conforme exemplo:
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_recupera_certificadox509&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
+    Exemplo de requisição
 
-2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://sso.staging.acesso.gov.br/api/x509/info enviando as seguintes informações:
+    .. code-block:: console
 
-Parâmetros para requisição GET https://sso.staging.acesso.gov.br/api/x509/info
+        https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=minha-aplicacao&scope=openid+email+phone+profile+govbr_recupera_certificadox509&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b
 
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-============================  ======================================================================
+    2. Com o usuário autenticado, a aplicação deverá realizar uma requisição por meio do método GET a URL https://sso.staging.acesso.gov.br/api/x509/info enviando as seguintes informações:
 
-3. O resultado em formato JSON é tipo de certificado da autenticação, conforme o exemplo abaixo:
+    Parâmetros para requisição GET https://sso.staging.acesso.gov.br/api/x509/info
 
-Exemplo de requisição
+    ============================  ======================================================================
+    **Variavél**  	              **Descrição**
+    ----------------------------  ----------------------------------------------------------------------
+    **Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+    ============================  ======================================================================
 
-.. code-block:: JSON
+    3. O resultado em formato JSON é tipo de certificado da autenticação, conforme o exemplo abaixo:
 
-	[
-		{
-		  "provider":"(Indicará qual o provedor disponibilizará o certificado. Aparecerá para certificado em nuvem)",
-		  "amr":["(Lista de forma de certificados autenticados. Padrão é x509)"],
-		  "certificate":"(Demonstra o nome do cerfificado da autenticação)",
-		  "type":"(Informa qual tipo de certificado utilizado para autenticação. O contéudo será <device> para certificados A1 e A3 e <cloud> para indicar certificado em núvem)"
-		}
-	]
+    Exemplo de requisição
+
+    .. code-block:: JSON
+
+        [
+            {
+              "provider":"(Indicará qual o provedor disponibilizará o certificado. Aparecerá para certificado em nuvem)",
+              "amr":["(Lista de forma de certificados autenticados. Padrão é x509)"],
+              "certificate":"(Demonstra o nome do cerfificado da autenticação)",
+              "type":"(Informa qual tipo de certificado utilizado para autenticação. O contéudo será <device> para certificados A1 e A3 e <cloud> para indicar certificado em núvem)"
+            }
+        ]
 	
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
