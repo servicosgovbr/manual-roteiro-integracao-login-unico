@@ -605,14 +605,14 @@ Exemplo de requisição
 
 .. code-block:: JSON
 
-	[
+	
 		{
 		  "provider":"(Indicará qual o provedor disponibilizará o certificado. Aparecerá para certificado em nuvem)",
 		  "amr":["(Lista de forma de certificados autenticados. Padrão é x509)"],
 		  "certificate":"(Demonstra o nome do cerfificado da autenticação)",
 		  "type":"(Informa qual tipo de certificado utilizado para autenticação. O contéudo será <device> para certificados A1 e A3 e <cloud> para indicar certificado em núvem)"
 		}
-	]
+	
 	
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
