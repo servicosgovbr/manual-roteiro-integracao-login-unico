@@ -137,17 +137,17 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 
 .. code-block:: JSON
 
-{
-	"sub": "11111111111",
-	"name": "NAME",
-	"social_name": "SOCIAL NAME",
-	"profile": "https://servicos.staging.acesso.gov.br/",
-	"picture": "https://sso.staging.acesso.gov.br/userinfo/picture",
-	"email": "email@acesso.gov.br",
-	"email_verified": true,
-	"phone_number": "61999999999",
-	"phone_number_verified": true
-}
+	{
+		"sub": "11111111111",
+		"name": "NAME",
+		"social_name": "SOCIAL NAME",
+		"profile": "https://servicos.staging.acesso.gov.br/",
+		"picture": "https://sso.staging.acesso.gov.br/userinfo/picture",
+		"email": "email@acesso.gov.br",
+		"email_verified": true,
+		"phone_number": "61999999999",
+		"phone_number_verified": true
+	}
 
 
 
