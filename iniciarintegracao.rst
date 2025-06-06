@@ -118,6 +118,37 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 - A tela da aplicação cliente que recebe o parâmetro code deve obrigatoriamente realizar um redirect para outra página
 - A aplicação cliente deve ter sessão com mecanismo próprio, evitando múltiplas solicitações de autorização ao provedor de identidade do Acesso gov.br. O mecanismo próprio isolará a sessão da aplicação cliente de regras de negócio e segurança do Acesso gov.br (ou seja, o token do Acesso gov.br não deve ser utilizado), permitirá autonomia e controle próprios.
 - Parâmetro **code_verifier** deverá ter o **tamanho mínimo de 43 caracteres e tamanho máximo de 128 caracteres** e deve obrigatoriamente ser usado evitando que a resposta do "token" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
+- ID tokens não são projetados para autorização e podem conter informações sensíveis do usuário que não devem ser expostas à API.
+- Access tokens são projetados especificamente para autorização e são a forma correta de conceder acesso a recursos protegidos.
+- Nosso padrão atual é 60s de idtoken.
+
+**Caso seja necessário as informações devem ser obtidas pelo userinfo:**
+Endpoint  - https://sso.staging.acesso.gov.br/userinfo/
+
+Para solicitação dos dados no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/ e acrescentar o atributo Authorization ao header do HTTP da requisição:
+	
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+=================  ======================================================================
+
+O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
+
+.. code-block:: JSON
+
+{
+	"sub": "11111111111",
+	"name": "NAME",
+	"social_name": "SOCIAL NAME",
+	"profile": "https://servicos.staging.acesso.gov.br/",
+	"picture": "https://sso.staging.acesso.gov.br/userinfo/picture",
+	"email": "email@acesso.gov.br",
+	"email_verified": true,
+	"phone_number": "61999999999",
+	"phone_number_verified": true
+}
+
 
 
 Passo 7
