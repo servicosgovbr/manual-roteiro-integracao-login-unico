@@ -120,7 +120,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 - Parâmetro **code_verifier** deverá ter o **tamanho mínimo de 43 caracteres e tamanho máximo de 128 caracteres** e deve obrigatoriamente ser usado evitando que a resposta do "token" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
 - ID tokens não são projetados para autorização e podem conter informações sensíveis do usuário que não devem ser expostas à API.
 - Access tokens são projetados especificamente para autorização e são a forma correta de conceder acesso a recursos protegidos.
-- Nosso padrão atual é 60s de idtoken.
+- Nosso padrão atual é 60s de id_token.
 
 **Caso seja necessário as informações devem ser obtidas pelo userinfo:**
 Endpoint  - https://sso.staging.acesso.gov.br/userinfo/
