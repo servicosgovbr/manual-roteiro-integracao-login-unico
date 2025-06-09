@@ -16,3 +16,15 @@ Caso você queira ver o exemplo JAVA funcionando execute com o Docker instalado:
     Siga os passos que vão aparecer no terminal.
 
    Exemplo com o comando docker em JAVA.
+
+
+PHP
+++++
+
+Para executar, em um terminal entre na pasta "exemplo-php" descompactada e execute:
+
+.. code-block:: console
+
+    $ docker-compose up
+    
+    Entrar no site através de http://localhost:8080
