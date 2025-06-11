@@ -42,6 +42,15 @@ Exemplo de requisição:
 	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b%code_challenge=J7rD2y0WG26mzgvdEizXMOdDPbB_Z5wpPULzv1KmVEg&code_challenge_method=S256
 
 
+**Troubleshoot:**
+
+- Retorno **401**: ACCESSTOKEN_SCOPE_MUSTCONTAINSEXPECTEDSCOPE
+
+Provavelmente o problema estará na implementação do manual de integração Login Único GovBR 
+
+Sugestão: na requisição https://sso.staging.acesso.gov.br/authorize (https://acesso.gov.br/roteiro-tecnico/iniciarintegracao.html#passo-3) verifique se está preenchendo os parâmetros corretamente, principalmente o parâmetro **scope**
+
+
 **Observações para Passo 3:**
 
 - Parâmetro **STATE** deve obrigatoriamente ser usado e deve ser validado no cliente (validado que foi previamente emitido pelo cliente)
