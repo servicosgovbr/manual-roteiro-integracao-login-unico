@@ -46,9 +46,7 @@ Exemplo de requisição:
 
 - Retorno **401**: ACCESSTOKEN_SCOPE_MUSTCONTAINSEXPECTEDSCOPE
 
-Provavelmente o problema estará na implementação do manual de integração Login Único GovBR 
-
-Sugestão: na requisição https://sso.staging.acesso.gov.br/authorize (https://acesso.gov.br/roteiro-tecnico/iniciarintegracao.html#passo-3) verifique se está preenchendo os parâmetros corretamente, principalmente o parâmetro **scope**
+Sugestão: verifique se está preenchendo os parâmetros corretamente, principalmente o parâmetro **scope**
 
 
 **Observações para Passo 3:**
