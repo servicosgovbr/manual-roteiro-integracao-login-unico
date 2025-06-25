@@ -164,7 +164,26 @@ De posse das informações do json anterior, a aplicação consumidora está hab
 
 Passo 8
 -------
-Antes de utilizar as informações do JSON anterior, de forma especifica os **ACCESS_TOKEN** e **ID_TOKEN**, para buscar informações referente ao método de acesso e cadastro básico do usuário, há necessidade da aplicação consumidora validar se as informações foram geradas pelos serviços do Login Único. Esta validação ocorrerá por meio da consulta da chave pública disponível no serviço https://sso.staging.acesso.gov.br/jwk. Para isso, verificar o método **processToClaims** dos `Exemplos de Integração`_.    
+Antes de utilizar as informações do JSON anterior, de forma especifica os **ACCESS_TOKEN** e **ID_TOKEN**, para buscar informações referente ao método de acesso e cadastro básico do usuário, há necessidade da aplicação consumidora validar se as informações foram geradas pelos serviços do Login Único. Esta validação ocorrerá por meio da consulta da chave pública disponível no serviço https://sso.staging.acesso.gov.br/jwk. 
+Para isso, deverá acessar, pelo método GET ou POST, o serviço https://sso.staging.acesso.gov.br/jwk
+
+O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
+
+.. code-block:: JSON
+
+	{
+    "keys": [
+        {
+            "kty": "RSA",
+            "e": "AQAB",
+            "kid": "rsa1",
+            "alg": "RS256",
+            "n": "yKqGRQyJtqxRm_Mo2YTCCAkPSDb7uNgC7tXjgVzNv2_XB8r4vMibBpZFPbwyVUk0wGhPk8qLjrIj_K8IMu_IYtkq87pc1_1FAOub7e3xUrMx66GCq8QG94xROSfDWuMy7twILwjbkzNEU6bNibM0IQbCvdybFPhq4YHvlwOjfuMl2mNUma8wT1_l2MZenV1dmeLTg_kYGe9PGmn9JiY4t01Nj1FJQj9rH863KAa3LadQ4l8aBOpaIZwjANo3GCJJd4uSB67G-p0wuuDDYbiUGtN55degXjDKrv3v5bLgpPMX6ynvt2bi0olb_QZfovTnUaLfsZpCXTk_CvUXr2Q2Kw"
+        }
+    ]
+}
+
+Deve-se então, validar a chave recebida, comparando-a com a chave recebida no ACCESS_TOKEN e ID_TOKEN
 
 Passo 9
 -------
@@ -240,34 +259,7 @@ O serviço retornará, em caso de sucesso a informação em formato Base64
 
 Passo 11
 --------
-
-Para serviços que precisem acessar de forma obrigatoria com os níveis prata ou ouro, poderão seguir os passos:
-
-1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.staging.acesso.gov.br/
-
-Parâmetros da Query para requisição GET https://confiabilidades.staging.acesso.gov.br/
-
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
-**redirect_uri**			  URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
-============================  ======================================================================
-
-2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da **Redirect URI adicionada na credencial**, conforme `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_. 
-
-**Observações sobre as variáveis do serviço de catálogo**
-
-1. Conteúdo para variável *niveis* : Será a informação do atributo id presente em cada nível no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
-2. Tratamento do conteúdo para cada variável:
-
-- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (niveis=2,3)**
-- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (niveis=(2/3)** 	
-
-Passo 12
---------
-Para verificar quais níveis da conta do cidadão está localizada, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
+Para verificar quais níveis da conta do cidadão está localizada, bronze, prata ou ouro, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
 
 Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids 
 
@@ -290,6 +282,33 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 	]
 
 Verificar quais níveis estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
+
+Passo 12
+--------
+
+Para serviços que precisem acessar de forma obrigatoria com os níveis prata ou ouro, deverão acessar o **Serviço de Catálogo de Confiabilidades (Selos)**:
+
+1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.staging.acesso.gov.br/
+
+Parâmetros da Query para requisição GET https://confiabilidades.staging.acesso.gov.br/
+
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
+**niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
+**redirect_uri**			  URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
+============================  ======================================================================
+
+2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da **Redirect URI adicionada na credencial**, conforme `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_. 
+
+**Observações sobre as variáveis do serviço de catálogo**
+
+1. Conteúdo para variável *niveis* : Será a informação do atributo id presente em cada nível no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
+2. Tratamento do conteúdo para cada variável:
+
+- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (niveis=2,3)**
+- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (niveis=(2/3))** 	
 
 Passo 13
 --------
@@ -316,6 +335,37 @@ A resposta em caso de sucesso retorna sempre um **array** de objetos JSON no seg
 	]
 
 Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
+
+Acesso ao Serviço de Log Out
+++++++++++++++++++++++++++++
+
+1. **Implementação obrigatória** a fim de encerrar a sessão do usuário com o Login Único.
+
+2. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL: https://sso.staging.acesso.gov.br/logout. O acesso ao Log Out deverá ser pelo **Front End** da aplicação a ser integrada com Login Único.
+
+Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
+	
+============================  ======================================================================
+**Variavél**  	              **Descrição**
+----------------------------  ----------------------------------------------------------------------
+**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for invalidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente na `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_.  
+============================  ======================================================================
+
+Exemplo 1 de **execução** no front end em javascript
+
+.. code-block:: javascript
+
+	var form = document.createElement("form");      
+	form.setAttribute("method", "post");
+    form.setAttribute("action", "https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html");
+    document.body.appendChild(form);  
+	form.submit();
+
+Exemplo 2 de **execução** no front end em javascript
+
+.. code-block:: javascript
+
+	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
 
 Sequência Visual Passos Autenticação
 ++++++++++++++++++++++++++++++++++++
@@ -487,65 +537,6 @@ Os selos existentes no Login Único são:
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		}		
 	]
-
-
-Acesso ao serviço de Catálogo de Confiabilidades (Selos)
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-Para serviços que precisem acessar de forma obrigatoria com os níveis prata ou ouro, poderão seguir os passos:
-
-1. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL https://confiabilidades.staging.acesso.gov.br/
-
-Parâmetros da Query para requisição GET https://confiabilidades.staging.acesso.gov.br/
-
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**client_id**                 Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**niveis**					  Recurso de segurança da informação da identidade, que permitem flexibilidade para realização do acesso. **Atributo opcional**
-**redirect_uri**			  URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
-============================  ======================================================================
-
-2. O resultado será o Catálogo apresentado com as configurações solicitadas. Após atendido as configurações, o Login Único devolverá o fluxo para aplicação por meio da **Redirect URI adicionada na credencial**, conforme `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_. 
-
-**Observações sobre as variáveis do serviço de catálogo**
-
-1. Conteúdo para variável *niveis* : Será a informação do atributo id presente em cada nível no `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Níveis)`_
-2. Tratamento do conteúdo para cada variável:
-
-- Todos são obrigatórios, deve-se separá-los por vírgula. **Exemplo (niveis=2,3)**
-- Apenas um é obrigatório, deve-se separar por barra invertida. **Exemplo (niveis=(2/3)** 	
-	
-Acesso ao Serviço de Log Out
-++++++++++++++++++++++++++++
-
-1. **Implementação obrigatória** a fim de encerrar a sessão do usuário com o Login Único.
-
-2. Com usuário autenticado, deverá acessar, por meio do método GET ou POST, a URL: https://sso.staging.acesso.gov.br/logout. O acesso ao Log Out deverá ser pelo **Front End** da aplicação a ser integrada com Login Único.
-
-Parâmetros da Query para requisição GET https://sso.staging.acesso.gov.br/logout
-	
-============================  ======================================================================
-**Variavél**  	              **Descrição**
-----------------------------  ----------------------------------------------------------------------
-**post_logout_redirect_uri**  URL que direciona ao Login Único qual página deverá ser aberta quando o token for invalidado. A URL deverá ser previamente liberada por meio do preenchimento do campo **URL de Log Out** presente na `Credencial de Teste para Login Único`_ ou `Credencial de Produção para Login Único`_.  
-============================  ======================================================================
-
-Exemplo 1 de **execução** no front end em javascript
-
-.. code-block:: javascript
-
-	var form = document.createElement("form");      
-	form.setAttribute("method", "post");
-    form.setAttribute("action", "https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html");
-    document.body.appendChild(form);  
-	form.submit();
-
-Exemplo 2 de **execução** no front end em javascript
-
-.. code-block:: javascript
-
-	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
 	
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
 ++++++++++++++++++++++++++++++++++++++++++++++++++

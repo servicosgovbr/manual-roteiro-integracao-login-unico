@@ -11,7 +11,7 @@ Orientaremos como criar par de chaves PGP por meio do programa Gpg4win (versão 
 
 Sigam os passos para criação:
 
-1. Realize download do aplicativo `Gpg4win`_ ;
+1. Realize download da versão mais recente do aplicativo `Gpg4win`_ ;
 2. Siga os passos até finalizar instalação;
 3. Execute o programa Kleopatra.
 
@@ -58,7 +58,7 @@ Orientaremos como ler arquivo por meio do programa Gpg4win (versão windows), po
 
 Sigam os passos para criação:
 
-1. Realize download do aplicativo `Gpg4win`_ ;
+1. Realize download da versão mais recente do aplicativo `Gpg4win`_ ;
 2. Siga os passos até finalizar instalação;
 3. Execute o programa Kleopatra.
 
@@ -84,5 +84,5 @@ Sigam os passos para criação:
    :align: center
    :alt:
    
-.. _`Gpg4win`: https://files.gpg4win.org/gpg4win-3.1.16.exe   
+.. _`Gpg4win`: https://gpg4win.org/download.html  
    

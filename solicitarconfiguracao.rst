@@ -32,12 +32,12 @@ Para alterar as configurações da credencial, deverá seguir as orientações:
 =============================  ======================================================================
 **Client_id**                  **Identificação do Client_id que deseja alterar**
 -----------------------------  ----------------------------------------------------------------------
-**URL de Retorno**             URL Retorno deseja adicionar
-**URL Lançador de Serviços**   URL Lançador de Serviços deseja alterar
-**URL de Logout**              URL de Logout deseja adicionar
+**URL de Retorno**             URL Retorno deseja alterar
+**URL de Página Inicial**      URL da Página Inicial (Home Page), deseja alterar
+**URL de Logout**              URL de Logout deseja alterar
 =============================  ======================================================================
 
 **O endereço de envio encontra-se no** `Plano de Integração`_.
 
-.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.doc
+.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.2.doc
 .. _`administrar as chaves PGP para credenciais do Login Único`: chavepgp.html
