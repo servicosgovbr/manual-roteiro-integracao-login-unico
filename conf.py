@@ -30,7 +30,7 @@ author = u'Higo'
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u''
+release = u'Ultima atualização: 25/06/2025'
 
 
 # -- General configuration ---------------------------------------------------
