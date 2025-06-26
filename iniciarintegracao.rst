@@ -668,6 +668,19 @@ As demais informações constantes no arquivo são de preenchimento interno.
 
 	- Em caso de dúvidas sobre este procedimento, entre em contato pelo e-mail integracaoid@economia.gov.br. 
 
+
+
+Comunicado sobre Atualizações na API
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Informamos que a manutenção do conhecimento técnico sobre o funcionamento das APIs disponibilizadas pelo gov.br é de responsabilidade dos órgãos que a utilizam.
+
+Todas as alterações, melhorias ou atualizações na estrutura, nos parâmetros ou nos fluxos das APIs são devidamente registradas e documentadas neste Roteiro de Integração do Login Único.
+
+Dessa forma, é imprescindível que os órgãos usuários acompanhem regularmente o Roteiro de Integração do Login Único, a fim de garantir a conformidade de suas integrações e evitar impactos nos sistemas que consomem as APIs.
+
+A ausência de acompanhamento das atualizações poderá resultar em falhas de integração ou descontinuidade no serviço, não sendo o gov.br responsável por eventuais prejuízos decorrentes da não observância das instruções técnicas atualizadas.
+
 	
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
