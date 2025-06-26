@@ -180,8 +180,8 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
             "alg": "RS256",
             "n": "yKqGRQyJtqxRm_Mo2YTCCAkPSDb7uNgC7tXjgVzNv2_XB8r4vMibBpZFPbwyVUk0wGhPk8qLjrIj_K8IMu_IYtkq87pc1_1FAOub7e3xUrMx66GCq8QG94xROSfDWuMy7twILwjbkzNEU6bNibM0IQbCvdybFPhq4YHvlwOjfuMl2mNUma8wT1_l2MZenV1dmeLTg_kYGe9PGmn9JiY4t01Nj1FJQj9rH863KAa3LadQ4l8aBOpaIZwjANo3GCJJd4uSB67G-p0wuuDDYbiUGtN55degXjDKrv3v5bLgpPMX6ynvt2bi0olb_QZfovTnUaLfsZpCXTk_CvUXr2Q2Kw"
         }
-    ]
-}
+            ]
+	}
 
 Deve-se então, validar a chave recebida, comparando-a com a chave recebida no ACCESS_TOKEN e ID_TOKEN
 
