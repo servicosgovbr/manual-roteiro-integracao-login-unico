@@ -26,7 +26,9 @@ Alteração de Configuração
 Para modificar as configurações das credenciais, siga as orientações abaixo: 
 
 1. Envie um e-mail para integracao-acesso-govbr@economia.gov.br informando o CLIENT_ID no qual as alterações devem ser aplicadas. 
+
 2. No campo "Assunto" do e-mail, siga este padrão: **ALTERAÇÃO EM CHAVE DO AMBIENTE [ambiente produção ou homologação] – [client_id]**.
+
 3. No corpo do e-mail, forneça as seguintes informações:
 
 =============================  ======================================================================
