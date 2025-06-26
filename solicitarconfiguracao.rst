@@ -39,5 +39,5 @@ Para alterar as configurações da credencial, deverá seguir as orientações:
 
 **O endereço de envio encontra-se no** `Plano de Integração`_.
 
-.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.2.doc
+.. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.2.docx
 .. _`administrar as chaves PGP para credenciais do Login Único`: chavepgp.html
