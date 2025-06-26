@@ -31,7 +31,7 @@ Sigam os passos para criação:
    :align: center
    :alt:
 
-6. Informe o **Nome** e o **Email**, marque a opção **Proteger a chave com senha** e clique no botão **Criar**. O nome e email deverão ser algum dos presentes no Item **Responsáveis pela Integração** no Plano de Integração 
+6. Informe o **nome** e o **e-mail** do **Responsável Técnico** indicados no formulário de solicitação de integração, selecione a opção **"Proteger a chave com senha"** e clique no botão **"Criar"**. 
 
 .. figure:: _images/tela_informacoes_nome_email_chave_pgp.jpg
    :align: center
@@ -49,7 +49,7 @@ Sigam os passos para criação:
    :align: center
    :alt:
 
-9. Enviar chave pública junto com Plano de Integração.
+9. Anexe a chave pública PGP no campo correspondente do formulário de solicitação de integração.
 
 Como ler arquivo da credencial com chave PGP
 ++++++++++++++++++++++++++++++++++++++++++++

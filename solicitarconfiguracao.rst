@@ -23,11 +23,11 @@
 Alteração de Configuração
 +++++++++++++++++++++++++
 
-Para alterar as configurações da credencial, deverá seguir as orientações:
+Para modificar as configurações das credenciais, siga as orientações abaixo: 
 
-1. Enviar e-mail informando o CLIENT_ID no qual as alterações deverão ser aplicadas;
-2. O Assunto do e-mail de alteração de chaves deve seguir o padrão: **ALTERAÇÃO EM CHAVE DO AMBIENTE [nome do ambiente] – [client_id]**;
-3. No corpo do e-mail de alteração, o responsável deve informar
+1. Envie um e-mail para integracao-acesso-govbr@economia.gov.br informando o CLIENT_ID no qual as alterações devem ser aplicadas. 
+2. No campo "Assunto" do e-mail, siga este padrão: **ALTERAÇÃO EM CHAVE DO AMBIENTE [ambiente produção ou homologação] – [client_id]**.
+3. No corpo do e-mail, forneça as seguintes informações:
 
 =============================  ======================================================================
 **Client_id**                  **Identificação do Client_id que deseja alterar**
@@ -37,7 +37,7 @@ Para alterar as configurações da credencial, deverá seguir as orientações:
 **URL de Logout**              URL de Logout deseja alterar
 =============================  ======================================================================
 
-**O endereço de envio encontra-se no** `Plano de Integração`_.
+.. **O endereço de envio encontra-se no** `Plano de Integração`_.
 
 .. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.2.docx
 .. _`administrar as chaves PGP para credenciais do Login Único`: chavepgp.html

@@ -641,7 +641,33 @@ Exemplo de requisição
 		  "certificate":"(Demonstra o nome do cerfificado da autenticação)",
 		  "type":"(Informa qual tipo de certificado utilizado para autenticação. O contéudo será <device> para certificados A1 e A3 e <cloud> para indicar certificado em núvem)"
 		}
+
 	
+Integrações disponibilizadas para diversos órgãos/entidades públicas	
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Para integrações destinadas a diversos órgãos/entidades públicas, o envio do arquivo em Excel Plug-in_Estados_e_Municipios `Template Planilha Plug-in_Estados_e_Municipios`_ deverá ser realizado pelo órgão gestor da integração. 
+
+O arquivo deve estar devidamente preenchido com as seguintes informações: 
+
+**CNPJ, Origem, Orgao, Nome_do_Municipio, Servico_Produto, Objetivo_da_Integracao, Esfera, Poder, Estado, Codigo_Municipio, Data_de_inicio_Projeto, Data_de_Finalizar_Entrega, Volumetria_Anual**. 
+
+As demais informações constantes no arquivo são de preenchimento interno. 
+
+**Regras para o envio:**  
+
+	- O arquivo deverá ser enviado mensalmente, até o dia 05 de cada mês, contendo as integrações do mês anterior; 
+
+	- Após o envio do primeiro arquivo, os posteriores deverão conter apenas informações incrementais, ou seja, novas integrações ou novas adesões; 
+
+	- O arquivo deverá ser enviado no formato .xlsx ou .csv para o e-mail integracaoid@economia.gov.br; 
+
+	- Caso não haja novas integrações, essa situação deverá ser informada pelo mesmo e-mail, na frequência estabelecida; 
+
+	- O assunto do e-mail deve seguir o seguinte padrão: Relatório Plug-in <Nome do órgão>. Para fins de controle, solicitamos que o envio mensal seja mantido no mesmo histórico de e-mail. 
+
+	- Em caso de dúvidas sobre este procedimento, entre em contato pelo e-mail integracaoid@economia.gov.br. 
+
 	
 Resultados Esperados ou Erros do Acesso ao Serviços do Login Único	
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -671,3 +697,4 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`Ajuda para geração do code_challenge`: https://tonyxu-io.github.io/pkce-generator/
 .. _`Credencial de Teste para Login Único`: solicitacaocredencialprocesso.html
 .. _`Credencial de Produção para Login Único`: solicitacaocredencialprocesso.html
+.. _`Template Planilha Plug-in_Estados_e_Municipios`: https://www.gov.br/governodigital/pt-br/arquivos/template_plug-in_estados_e_municipios_atual.xlsx
