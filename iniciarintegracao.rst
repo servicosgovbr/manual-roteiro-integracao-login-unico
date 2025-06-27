@@ -528,14 +528,15 @@ Os selos existentes no Login Único são:
 		},
 		
 		{
-			"id": "901 (cin_facial)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
 			"id": "801 (certificado_digital)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		}		
+		},
+
+		
+		{
+			"id": "901 (cin_facial)",
+			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		}	
 	]
 	
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
