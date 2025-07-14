@@ -1,4 +1,4 @@
-﻿Passo-a-Passo para Integrar
+Passo-a-Passo para Integrar
 ===========================
 
 Autenticação
@@ -409,6 +409,37 @@ Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 
 Os selos existentes no Login Único são:
 
+=======================  ====================================  ==================================
+**Selo id:**  	             **Descrição**                     **Nível da conta**
+-----------------------  ------------------------------------  ----------------------------------
+**101**                  kba_previdencia                       Bronze
+**201**                  cadastro_basico                       Bronze
+**301**                  servidor_publico                      Prata
+**401**                  biovalid_facial                       Prata
+**501**                  balcao_sat_previdencia                Bronze
+**502**                  balcao_denatran                       Bronze
+**503**                  balcao_correios                       Bronze
+**504**                  balcao_cadastro_presencial_govbr      Bronze
+**601**                  balcao_nai_previdencia                Bronze
+**602**                  bb_internet_banking                   Prata
+**603**                  banrisul_internet_banking             Prata
+**604**                  bradesco_internet_banking             Prata
+**605**                  caixa_internet_banking                Prata
+**606**                  brb_internet_banking                  Prata
+**607**                  sicoob_internet_banking               Prata
+**608**                  santander_internet_banking            Prata
+**609**                  agi_bank_internet_banking             Prata
+**610**                  itau_internet_banking                 Prata
+**624**                  sicred_internet_banking               Prata
+**626**                  nubank_internet_banking               Prata
+**627**                  btg_internet_banking                  Prata
+**701**                  tse_facial                            Ouro
+**801**                  certificado_digital                   Ouro
+**901**                  cin_facial                            Ouro
+=======================  ====================================  ==================================
+
+Exemplo de resultado da consulta:
+
 .. code-block:: JSON
 
 	[
@@ -421,122 +452,7 @@ Os selos existentes no Login Único são:
 			"id": "201 (cadastro_basico)",
 			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
 		},
-		
-		{
-			"id": "301 (servidor_publico)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		{
-			"id": "401 (biovalid_facial)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "501 (balcao_sat_previdencia)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "502 (balcao_denatran)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "503 (balcao_correios)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "504 (balcao_cadastro_presencial_govbr)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "601 (balcao_nai_previdencia)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "609 (agi_bank_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "602 (bb_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "603 (banrisul_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "604 (bradesco_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "605 (caixa_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "606 (brb_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		
-		{
-			"id": "605 (caixa_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "610 (itau_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-			{
-			"id": "607 (sicoob_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "624 (sicred_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "608 (santander_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "626 (nubank_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "627 (btg_internet_banking)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "701 (tse_facial)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
-		
-		{
-			"id": "801 (certificado_digital)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		},
 
-		
-		{
-			"id": "901 (cin_facial)",
-			"dataAtualizacao": "(Mostra a data e hora que ocorreu atualização da confiabilidade na conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
-		}	
 	]
 	
 Acesso ao Serviço de Cadastro de Pessoas Jurídicas
