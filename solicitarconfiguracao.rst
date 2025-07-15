@@ -25,14 +25,30 @@ Alteração de Configuração
 
 Para modificar as configurações das credenciais, siga as orientações abaixo: 
 
-1. Envie um e-mail para integracao-acesso-govbr@economia.gov.br informando o CLIENT_ID no qual as alterações devem ser aplicadas. 
+**Integrações em andamento**
 
-2. No campo "Assunto" do e-mail, siga este padrão: **ALTERAÇÃO EM CHAVE DO AMBIENTE [ambiente produção ou homologação] – [client_id]**.
+1. Acesse o `Portal do Serviço de Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique no botão **"Acompanhamento"**.
+
+2. Na aba "Enviar dados/dúvidas" do seu protocolo de solicitação, forneça as seguintes informações:
+
+=============================  ======================================================================
+**Client_id / Ambiente**       client_id que deseja alterar / Ambiente (produção ou homologação)
+-----------------------------  ----------------------------------------------------------------------
+**URL de Retorno**             URL Retorno deseja alterar
+**URL de Página Inicial**      URL da Página Inicial (Home Page), deseja alterar
+**URL de Logout**              URL de Logout deseja alterar
+=============================  ======================================================================
+
+**Integrações concluídas**
+
+1. Envie um e-mail para integracao-acesso-govbr@economia.gov.br com as informações solicitadas a seguir. 
+
+2. No campo "Assunto" do e-mail, siga este padrão: **ALTERAÇÃO DE CREDENCIAL DO LOGIN ÚNICO**.
 
 3. No corpo do e-mail, forneça as seguintes informações:
 
 =============================  ======================================================================
-**Client_id**                  **Identificação do Client_id que deseja alterar**
+**Client_id / Ambiente**       client_id que deseja alterar / Ambiente (produção ou homologação)
 -----------------------------  ----------------------------------------------------------------------
 **URL de Retorno**             URL Retorno deseja alterar
 **URL de Página Inicial**      URL da Página Inicial (Home Page), deseja alterar
@@ -41,5 +57,6 @@ Para modificar as configurações das credenciais, siga as orientações abaixo:
 
 .. **O endereço de envio encontra-se no** `Plano de Integração`_.
 
+.. _`Portal do Serviço de Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-integracao-aos-produtos-de-identidade-digital-gov.br
 .. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.2.docx
 .. _`administrar as chaves PGP para credenciais do Login Único`: chavepgp.html
