@@ -628,3 +628,12 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`Credencial de Teste para Login Único`: solicitacaocredencialprocesso.html
 .. _`Credencial de Produção para Login Único`: solicitacaocredencialprocesso.html
 .. _`Template Planilha Plug-in_Estados_e_Municipios`: https://www.gov.br/governodigital/pt-br/arquivos/template_plug-in_estados_e_municipios_atual.xlsx
+
+Termo de Uso e Aviso de Privacidade.
+====================================
+
+ O órgão fica ciente que, ao integrar os serviços de identidade digital, como o Login Único, Prova de Vida e Assinatura Eletrônica, fica responsável pelo tratamento dos dados dos usuários em conformidade com a LGPD (Lei 13.709/2018). Isso inclui:
+- Controlar o uso dos dados recebidos (ex.: nome, e-mail) e garantir sua correta gestão;
+- Elaborar um Aviso de Privacidade transparente;
+- Fornecer informações claras aos usuários e manter canais para solicitações de privacidade.
+Sugestão: Guia para elaboração do Aviso de Privacidade: https://www.gov.br/governodigital/pt-br/privacidade-e-seguranca/framework-guias-e-modelos
