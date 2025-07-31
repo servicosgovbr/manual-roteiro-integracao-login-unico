@@ -27,7 +27,7 @@ A requisição é feita através de um GET para o endereço https://sso.staging.
 --------------------------  ----------------------------------------------------------------------
 **response_type**           Especifica para o provedor o tipo de autorização. Neste caso será **code**
 **client_id**               Chave de acesso, que identifica o serviço consumidor fornecido pelo Login Único para a aplicação cadastrada
-**scope**                   Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+email+profile+govbr_confiabilidades**. 
+**scope**                   Especifica os recursos que o serviço consumidor quer obter. Um ou mais escopos inseridos para a aplicação cadastrada. Informação a ser preenchida por padrão: **openid+email+profile+govbr_confiabilidades+govbr_confiabilidades_idtoken**. 
 **redirect_uri**            URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
 **nonce**                   Sequência de caracteres usado para associar uma sessão do serviço consumidor a um *Token* de ID e para atenuar os ataques de repetição. Pode ser um valor aleatório, mas que não seja de fácil dedução. Item obrigatório.
 **state**                   Valor usado para manter o estado entre a solicitação e o retorno de chamada.
@@ -230,6 +230,8 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 		"phone_number": "(Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN)",
 		"email_verified": "(Confirma se o email foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
 		"email": "(Endereço de e-mail cadastrado no Gov.br do usuário autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email não virá no ID_TOKEN)",
+		"reliability_info": ["(Nível da conta e listagem das confiabilidades do usuário autenticado. Verificar nas observações para os detalhamentos.)"],
+		"cnpj_certificate_name": "(Nome da empresa vinculada ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.)",
 		"cnpj": "(CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.)"
 	}
 
@@ -244,6 +246,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 3. **bank**: Banco do Brasil (**bank001**), Agibank (**bank121**), BancoDeBrasilia (**bank070**), Banrisul (**bank041**), Bradesco (**bank237**), CaixaEconomica (**bank104**), Itau (**bank341**), Mercantil (**bank389**), Santander (**bank033**), Sicoob (**bank756**), Sicredi (**bank748**);
 4. **app**: Acesso por QR_CODE do aplicativo gov.br (**app_qrcode**)
 5. **mfa**: Acesso sobre segundo fator de autenticação (**otp**). Aparecerá caso a conta do cidadão esteja com segundo fator de autenticação ativado.
+6. **reliability_info**: level: gold, silver ou bronze. reliabilities: [id: número dos selos do usuário logado]. Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
 	
 Passo 10
 --------
