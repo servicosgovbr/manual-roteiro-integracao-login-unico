@@ -1,21 +1,57 @@
 ﻿Erros Comuns para Implementação do Login Único
 ==============================================
 
-INVALID_GRANT
-+++++++++++++
+==========================  ======================================================================
+**Erro**                    invalid_grant
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando a URL utilizada na chamada `authorize`_ não está cadastrada no Login Único.
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Corrigir a URL na chamada `authorize`_ ou solicitar a inclusão da URL no Login Único.
+==========================  ======================================================================
 
-.. figure:: _images/errogov.png
-    :align: center
-    :alt:
+==========================  ======================================================================
+**Erro**                    invalid_client
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando o client_id utilizado na chamada `authorize`_ está incorreto.
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Verificar e corrigir o client_id utilizado chamada `authorize`_.
+==========================  ======================================================================
 
-A imagem acima mostra o erro que ocorre pela ausência do cadastro da URL de retorno na credencial do Login Único.
+==========================  ======================================================================
+**Erro**                    [invalid_token_response] An error occurred while attempting to retrieve the OAuth 2.0 Access Token Response: 401 Unauthorized: [no body]
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando o `client_secret`_ está incorreto.
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Verificar e corrigir o `client_secret`_.
+==========================  ======================================================================
 
-Os procedimentos para resolução:
+==========================  ======================================================================
+**Erro**                    invalid_client no eSUS, porém o client_id está correto.
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando o client_id utilizado no arquivo application.properties está incorreto.
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Verificar se ficaram espaços em branco, ou quebra de linha após o client_id no arquivo application.properties, pode ser verificado se na URL de erro consta "%20" após o client_id.
+==========================  ======================================================================
 
-1. Checar com os responsáveis pela solitação da credencial se a URL estava no pedido
-2. Caso conste no pedido, enviar a chamada do /Authorize completa fora de imagem para realizar a analise e possível adição da URL a credencial
+==========================  ======================================================================
+**Erro**                    [invalid_id_token] An error occurred while attempting to decode the Jwt: The ID Token contains invalid claims: {iat=2024-08-29T12:10:08Z}“
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando a data e hora do servidor, onde a aplicação está instalada, estão incorretas, onde apresenta a data do servidor no último parâmetro do erro {iat=2024-08-29T12:10:08Z}
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Verificar e corrigir a data e hora do servidor.
+==========================  ======================================================================
+
+==========================  ======================================================================
+**Erro**                    [invalid_token_response] An error occurred while attempting to retrieve the OAuth 2.0 Access Token Response: I/O error on POST request for “https://sso.acesso.gov.br/token”: Connection reset by peer; nested exception is java.net.SocketException: Connection reset by peer
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando o IP do servidor, onde a aplicação está instalada, está bloqueado no firewall do gov.br.
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 É necessário enviar o client_id e IP da aplicação para que seja verificado o bloqueio e liberado o firewall.
+==========================  ======================================================================
 
 
+.. _`authorize`: iniciarintegracao.html#passo-3
+.. _`client_secret`: iniciarintegracao.html#passo-6
 
 .. |site externo| image:: _images/site-ext.gif
 .. _`codificador para Base64`: https://www.base64decode.org/
