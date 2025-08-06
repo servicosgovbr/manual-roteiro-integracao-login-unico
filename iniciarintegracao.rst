@@ -488,15 +488,22 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/
 
 3. O resultado em formato JSON é a lista de CNPJs do CPF autenticado, conforme o exemplo abaixo:
 
+============================  ======================================================================
+**cnpj**  	                  Número de CNPJ da empresa vinculada
+----------------------------  ----------------------------------------------------------------------
+**razaoSocial**               Razão Social (Nome da empresa) cadastrada na Receita Federal
+**dataCriacao**               Mostra a data e hora da vinculação do CNPJ a conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS
+============================  ======================================================================
+
 Exemplo de requisição
 
 .. code-block:: JSON
 
 	[
 		{
-		"cnpj": "(Número de CNPJ da empresa vinculada)",
-		"razaoSocial": "(Razão Social (Nome da empresa) cadastrada na Receita Federal)",
-		"dataCriacao": "(Mostra a data e hora da vinculação do CNPJ a conta do usuário. A mascará será YYYY-MM-DD HH:MM:SS)"
+		"cnpj": "12345678000100",
+		"razaoSocial": "Razao Social da Empresa",
+		"dataCriacao": "2025-05-28T16:54:53.871-0300"
 		}
 	]
 
@@ -514,17 +521,38 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/
 
 5. O resultado em formato JSON é o detalhamento do CNPJ do CPF autenticado, conforme o exemplo abaixo:
 
+============================  ======================================================================
+**cpf**  	                  Número do CPF que pode atuar com empresa
+----------------------------  ----------------------------------------------------------------------
+**razaoSocial**               Razão Social (Nome da empresa) cadastrada na Receita Federal
+**atuacao**                   Papel do CPF na empresa na Receita Federal. 
+**cadastrador**               Identifica se o CPF pode realizar cadastro de colaboradores para CNPJ. O conteúdo false determinar que o CPF é um colaborador da empresa. O conteúdo true determina CPF é representante da empresa com certificado digital de pessoal jurídica
+**cpfCadastrador**            CPF responsável por realizar cadastro do Colaborador. Se CPF apresentar atributo cadastrador com conteúdo true, o atributo cpfCadastrador não aparecerá
+**dataCriacao**               Mostra a data e hora da vinculação do CPF ao CNPJ. A mascará será YYYY-MM-DD HH:MM:SS
+**dataExpiracao**             Mostra a data e hora que o CPF poderá atuar com CNPJ. A mascará será YYYY-MM-DD HH:MM:SS
+============================  ======================================================================
+
+Detalhamento da **atuacao**
+
+Se o CPF possui papel na empresa na Receita Federal, o conteúdo será **SOCIO**, **CONTADOR** ou **REPRESENTANTE_LEGAL**.
+
+
+Se o CPF for **COLABORADOR**, o atributo **atuacao** não aparecerá.
+
+Se o CPF possui certificado digital de pessoa jurídica, porém não possui um papel na empresa na base da Receita Federal, o resultado será 
+**NAO_ATUANTE**. 
+
 Exemplo de requisição
 
 .. code-block:: JSON
 
 	{
-	"cpf": "(Número do CPF que pode atuar com empresa)",
-	"atuacao": "(Papel do CPF na empresa na Receita Federal. O conteúdo será SOCIO, CONTADOR, REPRESENTANTE_LEGAL ou NAO_ATUANTE. O NAO_ATUANTE representa CPF possui certificado digital de pessoa jurídica, porém não possui um papel na empresa na base da Receita Federal. Se CPF for colaborador, atributo atuacao não aparecerá)",
-	"cadastrador": "(Identifica se o CPF pode realizar cadastro de colaboradores para CNPJ. O conteúdo false determinar que o CPF é um colaborador da empresa. O conteúdo true determina CPF é representante da empresa com certificado digital de pessoal jurídica)",
-	"cpfCadastrador": "(CPF responsável por realizar cadastro do Colaborador. Se CPF apresentar atributo cadastrador com conteúdo true, o atributo cpfCadastrador não aparecerá)",
-	"dataCriacao": "(Mostra a data e hora da vinculação do CPF ao CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)",
-	"dataExpiracao": "(Mostra a data e hora que o CPF poderá atuar com CNPJ. A mascará será YYYY-MM-DD HH:MM:SS)"
+	"cpf": "12345678900",
+	"atuacao": "CONTADOR",
+	"cadastrador": "false",
+	"cpfCadastrador": "98765432100",
+	"dataCriacao": "2025-07-25T11:21:37.262-0300",
+	"dataExpiracao": "2025-07-31T00:00:00.000-0300"
 	}
 
 Acesso ao Serviço de Recuperação do Tipo de Certificado
