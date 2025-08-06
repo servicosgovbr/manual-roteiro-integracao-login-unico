@@ -524,7 +524,6 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/
 ============================  ======================================================================
 **cpf**  	                  Número do CPF que pode atuar com empresa
 ----------------------------  ----------------------------------------------------------------------
-**razaoSocial**               Razão Social (Nome da empresa) cadastrada na Receita Federal
 **atuacao**                   Papel do CPF na empresa na Receita Federal. 
 **cadastrador**               Identifica se o CPF pode realizar cadastro de colaboradores para CNPJ. O conteúdo false determinar que o CPF é um colaborador da empresa. O conteúdo true determina CPF é representante da empresa com certificado digital de pessoal jurídica
 **cpfCadastrador**            CPF responsável por realizar cadastro do Colaborador. Se CPF apresentar atributo cadastrador com conteúdo true, o atributo cpfCadastrador não aparecerá
