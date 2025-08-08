@@ -260,7 +260,7 @@ Para solicitação do conteúdo da foto salva no cadastro do cidadão, deverá a
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
 
-Passo 11
+Passo 11 (Depreciado)
 --------
 Para verificar quais níveis da conta do cidadão está localizada, bronze, prata ou ouro, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
 
