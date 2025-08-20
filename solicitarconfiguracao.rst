@@ -41,7 +41,7 @@ Para modificar as configurações das credenciais, siga as orientações abaixo:
 
 **Integrações concluídas**
 
-1. Acesse o `Portal de Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique no botão **"Iniciar"**.
+1. Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique no botão **"Iniciar"**.
 
 2. Na aba "Dados da Solicitação" do seu protocolo, selecione o tipo de solicitação **"Atualização de URLs"** e preencha as informações necessárias.
 
@@ -49,7 +49,7 @@ Para modificar as configurações das credenciais, siga as orientações abaixo:
 
 .. _`Portal do Serviço de Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-integracao-aos-produtos-de-identidade-digital-gov.br
 
-.. _`Portal de Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-pos-integracao-aos-produtos-do-ecossistema-da-identidade-digital-gov.br
+.. _`Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-pos-integracao-aos-produtos-do-ecossistema-da-identidade-digital-gov.br
 
 
 .. _`Plano de Integração`: arquivos/Modelo_PlanodeIntegracao_LOGINUNICO_Versao-4.2.docx

@@ -661,6 +661,7 @@ Os acessos aos serviços do Login Único ocorrem por meio de chamadas de URLs e 
 .. _`Credencial de Teste para Login Único`: solicitacaocredencialprocesso.html
 .. _`Credencial de Produção para Login Único`: solicitacaocredencialprocesso.html
 .. _`Template Planilha Plug-in_Estados_e_Municipios`: https://www.gov.br/governodigital/pt-br/arquivos/template_plug-in_estados_e_municipios_atual.xlsx
+.. _`Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-pos-integracao-aos-produtos-do-ecossistema-da-identidade-digital-gov.br
 
 Termo de Uso e Aviso de Privacidade.
 ====================================
@@ -670,3 +671,33 @@ Termo de Uso e Aviso de Privacidade.
 - Elaborar um Aviso de Privacidade transparente;
 - Fornecer informações claras aos usuários e manter canais para solicitações de privacidade.
 Sugestão: Guia para elaboração do Aviso de Privacidade: https://www.gov.br/governodigital/pt-br/privacidade-e-seguranca/framework-guias-e-modelos
+
+
+Integrações de portais de serviço
+=================================
+
+As informações sobre a disponibilização de novos serviços nos portais já integrados devem ser enviadas à Secretaria de Governo Digital pelo órgão gestor responsável pela respectiva integração.
+
+**Regras para o envio:**
+
+- Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_  e clique no botão **"Iniciar"**.
+- Na aba **"Dados da Solicitação"** do seu protocolo, selecione o tipo de solicitação **"Atualização das integrações dos portais de serviço"** e preencha os campos necessários.
+- As informações devem ser enviadas **mensalmente até o dia 05 de cada mês**, contendo os dados referentes às integrações realizadas no mês anterior.
+- Após o primeiro envio, os envios subsequentes devem incluir **apenas as informações incrementais**, ou seja, **novos serviços**.
+
+ Em caso de dúvidas sobre este procedimento, utilize o canal de comunicação oficial: integracaoid@economia.gov.br.
+
+
+Integrações disponibilizadas para diversos outros órgãos ou entidades públicas
+==============================================================================
+
+De acordo com o artigo 13 da Portarla SGD/MGI nº 7.076, de 2 de outubro de 2024, as informações sobre adesão às integrações disponibilizadas a diferentes órgãos ou entidades públicas devem ser enviadas á Secretaria de Governo Digital pelo órgão gestor da respectiva integração.
+
+**Regras para o envio:**
+
+- Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_  e clique no botão **"Iniciar"**.
+- Na aba **"Dados da Solicitação"** do seu protocolo, selecione o tipo de solicitação **"Atualização de integrações disponibilizadas para diversos órgãos/entidades públicas"** e preencha os campos necessários.
+- As informações devem ser enviadas **mensalmente até o dia 05 de cada mês**, contendo os dados referentes às integrações realizadas no mês anterior.
+- Após o primeiro envio, os envios subsequentes devem incluir **apenas as informações incrementais**, ou seja, **novas integrações ou novas adesões**.
+
+ Em caso de dúvidas sobre este procedimento, utilize o canal de comunicação oficial: integracaoid@economia.gov.br.
