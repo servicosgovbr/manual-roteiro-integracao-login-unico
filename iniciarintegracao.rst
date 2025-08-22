@@ -37,16 +37,9 @@ A requisição é feita através de um GET para o endereço https://sso.staging.
 
 Exemplo de requisição:
 
-.. code-block:: console
+.. code-block::
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=ec4318d6-f797-4d65-b4f7-39a33bf4d544&scope=openid+email+profile&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php&nonce=3ed8657fd74c&state=358578ce6728b%code_challenge=J7rD2y0WG26mzgvdEizXMOdDPbB_Z5wpPULzv1KmVEg&code_challenge_method=S256
-
-
-**Troubleshoot:**
-
-- Retorno **401**: ACCESSTOKEN_SCOPE_MUSTCONTAINSEXPECTEDSCOPE
-
-Sugestão: verifique se está preenchendo os parâmetros corretamente, principalmente o parâmetro **scope**
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=h-client.teste.gov.br&scope=openid%2Bemail%2Bprofile%2Bgovbr_confiabilidades%2Bgovbr_confiabilidades_idtoken&redirect_uri=http%3A%2F%2Fappcliente.gov.br%2Fphpcliente%2Floginecidadao.php&nonce=3ed8657fd74c&state=358578ce6728b&code_challenge=J7rD2y0WG26mzgvdEizXMOdDPbB_Z5wpPULzv1KmVEg&code_challenge_method=S256
 
 
 **Observações para Passo 3:**
@@ -69,6 +62,10 @@ Após a autorização, a requisição é retornada para a URL especificada no re
 Passo 5
 -------
 Após autenticado, o provedor redireciona para a página de autorização. O usuário habilitará o consumidor no sistema para os escopos solicitados. Caso o usuário da solicitação autorize o acesso, é gerado um “ticket de acesso”, conforme demonstra na especificação `OpenID Connect`_ ;
+
+.. figure:: _images/autorizacao_uso_dados_pessoais.png
+    :align: center
+    :alt: 
 
 Passo 6
 -------
@@ -97,7 +94,7 @@ Parâmetros do Body para requisição Post https://sso.staging.acesso.gov.br/tok
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
 **grant_type**     Especifica para o provedor o tipo de autorização. Neste caso será **authorization_code**
-**code**           Código retornado pela requisição anterior (exemplo: Z85qv1)
+**code**           Código retornado pela requisição anterior (exemplo: eyJraWQiOiJjb2RlQ3J5cHRvZ3JhcGh5IiwiYWxnIjoiZGlyIiwiZW5jIjoiQTI1NkdDTSJ9..TiO6SsOtn9bUpiVP.uD296wQVDIp5SXRXCg8gzAiZRSJTiwqY0AfqfAvkXgdzuA.RPKulpcQgfCo8kPgVsOE0g)
 **redirect_uri**   URI de retorno cadastrada para a aplicação cliente no formato *URL Encode*. Este parâmetro não pode conter caracteres especiais conforme consta na especificação `auth 2.0 Redirection Endpoint`_
 **code_verifier**  Senha sem criptografia enviada do parâmetro **code_challenge** presente no `Passo 3`_
 =================  ======================================================================
@@ -106,18 +103,20 @@ Exemplo de *query*
 
 .. code-block:: console
 
-	curl -X POST -d 'grant_type=authorization_code&code=007f89a9-9982-42c7-960b-b09ea2713f38.81c9c808-1509-438d-9649-eea7d8c63c6e.a4685ae1-46fc-413c-b370-84ab6067a9201&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.Php'&code_verifier='LUnicoAplicacaoCodeVerifierTamanhoComMinimo' https://sso.staging.acesso.gov.br/token	
+	curl -X POST -d 'grant_type=authorization_code&code=eyJraWQiOiJjb2RlQ3J5cHRvZ3JhcGh5IiwiYWxnIjoiZGlyIiwiZW5jIjoiQTI1NkdDTSJ9..TiO6SsOtn9bUpiVP.uD296wQVDIp5SXRXCg8gzAiZRSJTiwqY0AfqfAvkXgdzuA.RPKulpcQgfCo8kPgVsOE0g&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.php'&code_verifier='LUnicoAplicacaoCodeVerifierTamanhoComMinimo' https://sso.staging.acesso.gov.br/token	
 
 O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
 
-.. code-block:: JSON
+=================  ======================================================================
+**Parâmetro**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**access_token**   Token de acesso a recursos protegidos do autenticador, bem como serviços do Login Único
+**token_type**     O tipo do token gerado. Padrão: Bearer
+**expires_in**     Tempo de vida do token em segundos
+**scope**          Escopos utilizados na chamada authorize
+**id_token**       Token de autenticação com informações básicas do usuário
+=================  ======================================================================
 
-	{ 
-		"access_token": "(Token de acesso a recursos protegidos do autenticador, bem como serviços do Login Único.)", 
-		"id_token": "(Token de autenticação com informações básicas do usuário.)", 
-		"token_type": "(O tipo do token gerado. Padrão: Bearer)", 
-		"expires_in": "(Tempo de vida do token em segundos.)" 
-	} 
 
 **Observações para Passo 6:**
 
@@ -129,7 +128,7 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 - Access tokens são projetados especificamente para autorização e são a forma correta de conceder acesso a recursos protegidos.
 - Nosso padrão atual é 60s de id_token.
 
-**Caso seja necessário as informações devem ser obtidas pelo userinfo:**
+**Caso seja necessário as informações do usuário devem ser obtidas pelo userinfo:**
 Endpoint  - https://sso.staging.acesso.gov.br/userinfo/
 
 Para solicitação dos dados no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/ e acrescentar o atributo Authorization ao header do HTTP da requisição:
@@ -188,6 +187,20 @@ Deve-se então, validar a chave recebida, comparando-a com a chave recebida no A
 Passo 9
 -------
 A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao extrair do JSON codificado os seguintes parâmetros: 
+
+=================  ======================================================================
+**Parâmetro**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**sub**            PF do usuário autenticado
+**aud**            Client ID da aplicação onde o usuário se autenticou
+**scope**          Escopos autorizados pelo provedor de autenticação.
+**amr**            Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos
+**iss**            URL do provedor de autenticação que emitiu o token
+**exp**            Data/hora de expiração do token
+**iat**            Data/hora em que o token foi emitido
+**jti**            Identificador único do token, reconhecido internamente pelo provedor de autenticação
+**cnpj**           CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica
+=================  ======================================================================
 
 **JSON do ACCESS_TOKEN**
 

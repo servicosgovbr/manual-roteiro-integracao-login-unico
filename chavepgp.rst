@@ -81,8 +81,9 @@ Sigam os passos para criação:
 6. Selecione a pasta deseja salvar o aquivo descriptografado e clique no botão **Save all**;
 
 .. figure:: _images/tela_salva_arquivo_descriptografia_PGP.jpg
+
    :align: center
    :alt:
    
-.. _`Gpg4win`: https://gpg4win.org/download.html  
+.. _`Gpg4win`: https://gpg4win.org/thanks-for-download.html  
    

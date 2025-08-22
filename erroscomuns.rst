@@ -50,6 +50,16 @@
 ==========================  ======================================================================
 
 
+
+
+.. **Troubleshoot:**
+
+.. - Retorno **401**: ACCESSTOKEN_SCOPE_MUSTCONTAINSEXPECTEDSCOPE
+
+.. Sugestão: verifique se está preenchendo os parâmetros corretamente, principalmente o parâmetro **scope**
+
+
+
 .. _`authorize`: iniciarintegracao.html#passo-3
 .. _`client_secret`: iniciarintegracao.html#passo-6
 
