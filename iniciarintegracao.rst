@@ -105,7 +105,7 @@ Exemplo de *query*
 
 	curl -X POST -d 'grant_type=authorization_code&code=eyJraWQiOiJjb2RlQ3J5cHRvZ3JhcGh5IiwiYWxnIjoiZGlyIiwiZW5jIjoiQTI1NkdDTSJ9..TiO6SsOtn9bUpiVP.uD296wQVDIp5SXRXCg8gzAiZRSJTiwqY0AfqfAvkXgdzuA.RPKulpcQgfCo8kPgVsOE0g&redirect_uri=http%3A%2F%2Fappcliente.com.br%2Fphpcliente%2Floginecidadao.php'&code_verifier='LUnicoAplicacaoCodeVerifierTamanhoComMinimo' https://sso.staging.acesso.gov.br/token	
 
-O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
+O serviço retornará, em caso de sucesso, no formato JSON, as seguintes informações:
 
 =================  ======================================================================
 **Parâmetro**  	   **Descrição**
@@ -116,6 +116,18 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 **scope**          Escopos utilizados na chamada authorize
 **id_token**       Token de autenticação com informações básicas do usuário
 =================  ======================================================================
+
+Exemplo de Json:
+
+.. code-block:: JSON
+
+	{
+		"access_token": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJhdWQiOi ...",
+		"token_type": "Bearer",
+		"expires_in": 3599,
+		"scope": "phone openid email govbr_confiabilidades_idtoken profile",
+		"id_token": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiIwMD ..."
+	}
 
 
 **Observações para Passo 6:**
@@ -188,34 +200,38 @@ Passo 9
 -------
 A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao extrair do JSON codificado os seguintes parâmetros: 
 
-=================  ======================================================================
-**Parâmetro**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**sub**            PF do usuário autenticado
-**aud**            Client ID da aplicação onde o usuário se autenticou
-**scope**          Escopos autorizados pelo provedor de autenticação.
-**amr**            Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos
-**iss**            URL do provedor de autenticação que emitiu o token
-**exp**            Data/hora de expiração do token
-**iat**            Data/hora em que o token foi emitido
-**jti**            Identificador único do token, reconhecido internamente pelo provedor de autenticação
-**cnpj**           CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica
-=================  ======================================================================
+**Parâmetors do JSON do ACCESS_TOKEN**
+
+=======================  ======================================================================
+**Parâmetro**  	         **Descrição**
+-----------------------  ----------------------------------------------------------------------
+**aud**                  Client ID da aplicação onde o usuário se autenticou
+**sub**                  CPF do usuário autenticado
+**scope**                Escopos autorizados pelo provedor de autenticação.
+**amr**                  Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos
+**iss**                  URL do provedor de autenticação que emitiu o token
+**preferred_username**   CPF do usuário autenticado
+**exp**                  Data/hora de expiração do token
+**iat**                  Data/hora em que o token foi emitido
+**jti**                  Identificador único do token, reconhecido internamente pelo provedor de autenticação
+**cnpj**                 CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica
+=======================  ======================================================================
 
 **JSON do ACCESS_TOKEN**
 
 .. code-block:: JSON
 
 	{
-		"sub": "(CPF do usuário autenticado)",
-		"aud": "Client ID da aplicação onde o usuário se autenticou",
-		"scope": ["(Escopos autorizados pelo provedor de autenticação.)"],
-		"amr": ["(Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos.)"],
-		"iss": "(URL do provedor de autenticação que emitiu o token.)",
-		"exp": "(Data/hora de expiração do token)",
-		"iat": "(Data/hora em que o token foi emitido.)",
-		"jti": "(Identificador único do token, reconhecido internamente pelo provedor de autenticação.)",
-		"cnpj": "CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica."
+		"aud": "h-client.teste.gov.br",
+		"sub": "12345678900",
+		"scope": ["phone","openid","profile","email","govbr_confiabilidades_idtoken"],
+		"amr": ["passwd","captcha","mfa","otp_offline"],
+		"iss": "https://sso.staging.acesso.gov.br/",
+		"exp": 1755810406,
+		"iat": 1755806806,
+		"preferred_username": "12345678900",
+		"jti": "ac459315-f7a0-437f-9fce-30ab2e057cd2"
+		"cnpj": "12.345.678/0001-00"
 	}
 
 **Observações para ACCESS_TOKEN:**
@@ -228,25 +244,90 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 3. **bank**: Banco do Brasil (**bank001**), Agibank (**bank121**), BancoDeBrasilia (**bank070**), Banrisul (**bank041**), Bradesco (**bank237**), CaixaEconomica (**bank104**), Itau (**bank341**), Mercantil (**bank389**), Santander (**bank033**), Sicoob (**bank756**), Sicredi (**bank748**);
 4. **app**: Acesso por QR_CODE do aplicativo gov.br (**app_qrcode**)
 5. **mfa**: Acesso sobre segundo fator de autenticação (**otp**). Aparecerá caso a conta do cidadão esteja com segundo fator de autenticação ativado.
-	
+
+**Parâmetors do JSON do ID_TOKEN**
+
+=========================  ======================================================================
+**Parâmetro**  	           **Descrição**
+-------------------------  ----------------------------------------------------------------------
+**sub**                    CPF do usuário autenticado
+**social_name**            Nome Social cadastrado no Gov.br do usuário autenticado. Aparecerá apenas se existir no cadastro
+**email_verified**         Confirma se o email foi validado no cadastro do gov.br. Poderá ter o valor "true" ou "false"
+**amr**                    Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos
+**profile**                URL do perfil de usuário no provedor de acesso
+**iss**                    URL do provedor de autenticação que emitiu o token
+**phone_number_verified**  Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false"
+**preferred_username**     CPF do usuário autenticado
+**nonce**                  Parâmetro nonce utilizado para obtenção do token
+**picture**                URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido
+**reliability_info**       Nível da conta e listagem das confiabilidades do usuário autenticado. Verificar nas observações para os detalhamentos
+**aud**                    Client ID da aplicação onde o usuário se autenticou
+**auth_time**              Data/hora da autenticação
+**scope**                  Escopos autorizados pelo provedor de autenticação
+**name**                   Nome cadastrado no Gov.br do usuário autenticado
+**phone_number**           Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN
+**exp**                    Data/hora de expiração do token
+**iat**                    Data/hora em que o token foi emitido
+**jti**                    Identificador único do token, reconhecido internamente pelo provedor de autenticação
+**email**                  Endereço de e-mail cadastrado no Gov.br do usuário autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email não virá no ID_TOKEN
+**cnpj_certificate_name**  Nome da empresa vinculada ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica
+**cnpj**                   CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica
+=========================  ======================================================================
+
 **JSON do ID_TOKEN**
 
 .. code-block:: JSON
 
-	{
-		"sub": "(CPF do usuário autenticado.)",
-		"amr": ["(Listagem dos fatores de autenticação do usuário com detalhamento. Verificar nas observações para os detalhamentos.)"],
-		"picture": "(URL de acesso à foto do usuário cadastrada no Gov.br. A mesma é protegida e pode ser acessada passando o access token recebido.)",
-		"name": "(Nome cadastrado no Gov.br do usuário autenticado.)",
-		"social_name": "(Nome Social cadastrado no Gov.br do usuário autenticado.Aparecerá apenas se existir no cadastro)",
-		"phone_number_verified": "(Confirma se o telefone foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
-		"phone_number": "(Número de telefone cadastrado no Gov.br do usuário autenticado. Caso o atributo phone_number_verified do ID_TOKEN tiver o valor false, o atributo phone_number não virá no ID_TOKEN)",
-		"email_verified": "(Confirma se o email foi validado no cadastro do Gov.br. Poderá ter o valor "true" ou "false")",
-		"email": "(Endereço de e-mail cadastrado no Gov.br do usuário autenticado. Caso o atributo email_verified do ID_TOKEN tiver o valor false, o atributo email não virá no ID_TOKEN)",
-		"reliability_info": ["(Nível da conta e listagem das confiabilidades do usuário autenticado. Verificar nas observações para os detalhamentos.)"],
-		"cnpj_certificate_name": "(Nome da empresa vinculada ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.)",
-		"cnpj": "(CNPJ vinculado ao usuário autenticado. Atributo será preenchido quando autenticação ocorrer por certificado digital de pessoal jurídica.)"
-	}
+  {
+  "sub": "123456789-00",
+  "social_name": "Nome Social Cidadão",
+  "email_verified": "true",
+  "amr": [
+    "passwd",
+    "captcha",
+    "mfa",
+    "otp_offline"
+  ],
+  "profile": "https://servicos.staging.acesso.gov.br/",
+  "kid": "rsa1",
+  "iss": "https://sso.staging.acesso.gov.br/",
+  "phone_number_verified": "true",
+  "preferred_username": "12345678900",
+  "nonce": "nonce_teste_login",
+  "picture": "https://sso.staging.acesso.gov.br/userinfo/picture",
+  "reliability_info": {
+    "level": "gold",
+    "reliabilities": [
+      {
+        "id": "601",
+        "updatedAt": "2025-07-02T14:17:16.001-0300"
+      },
+      {
+        "id": "626",
+        "updatedAt": "2025-07-02T14:17:16.001-0300"
+      },
+      {
+        "id": "901",
+        "updatedAt": "2025-08-19T16:41:24.853-0300"
+      }
+    ]
+  },
+  "aud": "teste.login",
+  "auth_time": 1755801679,
+  "scope": [
+    "phone",
+    "openid",
+    "profile",
+    "email",
+    "govbr_confiabilidades_idtoken"
+  ],
+  "name": "Nome Cidadão",
+  "phone_number": "99999999999",
+  "exp": 1755807406,
+  "iat": 1755806806,
+  "jti": "96f85920-ca1a-459e-bdfe-73bf95f31456",
+  "email": "email@email.com"
+  }
 
 **Observações para ID_TOKEN:**
 
