@@ -331,7 +331,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 
 **Observações para ID_TOKEN:**
 
-- Os paramêtros email,phone_number,picture não são obrigatórios. Ambos podem estar preenchidos ou não.
+- Os paramêtros email, phone_number e picture não são obrigatórios. Ambos podem estar preenchidos ou não.
 - Caso um novo método de autenticação seja adicionado, será listado no atributo *AMR*. As integrações devem contemplar futuras adições.
 - O AMR apresentará o detalhamento do método de autenticação com as seguintes informações:
 
@@ -357,7 +357,7 @@ O serviço retornará, em caso de sucesso a informação em formato Base64
 Passo 11
 --------
 
-OBS: Método depreciado, para obter os níveis da conta, verificar o json do id_token no Passo 9.
+OBS: Método obsoleto, para obter os níveis da conta, verificar o json do id_token no Passo 9, ainda mantido por compatibilidade com integrações antigas, porém as novas integrações não devem utilizar este método.
 
 Para verificar quais níveis da conta do cidadão está localizada, bronze, prata ou ouro, deverá acessar, pelo método GET, o serviço https://api.staging.acesso.gov.br/confiabilidades/v3/contas/**cpf**/niveis?response-type=ids
 

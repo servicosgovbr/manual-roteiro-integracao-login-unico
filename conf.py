@@ -24,13 +24,13 @@ tags.add('hide_mp')
 # -- Project information -----------------------------------------------------
 
 project = u'Roteiro de Integração do Login Único'
-copyright = u'2019, Higo, Última atualização: 29/07/2025'
+copyright = u'2019, Higo, Última atualização: 25/08/2025'
 author = u'Higo'
 
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'Ultima atualização: 26/06/2025'
+release = u'Ultima atualização: 25/08/2025'
 
 
 # -- General configuration ---------------------------------------------------
