@@ -49,6 +49,14 @@
 **Solução**                 É necessário enviar o client_id e IP da aplicação para que seja verificado o bloqueio e liberado o firewall.
 ==========================  ======================================================================
 
+==========================  ======================================================================
+**Erro**                    "ACCESSTOKEN_SCOPE_MUSTCONTAINSEXPECTEDSCOPE" "Escopo requerido não encontrado. Valor esperado: '{0}', valor recebido: '{1}'."
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando se tenta utilizar a API sem o escopo necessário
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Solicitar a inclusão do escopo específico para o serviço desejado
+==========================  ======================================================================
+
 
 
 
