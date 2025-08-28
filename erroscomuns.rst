@@ -54,7 +54,7 @@
 --------------------------  ----------------------------------------------------------------------
 **Descrição**               Este erro ocorre quando se tenta utilizar a API sem o escopo necessário
 --------------------------  ----------------------------------------------------------------------
-**Solução**                 Solicitar a inclusão do escopo específico para o serviço desejado
+**Solução**                 Adicionar na chamada authorize o escopo correspondente ao serviço que se deseja utilizar
 ==========================  ======================================================================
 
 
