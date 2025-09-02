@@ -57,6 +57,14 @@
 **Solução**                 Adicionar na chamada authorize o escopo correspondente ao serviço que se deseja utilizar
 ==========================  ======================================================================
 
+==========================  ======================================================================
+**Erro**                    "unauthorized", "error_description":"Bad credentials"
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando a credencial do client_id está incorreta na chamada token
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Adicionar no parâmetro Authorization, da chamada Token, o valor CLIENT_ID:CLIENT_SECRET, codificado em Base64, instruções no passo 6, das instruções de autenticação
+==========================  ======================================================================
+
 
 
 
