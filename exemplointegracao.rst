@@ -20,6 +20,14 @@ PHP
 
 `Exemplo para download em PHP`_
 
+Para executar, em um terminal entre na pasta "exemplo-php" descompactada e execute:
+
+.. code-block:: console
+
+    $ docker-compose up
+    
+    Entrar no site através de http://localhost:8080
+
 .. _`jose4j` : https://javalibs.com/artifact/org.bitbucket.b_c/jose4j
 .. _`firebase/php-jwt`: https://github.com/firebase/php-jwt
 .. _`RETROFIT`: https://square.github.io/retrofit/

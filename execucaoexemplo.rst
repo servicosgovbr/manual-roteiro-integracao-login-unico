@@ -2,20 +2,20 @@
 =================================
 .. only:: not hide_mp
 
-JAVA
-++++
+.. _JAVA
+.. _++++
 
-Caso você queira ver o exemplo JAVA funcionando execute com o Docker instalado:
+.. _Caso você queira ver o exemplo JAVA funcionando execute com o Docker instalado:
 
-.. code-block:: console
+.. _ .. code-block:: console
 
-    $ docker run -it \
-      --name meu-login-teste govbr/login-java-exemplo
+.. _    $ docker run -it \
+.. _      --name meu-login-teste govbr/login-java-exemplo
 
-.. warning::
-    Siga os passos que vão aparecer no terminal.
+.. _ .. warning::
+.. _    Siga os passos que vão aparecer no terminal.
 
-   Exemplo com o comando docker em JAVA.
+.. _   Exemplo com o comando docker em JAVA.
 
 
 PHP
