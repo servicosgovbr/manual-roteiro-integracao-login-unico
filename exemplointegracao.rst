@@ -4,15 +4,15 @@
 
 O exemplo é básico da forma de realizar as requisições para Login Único. Cabe ao desenvolvedor realizar a organização e aplicação da segurança necessária na aplicação consumidora.
 
-JAVA
-++++
+.. _JAVA
+.. _++++
 
-`Exemplo para download em JAVA`_
+.. _`Exemplo para download em JAVA`_
 
-**Observações para executar o exemplo JAVA**
---------------------------------------------
+.. _**Observações para executar o exemplo JAVA**
+.. _--------------------------------------------
 
-Link para biblioteca `jose4j`_ |site externo|.
+.. _Link para biblioteca `jose4j`_ |site externo|.
 
 
 PHP
