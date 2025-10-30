@@ -24,13 +24,13 @@ tags.add('hide_mp')
 # -- Project information -----------------------------------------------------
 
 project = u'Roteiro de Integração do Login Único'
-copyright = u'2019, Higo, Última atualização: 25/08/2025'
+copyright = u'2025, gov.br'
 author = u'Higo'
 
 # The short X.Y version
 version = u''
 # The full version, including alpha/beta/rc tags
-release = u'Ultima atualização: 25/08/2025'
+release = u'Ultima atualização: 30/10/2025'
 
 
 # -- General configuration ---------------------------------------------------
@@ -65,7 +65,7 @@ master_doc = 'index'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = u'pt-br'
+language = u'pt'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.

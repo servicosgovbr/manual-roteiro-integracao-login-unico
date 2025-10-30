@@ -39,7 +39,7 @@ Exemplo de requisição:
 
 .. code-block::
 
-	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=h-client.teste.gov.br&scope=openid%2Bemail%2Bprofile%2Bgovbr_confiabilidades%2Bgovbr_confiabilidades_idtoken&redirect_uri=http%3A%2F%2Fappcliente.gov.br%2Fphpcliente%2Floginecidadao.php&nonce=3ed8657fd74c&state=358578ce6728b&code_challenge=J7rD2y0WG26mzgvdEizXMOdDPbB_Z5wpPULzv1KmVEg&code_challenge_method=S256
+	https://sso.staging.acesso.gov.br/authorize?response_type=code&client_id=h-client.teste.gov.br&scope=openid+email+profile+govbr_confiabilidades+govbr_confiabilidades_idtoken&redirect_uri=http%3A%2F%2Fappcliente.gov.br%2Fphpcliente%2Floginecidadao.php&nonce=3ed8657fd74c&state=358578ce6728b&code_challenge=J7rD2y0WG26mzgvdEizXMOdDPbB_Z5wpPULzv1KmVEg&code_challenge_method=S256
 
 
 **Observações para Passo 3:**
@@ -136,44 +136,14 @@ Exemplo de Json:
 - A tela da aplicação cliente que recebe o parâmetro code deve obrigatoriamente realizar um redirect para outra página
 - A aplicação cliente deve ter sessão com mecanismo próprio, evitando múltiplas solicitações de autorização ao provedor de identidade do Acesso gov.br. O mecanismo próprio isolará a sessão da aplicação cliente de regras de negócio e segurança do Acesso gov.br (ou seja, o token do Acesso gov.br não deve ser utilizado), permitirá autonomia e controle próprios.
 - Parâmetro **code_verifier** deverá ter o **tamanho mínimo de 43 caracteres e tamanho máximo de 128 caracteres** e deve obrigatoriamente ser usado evitando que a resposta do "token" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_ 
-- ID tokens não são projetados para autorização e podem conter informações sensíveis do usuário que não devem ser expostas à API.
-- Access tokens são projetados especificamente para autorização e são a forma correta de conceder acesso a recursos protegidos.
-- Nosso padrão atual é 60s de id_token.
+- **Access tokens** são projetados especificamente para **autorização** e são a forma correta de conceder acesso a recursos protegidos.
+- **ID tokens** são projetados para **identificação**, e são utilizados para a obtenção das informações da conta do usuário logado.
+- O tempo de duração do id_token é de 60 segundos.
 
-**Caso seja necessário as informações do usuário devem ser obtidas pelo userinfo:**
-Endpoint  - https://sso.staging.acesso.gov.br/userinfo/
-
-Para solicitação dos dados no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/ e acrescentar o atributo Authorization ao header do HTTP da requisição:
-	
-=================  ======================================================================
-**Variavél**  	   **Descrição**
------------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
-=================  ======================================================================
-
-O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
-
-.. code-block:: JSON
-
-	{
-		"sub": "11111111111",
-		"name": "NAME",
-		"social_name": "SOCIAL NAME",
-		"profile": "https://servicos.staging.acesso.gov.br/",
-		"picture": "https://sso.staging.acesso.gov.br/userinfo/picture",
-		"email": "email@acesso.gov.br",
-		"email_verified": true,
-		"phone_number": "61999999999",
-		"phone_number_verified": true
-	}
-
+ - **ATENÇÃO:** O **id_token**, pode conter **informações** sensíveis do **cidadão**, portanto **nunca** deve ser enviado à **API**, somente o **access_token** deve ser enviado no header das requisições
 
 
 Passo 7
--------
-De posse das informações do json anterior, a aplicação consumidora está habilitada para consultar dados de recursos protegidos, que são as informações e método de acesso do usuário ou serviços externos do Login Único. 
-
-Passo 8
 -------
 Antes de utilizar as informações do JSON anterior, de forma especifica os **ACCESS_TOKEN** e **ID_TOKEN**, para buscar informações referente ao método de acesso e cadastro básico do usuário, há necessidade da aplicação consumidora validar se as informações foram geradas pelos serviços do Login Único. Esta validação ocorrerá por meio da consulta da chave pública disponível no serviço https://sso.staging.acesso.gov.br/jwk. 
 Para isso, deverá acessar, pelo método GET ou POST, o serviço https://sso.staging.acesso.gov.br/jwk
@@ -195,6 +165,10 @@ O serviço retornará, em caso de sucesso, no formato JSON, as informações con
 	}
 
 Deve-se então, validar a chave recebida, comparando-a com a chave recebida no ACCESS_TOKEN e ID_TOKEN
+
+Passo 8
+-------
+De posse das informações do json anterior, a aplicação consumidora está habilitada para consultar dados de recursos protegidos, que são as informações e método de acesso do usuário ou serviços externos do Login Único. 
 
 Passo 9
 -------
@@ -341,6 +315,35 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 4. **app**: Acesso por QR_CODE do aplicativo gov.br (**app_qrcode**)
 5. **mfa**: Acesso sobre segundo fator de autenticação (**otp**). Aparecerá caso a conta do cidadão esteja com segundo fator de autenticação ativado.
 6. **reliability_info**: level: gold, silver ou bronze. reliabilities: [id: número dos selos do usuário logado]. Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
+
+**Caso seja necessário as informações do usuário  também podem ser obtidas utilizando a chamada userinfo:**
+Endpoint  - https://sso.staging.acesso.gov.br/userinfo/
+
+Para solicitação dos dados no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/ e acrescentar o atributo Authorization ao header do HTTP da requisição:
+	
+=================  ======================================================================
+**Variavél**  	   **Descrição**
+-----------------  ----------------------------------------------------------------------
+**Authorization**  palavra **Bearer** e o **ACCESS_TOKEN** da requisição POST do https://sso.staging.acesso.gov.br/token
+=================  ======================================================================
+
+O serviço retornará, em caso de sucesso, no formato JSON, as informações conforme exemplo:
+
+.. code-block:: JSON
+
+	{
+		"sub": "12345678900",
+		"name": "Nome do Cidadão",
+		"social_name": "Nome Social",
+		"profile": "https://servicos.staging.acesso.gov.br/",
+		"picture": "https://sso.staging.acesso.gov.br/userinfo/picture",
+		"email": "email@acesso.gov.br",
+		"email_verified": true,
+		"phone_number": "61999999999",
+		"phone_number_verified": true
+	}
+
+
 	
 Passo 10
 --------
@@ -349,7 +352,7 @@ Para solicitação do conteúdo da foto salva no cadastro do cidadão, deverá a
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**Authorization**  palavra **Bearer** e o **ACCESS_TOKEN** da requisição POST do https://sso.staging.acesso.gov.br/token
 =================  ======================================================================
 
 O serviço retornará, em caso de sucesso a informação em formato Base64
@@ -366,7 +369,7 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilida
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**Authorization**  palavra **Bearer** e o **ACCESS_TOKEN** da requisição POST do https://sso.staging.acesso.gov.br/token
 **cpf**            CPF do cidadão (sem ponto, barra etc).
 =================  ======================================================================
 
@@ -419,7 +422,7 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/confiabilida
 =================  ======================================================================
 **Variavél**  	   **Descrição**
 -----------------  ----------------------------------------------------------------------
-**Authorization**  palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**Authorization**  palavra **Bearer** e o **ACCESS_TOKEN** da requisição POST do https://sso.staging.acesso.gov.br/token
 **cpf**            CPF do cidadão (sem ponto, barra etc).
 =================  ======================================================================
 
@@ -509,34 +512,40 @@ Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)
 
 Os selos existentes no Login Único são:
 
-=======================  ====================================  ==================================
-**Selo id:**  	             **Descrição**                     **Nível da conta**
------------------------  ------------------------------------  ----------------------------------
-**101**                  kba_previdencia                       Bronze
-**201**                  cadastro_basico                       Bronze
-**301**                  servidor_publico                      Prata
-**401**                  biovalid_facial                       Prata
-**501**                  balcao_sat_previdencia                Bronze
-**502**                  balcao_denatran                       Bronze
-**503**                  balcao_correios                       Bronze
-**504**                  balcao_cadastro_presencial_govbr      Bronze
-**601**                  balcao_nai_previdencia                Bronze
-**602**                  bb_internet_banking                   Prata
-**603**                  banrisul_internet_banking             Prata
-**604**                  bradesco_internet_banking             Prata
-**605**                  caixa_internet_banking                Prata
-**606**                  brb_internet_banking                  Prata
-**607**                  sicoob_internet_banking               Prata
-**608**                  santander_internet_banking            Prata
-**609**                  agi_bank_internet_banking             Prata
-**610**                  itau_internet_banking                 Prata
-**624**                  sicred_internet_banking               Prata
-**626**                  nubank_internet_banking               Prata
-**627**                  btg_internet_banking                  Prata
-**701**                  tse_facial                            Ouro
-**801**                  certificado_digital                   Ouro
-**901**                  cin_facial                            Ouro
-=======================  ====================================  ==================================
+============  ============================ ============================  ==========
+**id:**       **Selo**                     **Descrição**                 **Nível**
+------------  ---------------------------- ----------------------------  ----------
+**101**       kba_previdencia              INSS                          Bronze
+**201**       cadastro_basico              Receita Federal               Bronze
+**301**       servidor_publico             Base Servidores Públicos      Prata
+**401**       biovalid_facial              Biometria Facial (Senatran)   Prata
+**501**       balcao_sat_previdencia       Balcão do INSS                Bronze
+**502**       balcao_denatran              Balcão Detran                 Bronze
+**503**       balcao_correios              Balcão dos Correios           Bronze
+**504**       balcao                       Balcão Presencial gov.br      Bronze
+**601**       balcao_nai_previdencia       Internet Banking              Bronze
+**602**       bb_internet_banking          Banco do Brasil               Prata
+**603**       banrisul_internet_banking    Banrisul                      Prata
+**604**       bradesco_internet_banking    Bradesco                      Prata
+**605**       cef_internet_banking         Caixa Econômica Federal       Prata
+**606**       brb_internet_banking         Banco de Brasília             Prata
+**607**       sicoob_internet_banking      Sicoob                        Prata
+**608**       santander_internet_banking   Santander                     Prata
+**609**       agibank_internet_banking     Agibank                       Prata
+**610**       itau_internet_banking        Itaú                          Prata
+**618**       mercantil_internet_banking   Banco Mercantil               Prata
+**624**       sicred_internet_banking      Sicredi                       Prata
+**625**       picpay_internet_banking      PicPay/Original               Prata
+**626**       nubank_internet_banking      Nubank                        Prata
+**627**       btgpactual_internet_banking  BTG Pactual                   Prata
+**628**       inter_internet_banking       Banco Inter                   Prata
+**629**       c6_internet_banking          C6Bank                        Prata
+**630**       bmg_internet_banking         Banco BMG                     Prata
+**701**       tse_facial                   Biometria Facial (TSE)        Ouro
+**702**       biometria_digital            Biometria Digital             Ouro
+**801**       certificado_digital          Certificado digital           Ouro
+**901**       cin_facial                   Carteira de Identidade (CIN)  Ouro
+============  ============================ ============================  ==========
 
 Exemplo de resultado da consulta:
 
@@ -579,7 +588,7 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**Authorization**             palavra **Bearer** e o **ACCESS_TOKEN** da requisição POST do https://sso.staging.acesso.gov.br/token
 **cpf**                       CPF do cidadão (sem ponto, barra etc).
 ============================  ======================================================================
 
@@ -611,7 +620,7 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**Authorization**             palavra **Bearer** e o **ACCESS_TOKEN** da requisição POST do https://sso.staging.acesso.gov.br/token
 **cpf**   					  CPF do cidadão (sem ponto, barra etc).
 **cnpj**					  CNPJ da empresa (sem ponto, barra etc).
 ============================  ======================================================================
@@ -669,7 +678,7 @@ Parâmetros para requisição GET https://sso.staging.acesso.gov.br/api/x509/inf
 ============================  ======================================================================
 **Variavél**  	              **Descrição**
 ----------------------------  ----------------------------------------------------------------------
-**Authorization**             palavra **Bearer** e o *ACCESS_TOKEN* da requisição POST do https://sso.staging.acesso.gov.br/token
+**Authorization**             palavra **Bearer** e o **ACCESS_TOKEN** da requisição POST do https://sso.staging.acesso.gov.br/token
 ============================  ======================================================================
 
 3. O resultado em formato JSON é tipo de certificado da autenticação, conforme o exemplo abaixo:
