@@ -217,7 +217,7 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 2. **x509**: Certificado de token A1 ou A3 (**x509_token**), Certificado de Nuvem NeoId (**x509_neoid**), Certificado de Nuvem SAFEID (**x509_safeid**) , Certificado de Nuvem BIRDID (**x509_birdid**), Certificado de Nuvem SERASA (**x509_serasa**), Certificado de Nuvem VIDASS (**x509_vidaas**), Certificado de Nuvem RemoteID (**x509_remoteid**);
 3. **bank**: Banco do Brasil (**bank001**), Agibank (**bank121**), BancoDeBrasilia (**bank070**), Banrisul (**bank041**), Bradesco (**bank237**), CaixaEconomica (**bank104**), Itau (**bank341**), Mercantil (**bank389**), Santander (**bank033**), Sicoob (**bank756**), Sicredi (**bank748**);
 4. **app**: Acesso por QR_CODE do aplicativo gov.br (**app_qrcode**)
-5. **mfa**: Acesso sobre segundo fator de autenticação (**otp**). Aparecerá caso a conta do cidadão esteja com segundo fator de autenticação ativado, e OTP_OFFLINE significa que o código foi gerado no aplicativo vinculado a conta do cidadão.
+5. **mfa**: Acesso sobre segundo fator de autenticação (**otp**). Aparecerá caso a conta do cidadão esteja com segundo fator de autenticação ativado, e **OTP_OFFLINE** significa que o código foi gerado no aplicativo vinculado a conta do cidadão.
 
 **Parâmetors do JSON do ID_TOKEN**
 
