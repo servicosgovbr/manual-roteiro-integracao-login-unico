@@ -3,7 +3,7 @@
 Roteiro de Integração de Totens
 ===============================
 
-.. toctree::   
+.. toctree::
    :caption: Informações Técnicas
 
    iniciarintegracaototens

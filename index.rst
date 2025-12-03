@@ -5,18 +5,9 @@
 
 Roteiro de Integração do Login Único
 ===================================================================
-
-.. .. toctree::
-..   :caption: Legislação e Conceitos
-
-..   contexto
-..   introducao
-..   escopoatributos
-..   catalogoconfiabilidades
    
 .. toctree::
-   ..:caption: Informações Técnicas
-   :caption: Roteiro Login
+   :caption: Informações Técnicas
 
    solicitacaocredencialprocesso
    solicitarconfiguracao
@@ -28,13 +19,8 @@ Roteiro de Integração do Login Único
    exemplointegracao
    execucaoexemplo
 
-.... toctree::   
-   :caption: Roteiro Totens
-
-   integracaototens
-
 .. toctree::   
-   :caption: Roteiro Procuração Eletrônica
+   :caption: Serviço de Procuração Eletrônica
 
    procuracaoeletronica.rst
 
