@@ -1,5 +1,5 @@
-﻿Alteração de Credencial do Login Único
-=======================================
+﻿Alteração de URLs, dúvidas e outras solicitações
+================================================
 
 .. Solicitação de Configuração
 .. +++++++++++++++++++++++++++
@@ -23,27 +23,20 @@
 Alteração de Configuração
 +++++++++++++++++++++++++
 
-Para modificar as configurações das credenciais, siga as orientações abaixo: 
+Para solicitar a alteração de URLs, esclarecer dúvidas ou realizar outras solicitações relacionadas às integrações, siga as orientações abaixo:
 
 **Integrações em andamento**
 
-1. Acesse o `Portal do Serviço de Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique no botão **"Acompanhamento"**.
+1. Acesse o `Portal do Serviço de Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique no botão **'Acompanhamento'**.
 
-2. Na aba "Enviar dados/dúvidas" do seu protocolo de solicitação, forneça as seguintes informações:
+2. Na aba 'Enviar dados/dúvidas' do seu protocolo de solicitação, descreva a sua solicitação de forma clara e objetiva.
 
-=============================  ======================================================================
-**Client_id / Ambiente**       client_id que deseja alterar / Ambiente (produção ou homologação)
------------------------------  ----------------------------------------------------------------------
-**URL de Retorno**             URL Retorno deseja alterar
-**URL de Página Inicial**      URL da Página Inicial (Home Page), deseja alterar
-**URL de Logout**              URL de Logout deseja alterar
-=============================  ======================================================================
 
 **Integrações concluídas**
 
-1. Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique no botão **"Iniciar"**.
+1. Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique no botão **'Iniciar'**.
 
-2. Na aba "Dados da Solicitação" do seu protocolo, selecione o tipo de solicitação **"Atualização de URLs"** e preencha as informações necessárias.
+2. Na aba 'Dados da Solicitação' do seu protocolo, selecione a opção desejada e siga as orientações fornecidas pelo sistema.
 
 .. **O endereço de envio encontra-se no** `Plano de Integração`_.
 
