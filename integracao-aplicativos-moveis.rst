@@ -1,6 +1,8 @@
 Integração do Login gov.br com Aplicativos Móveis (Android e iOS)
 ===============================================================
 
+ ``ATENÇÃO``  **Roteido em desenvolvimento, não é válido como documentação para integração**
+
 Esta seção descreve as boas práticas, requisitos técnicos e o fluxo recomendado
 para a integração do **Login gov.br**, baseado em **OpenID Connect (OIDC)**,
 com **aplicativos móveis Android e iOS**.
