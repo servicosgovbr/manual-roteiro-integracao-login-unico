@@ -517,7 +517,7 @@ Os selos existentes no Login Único são:
 ------------  ---------------------------- ----------------------------  ----------
 **101**       kba_previdencia              INSS                          Bronze
 **201**       cadastro_basico              Receita Federal               Bronze
-**301**       servidor_publico             Base Servidores Públicos      Prata
+**301** *     servidor_publico             Base Servidores Públicos      Prata
 **401**       biovalid_facial              Biometria Facial (Senatran)   Prata
 **501**       balcao_sat_previdencia       Balcão do INSS                Bronze
 **502**       balcao_denatran              Balcão Detran                 Bronze
@@ -546,6 +546,7 @@ Os selos existentes no Login Único são:
 **801**       certificado_digital          Certificado digital           Ouro
 **901**       cin_facial                   Carteira de Identidade (CIN)  Ouro
 ============  ============================ ============================  ==========
+* Aquisição de selo descontinuada.
 
 Exemplo de resultado da consulta:
 
