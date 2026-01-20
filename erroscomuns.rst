@@ -65,6 +65,13 @@
 **Solução**                 Adicionar no parâmetro Authorization, da chamada Token, o valor CLIENT_ID:CLIENT_SECRET, codificado em Base64, instruções no passo 6, das instruções de autenticação
 ==========================  ======================================================================
 
+==========================  ======================================================================
+**Erro**                    Em aplicativos móvies, após o login com gov.br, não ocorre o redirecionamento correto para o aplicativo
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Este erro ocorre quando se está utilizando webview para realizar a autenticação no gov.br
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 É necessário alterar a forma de login, não utilizando webview, mas sim o navegador nativo do dispositivo
+==========================  ======================================================================
 
 
 
