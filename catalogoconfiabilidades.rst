@@ -34,7 +34,7 @@ Confiabilidades
 1. Nível Bronze
 
 - **Selo Cadastro Básico com Validação de Dados Pessoais**: Validação do cadastro do cidadão por meio da base de Cadastro de Pessoas Físicas (Ministério da Economia / Receita Federal). `Orientações para aquisição do Selo Cadastro Básico com Validação de Dados Pessoais`_.
-- **Selo Cadastro Básico com Validação de Dados Previdênciarios**: Validação do cadastro do cidadão por meio da base de Casdatro Nacional de Informações Sociais (CNIS / INSS). `Orientações para aquisição do Selo Cadastro Básico com Validação de Dados Previdênciarios`_.
+- **Selo Cadastro Básico com Validação de Dados Previdenciários**: Validação do cadastro do cidadão por meio da base de Cadastro Nacional de Informações Sociais (CNIS / INSS). `Orientações para aquisição do Selo Cadastro Básico com Validação de Dados Previdênciarios`_.
 - **Selo Balcão Presencial (INSS)**: Validação do cadastro do cidadão por meio do Balcão presencial localizado nas agências do INSS. `Orientações para aquisição do Selo Balcão Presencial (INSS)`_.  
 
 2. Nível Prata
