@@ -22,7 +22,7 @@
 --------------------------  ----------------------------------------------------------------------
 **Descrição**               Este erro ocorre quando o `client_secret`_ está incorreto.
 --------------------------  ----------------------------------------------------------------------
-**Solução**                 Verificar e corrigir o `client_secret`_.
+**Solução**                 Verificar e corrigir o `client_secret`_, no sistema eSUS, costuma ocorrer quando existe espaço em branco ou quebra de linha após o secret no arquivo application.properties.
 ==========================  ======================================================================
 
 ==========================  ======================================================================
