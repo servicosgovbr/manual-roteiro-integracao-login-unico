@@ -66,13 +66,20 @@
 ==========================  ======================================================================
 
 ==========================  ======================================================================
-**Erro**                    Em aplicativos móvies, após o login com gov.br, não ocorre o redirecionamento correto para o aplicativo
+**Erro**                    Em aplicativos móveis, após o login com gov.br, não ocorre o redirecionamento correto para o aplicativo
 --------------------------  ----------------------------------------------------------------------
 **Descrição**               Este erro ocorre quando se está utilizando webview para realizar a autenticação no gov.br
 --------------------------  ----------------------------------------------------------------------
 **Solução**                 É necessário alterar a forma de login, não utilizando webview, mas sim o navegador nativo do dispositivo
 ==========================  ======================================================================
 
+==========================  ======================================================================
+**Erro**                    ACCESSTOKEN_MUSTBEVALID"
+--------------------------  ----------------------------------------------------------------------
+**Descrição**               Formato do token JWT encontrado no cabeçalho HTTP Authorization inválido.
+--------------------------  ----------------------------------------------------------------------
+**Solução**                 Corrigir o access_token enviado na chamada, pois o mesmo está incorreto.
+==========================  ======================================================================
 
 
 .. **Troubleshoot:**
