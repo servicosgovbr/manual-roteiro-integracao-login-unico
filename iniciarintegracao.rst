@@ -763,7 +763,7 @@ As informações sobre a disponibilização de novos serviços nos portais já i
 - As informações devem ser enviadas **mensalmente até o dia 05 de cada mês**, contendo os dados referentes às integrações realizadas no mês anterior.
 - Após o primeiro envio, os envios subsequentes devem incluir **apenas as informações incrementais**, ou seja, **novos serviços**.
 
- Em caso de dúvidas sobre este procedimento, utilize o canal de comunicação oficial: integracaoid@economia.gov.br.
+ Em caso de dúvidas sobre este procedimento, utilize o canal de comunicação oficial: integracaoid@gestao.gov.br.
 
 
 Integrações disponibilizadas para diversos outros órgãos ou entidades públicas
@@ -778,4 +778,4 @@ De acordo com o artigo 13 da Portarla SGD/MGI nº 7.076, de 2 de outubro de 2024
 - As informações devem ser enviadas **mensalmente até o dia 05 de cada mês**, contendo os dados referentes às integrações realizadas no mês anterior.
 - Após o primeiro envio, os envios subsequentes devem incluir **apenas as informações incrementais**, ou seja, **novas integrações ou novas adesões**.
 
- Em caso de dúvidas sobre este procedimento, utilize o canal de comunicação oficial: integracaoid@economia.gov.br.
+ Em caso de dúvidas sobre este procedimento, utilize o canal de comunicação oficial: integracaoid@gestao.gov.br.

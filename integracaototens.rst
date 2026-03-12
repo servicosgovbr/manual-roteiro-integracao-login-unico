@@ -110,7 +110,7 @@ Contato
 
 Para realizar a integração com o orquestrador de digitais é necessário entrar em contato através do e-mail:
 
-``integracaoid@economia.gov.br``
+``integracaoid@gestao.gov.br``
 
 Cadastro do Orquestrador na aplicação integrada
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -144,4 +144,4 @@ Dúvidas?
 
 Entre em contato conosco através do e-mail:
 
-``integracaoid@economia.gov.br``
+``integracaoid@gestao.gov.br``
