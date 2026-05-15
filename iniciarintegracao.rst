@@ -468,7 +468,17 @@ Exemplo 2 de **execução** no front end em javascript
 
 .. code-block:: javascript
 
-	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';	
+	window.location.href='https://sso.staging.acesso.gov.br/logout?post_logout_redirect_uri=https://www.minha-aplicacao.gov.br/retorno.html';
+
+Orientações para homologação do serviço integrado
++++++++++++++++++++++++++++++++++++++++++++++++++
+
+A homologação será realizada através da demonstração por vídeo anexado ao processo, do fluxo abaixo:
+- o procedimento de login, com o botão de redirecionamento para autenticação com o texto “Entrar com o GOV.BR”;
+- o redirecionamento para o serviço, e
+- e o procedimento de logout.
+Importante salientar que a barra de endereços do navegador deve estar visível durante todo o processo.
+
 
 Sequência Visual Passos Autenticação
 ++++++++++++++++++++++++++++++++++++
