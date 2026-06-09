@@ -8,13 +8,25 @@ API de Procuração - Roteiro Técnico
 Introdução
 ----------
 
-A **API de Procuração do Acesso gov.br** permite que sistemas clientes integrem seus serviços
+A **API de Procuração do Acesso gov.br** permites que sistemas clientes integrem seus serviços
 com as funcionalidades de procuração digital do governo.  
 Com essa API é possível:
 
 - Registrar o histórico de acessos realizados por aplicações que utilizam procurações.
 - Consultar procurações já cadastradas, recuperando informações sobre outorgantes
   (quem delega poderes) e outorgados (quem recebe os poderes).
+
+
+##################################
+
+Pré requisitos:
+Para utilizar a procuração o sistema deve estar integrado com o Login Único.
+É necessário também que o serviço esteja cadastrado no Portal gov.br e que no serviço esteja marcado com oserviço habilitado para procuração.
+(LINK EDITOR DE SERVIÇOS PORTAL GOV.BR staging e produção).
+(Incluir também outras informações sobre editor de serviços)
+(Verificar com Guilherme)
+Atenção: A procuração eletronica no momento só está disponível para os serviços públicos federais devidamente cadastrados no portal gov.br.
+
 
 Objetivo
 --------
@@ -37,14 +49,23 @@ Authorization: Bearer <access_token>
 Além disso, cada serviço da API exige um **escopo específico** no token, que valida
 se o sistema realmente tem permissão de uso.
 
+########################################
+Para a ativação dos escopos o serviço integrado deve solicitar a habilitação pelo serviço de pós integração (LINK), escolhendo a opção outros, informando o client_id do login unico, e no pedido solictar a habilitação dos escopos para uso da procuração eletrônica.
+
+
+
+
 Serviços Disponíveis
 --------------------
 
-A API expõe **dois serviços principais**:
+A API possui **dois serviços principais**:
 
 1. **Histórico de acessos de Sistema Cliente**  
    Permite registrar as ações executadas por um sistema quando utiliza
    determinada procuração.
+
+############################################
+   Atenção: O registro de uso de procuraçao é obrigatóro!
 
 2. **Recuperação de procurações do cliente**  
    Permite consultar quais procurações estão disponíveis para um usuário
@@ -234,6 +255,12 @@ Explicação dos campos principais:
 - **validAfter / validBefore** → período de validade da procuração.  
 - **services** → lista de serviços que podem ser utilizados com esta procuração.  
 - **status** → situação atual (``ACTIVE``, ``EXPIRED``, ``REVOKED``, etc.).
+
+###############################
+verificar com o serpro a lista completa dos status
+(``ACTIVE``, ``EXPIRED``, ``REVOKED``, etc.).
+
+
 
 Considerações Finais
 --------------------
