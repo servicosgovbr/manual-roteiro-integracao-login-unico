@@ -8,7 +8,11 @@ API de Procuração - Roteiro Técnico
 Introdução
 ----------
 
-A **API de Procuração do Acesso gov.br** permites que sistemas clientes integrem seus serviços
+A Procuração eletrônica gov.br permite que uma pessoa use sua conta gov.br para representar outra pessoa em serviços públicos digitais. Com ela, o procurador pode acessar e realizar serviços em nome do outorgante nos sistemas que aceitam a Procuração eletrônica gov.br.
+
+**Importante:** A Procuração eletrônica vale somente para serviços digitais integrados ao sistema gov.br. Ela não é válida em documento impresso.
+
+A **API de Procuração do Acesso gov.br** permite que sistemas clientes integrem seus serviços
 com as funcionalidades de procuração digital do governo.  
 Com essa API é possível:
 
@@ -19,13 +23,28 @@ Com essa API é possível:
 
 ##################################
 
-Pré requisitos:
-Para utilizar a procuração o sistema deve estar integrado com o Login Único.
-É necessário também que o serviço esteja cadastrado no Portal gov.br e que no serviço esteja marcado com oserviço habilitado para procuração.
-(LINK EDITOR DE SERVIÇOS PORTAL GOV.BR staging e produção).
-(Incluir também outras informações sobre editor de serviços)
-(Verificar com Guilherme)
-Atenção: A procuração eletronica no momento só está disponível para os serviços públicos federais devidamente cadastrados no portal gov.br.
+Pré requisitos
+--------------
+
+- Para utilizar a procuração o sistema obrigatóriamente deve estar integrado com o Login Único.
+
+- É necessário também que o serviço esteja cadastrado no Portal gov.br e que no serviço esteja marcado como serviço habilitado para procuração.
+ - **Mais instruções sobre Portal de Serviços gov.br:**
+
+  - `Guia de Edição de Serviços do Portal Gov.br`_
+
+  - `Guia de Edição de Serviços no Portal de Serviços ORIENTAÇÕES`_
+
+  - `Solicitar atendimento para edição de serviços do portal GOV.BR`_
+
+.. _`Guia de Edição de Serviços do Portal Gov.br`: https://www.gov.br/pt-br/guia-de-edicao-de-servicos-do-gov.br
+
+.. _`Guia de Edição de Serviços no Portal de Serviços ORIENTAÇÕES`: https://www.gov.br/economia/pt-br/assuntos/planejamento/cidadania-digital/arquivos/guia-de-edicao-de-servicos-no-portal_pcd.pdf
+
+.. _`Solicitar atendimento para edição de serviços do portal GOV.BR`: https://www.gov.br/pt-br/servicos/solicitar-atendimento-para-edicao-de-servicos-do-portal-gov-br
+
+
+**Atenção:** A procuração eletronica no momento só está disponível para os serviços públicos federais devidamente cadastrados no portal gov.br.
 
 
 Objetivo
@@ -49,8 +68,9 @@ Authorization: Bearer <access_token>
 Além disso, cada serviço da API exige um **escopo específico** no token, que valida
 se o sistema realmente tem permissão de uso.
 
-########################################
-Para a ativação dos escopos o serviço integrado deve solicitar a habilitação pelo serviço de pós integração (LINK), escolhendo a opção outros, informando o client_id do login unico, e no pedido solictar a habilitação dos escopos para uso da procuração eletrônica.
+Para a **ativação dos escopos** o serviço integrado deve solicitar a habilitação pelo `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_, escolhendo a opção outros, informando o client_id do login unico, e no pedido solictar a habilitação dos escopos para uso da procuração eletrônica.
+
+.. _`Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-pos-integracao-aos-produtos-do-ecossistema-da-identidade-digital-gov.br
 
 
 
@@ -64,8 +84,7 @@ A API possui **dois serviços principais**:
    Permite registrar as ações executadas por um sistema quando utiliza
    determinada procuração.
 
-############################################
-   Atenção: O registro de uso de procuraçao é obrigatóro!
+   **Atenção:** O registro de uso de procuraçao é obrigatóro!
 
 2. **Recuperação de procurações do cliente**  
    Permite consultar quais procurações estão disponíveis para um usuário
