@@ -273,13 +273,7 @@ Explicação dos campos principais:
 - **agentAccount** → dados do procurador.  
 - **validAfter / validBefore** → período de validade da procuração.  
 - **services** → lista de serviços que podem ser utilizados com esta procuração.  
-- **status** → situação atual (``ACTIVE``, ``EXPIRED``, ``REVOKED``, etc.).
-
-###############################
-verificar com o serpro a lista completa dos status
-(``ACTIVE``, ``EXPIRED``, ``REVOKED``, etc.).
-
-
+- **status** → situação atual ( ``ACTIVE, CANCELED, CANCELED_BY_ACCOUNT_LOCK, CANCELED_BY_ACCOUNT_REMOVAL, CANCELED_BY_ACCOUNT_REREGISTER, EXPIRED,  RENOUNCED, REVOKED``).
 
 Considerações Finais
 --------------------
