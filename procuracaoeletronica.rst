@@ -26,7 +26,7 @@ Com essa API é possível:
 Pré requisitos
 --------------
 
-- Para utilizar a procuração o sistema obrigatóriamente deve estar integrado com o Login Único.
+- Para utilizar a procuração o sistema obrigatoriamente deve estar integrado com o Login Único.
 
 - É necessário também que o serviço esteja cadastrado no Portal gov.br e que no serviço esteja marcado como serviço habilitado para procuração.
  - **Mais instruções sobre Portal de Serviços gov.br:**
@@ -44,7 +44,7 @@ Pré requisitos
 .. _`Solicitar atendimento para edição de serviços do portal GOV.BR`: https://www.gov.br/pt-br/servicos/solicitar-atendimento-para-edicao-de-servicos-do-portal-gov-br
 
 
-**Atenção:** A procuração eletronica no momento só está disponível para os serviços públicos federais devidamente cadastrados no portal gov.br.
+**Atenção:** A procuração eletrônica no momento só está disponível para os serviços públicos federais devidamente cadastrados no portal gov.br.
 
 
 Objetivo
@@ -71,7 +71,7 @@ se o sistema realmente tem permissão de uso.
 Liberação da Procuração gov.br em ambiente de homologação.
 --------------------------------------------
 
-Para a **liberação do uso da Procuração gov.br** o serviço integrado deve solicitar a habilitação pelo `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_, escolhendo a opção outros, informando o client_id do login unico do ambiente de homologação.
+Para a **liberação do uso da Procuração gov.br** o serviço integrado deve solicitar a habilitação pelo `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_, escolhendo a opção outros, informando o client_id do login único do ambiente de homologação.
 
 No pedido informar o seguinte: 
 '**Solicito habilitação para uso da Procuração gov.br, no [inserir client_id de homologação do Login Único gov.br].**'
@@ -85,8 +85,8 @@ Para a **liberação do uso da Procuração gov.br** o serviço integrado deve s
 
 É necessário também anexar vídeos demonstrando o correto funcionamento da integração no ambiente de homologação.
 
-Vídeo 1: Deve demonstrar a emissão de uma procuração de um CPF para outro, demosntrando também a seleção do serviço em questão.
-Deve mostrar também a procuração já autorizada na lista de procurações do procurador.
+Vídeo 1: Deve demonstrar a emissão de uma procuração de um CPF para outro, demonstrando também a seleção do serviço em questão.
+Deve mostrar também a procuração ativa na lista de procurações do procurador.
 
 Vídeo 2: Deve demonstrar o procurador acessando o serviço em questão, selecionando o CPF que irá representar no serviço, para a procuração que foi dada para ele.
 
@@ -109,7 +109,7 @@ A API possui **dois serviços principais**:
    Permite registrar as ações executadas por um sistema quando utiliza
    determinada procuração.
 
-   **Atenção:** O registro de uso de procuraçao é obrigatóro!
+   **Atenção:** O registro de uso de procuração é obrigatório!
 
 2. **Recuperação de procurações do cliente**  
    Permite consultar quais procurações estão disponíveis para um usuário
