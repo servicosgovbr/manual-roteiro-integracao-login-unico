@@ -247,7 +247,7 @@ Explicação:
 
 - **agent: true** → indica que o usuário está autenticado como procurador.  
 - **grantor_account** → CPF do outorgante (quem deu a procuração).  
-- **sub** → CPF do usuário autenticado (outorgado).  
+- **sub** → CPF do usuário autenticado (procurador).  
 - **aud** → clientId da aplicação cliente.  
 
 **Segurança**
