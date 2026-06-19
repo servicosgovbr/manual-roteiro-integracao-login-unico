@@ -8,29 +8,30 @@ API de Procuração - Roteiro Técnico
 Introdução
 ----------
 
-A utilização da Procuração Eletrônica gov.br é uma funcionalidade disponibilizada para serviços públicos federais que já estejam integrados ao login gov.br, com o objetivo de permitir que um procurador represente um cidadão especificamente no serviço em que a funcionalidade foi implementada.
-Com ela, o procurador pode acessar e realizar serviços em nome do outorgante nos sistemas que aceitam a Procuração eletrônica gov.br.
+A **Procuração** Eletrônica é uma funcionalidade disponibilizada para serviços públicos federais integrados ao Login Único gov.br. Seu objetivo é permitir que um procurador represente legalmente um cidadão (outorgante) especificamente no serviço digital em que a funcionalidade foi implementada.
 
-**Importante:** A Procuração eletrônica vale somente para serviços digitais integrados ao sistema gov.br. Ela não é válida em documento impresso, e não há possibilidade de reutilização ou incorporação de procurações emitidas por outros meios.
+Com essa ferramenta, o procurador pode acessar sistemas e realizar serviços em nome do cidadão de forma 100% digital.
 
-A **API de Procuração do Acesso gov.br** permite que sistemas clientes integrem seus serviços
-com as funcionalidades de procuração digital do governo.  
-Com essa API é possível:
+ ⚠️ **Importante**: A Procuração Eletrônica é válida apenas para serviços digitais integrados ao Login Único gov.br. Ela não possui validade em formato impresso e não substitui, nem permite a incorporação de, procurações emitidas por outros meios.
 
-- Registrar o histórico de acessos realizados por aplicações que utilizam procurações.
-- Consultar procurações já cadastradas, recuperando informações sobre outorgantes
-  (quem delega poderes) e outorgados (quem recebe os poderes).
+**O que é possível fazer com a API de Procuração?**
 
+A API permite que sistemas clientes integrem seus serviços às funcionalidades de procuração digital do governo, viabilizando:
 
-##################################
+ - **Consulta de procurações**: Localizar procurações já cadastradas e recuperar dados dos outorgantes (quem delega poderes) e outorgados (quem recebe).
 
-Pré requisitos
---------------
+ - **Registro de histórico**: Rastrear e auditar os acessos realizados pelas aplicações que utilizam as procurações.
 
-- Para utilizar a procuração o sistema **obrigatoriamente deve estar integrado com o Login Único.**
+Pré requisitos e Orientações
+----------------------------
 
-- É necessário também que o serviço esteja cadastrado no Portal gov.br e que no serviço esteja marcado como serviço habilitado para procuração.
- - **Mais instruções sobre Portal de Serviços gov.br:**
+Para utilizar a Procuração Eletrônica, o sistema deve obrigatoriamente cumprir os seguintes critérios:
+
+ | 1. Estar integrado ao Login Único gov.br.
+
+ | 2. Estar devidamente cadastrado no Portal de Serviços gov.br, com a opção de atendimento via Procuração Eletrônica ativada.
+
+**Links Úteis e Manuais:**
 
   - `Guia de Edição de Serviços do Portal Gov.br`_
 
@@ -45,7 +46,7 @@ Pré requisitos
 .. _`Solicitar atendimento para edição de serviços do portal GOV.BR`: https://www.gov.br/pt-br/servicos/solicitar-atendimento-para-edicao-de-servicos-do-portal-gov-br
 
 
-**Atenção:** No momento, a Procuração gov.br somente pode ser utilizada por serviços públicos federais devidamente cadastrados e atualizados no Portal gov.br, com a indicação de que o serviço pode ser realizado por meio da Procuração Eletrônica gov.br.
+🛑 **Atenção:** Atualmente, o recurso está restrito a serviços públicos federais devidamente atualizados no Portal de Serviços.
 
 
 Objetivo
@@ -69,67 +70,69 @@ Authorization: Bearer <access_token>
 Além disso, cada serviço da API exige um **escopo específico** no token, que valida
 se o sistema realmente tem permissão de uso.
 
-Liberação da Procuração gov.br em ambiente de homologação.
---------------------------------------------
+Processo de Liberação (Passo a Passo)
+-------------------------------------
 
-**ETAPA 1:** Solicitação de Habilitação do Escopo (Homologação)
+A liberação do uso da API ocorre em duas fases: Homologação e Produção.
 
- 1. Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_, e clique em **Iniciar**.
+**ETAPA 1: Solicitação de Habilitação do Escopo**
+
+ | 1. Acesse o Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR e clique em Iniciar. 
  
- 2. Na aba **Dados da Solicitação**, localize o campo Qual é o tipo de solicitação? e selecione a opção **Outras Solicitações**.
- 
- 3. Na seção **Informações da Solicitação**, localize o campo Descreva sua Solicitação e insira o seguinte texto: **'Solicito a inclusão do escopo [escopo] para habilitação da funcionalidade Procuração Eletrônica gov.br no ambiente de homologação do Login Único para o Client [client id]'**.
+ | 2. Na aba *Dados da Solicitação*, localize o campo *Qual é o tipo de solicitação?* e selecione **Outras Solicitações**.
 
- 4. Clique em **Enviar Solicitação**.
+ | 3. Na seção *Informações da Solicitação*, vá em *Descreva sua Solicitação* e insira o texto padrão abaixo:
 
-**ETAPA 2**: Homologação da Funcionalidade
+  'Solicito a inclusão do escopo [inserir_escopo] para habilitação da funcionalidade Procuração Eletrônica gov.br no ambiente de homologação do Login Único para o Client Id [inserir_client_id (homologação)].'
 
- 1. Envie um e-mail com o vídeo demonstrativo para **integracaid@gestao.gov.br**, com cópia para **apoio-sustentacao-id@gestao.gov.br**. **Assunto**: Vídeo de Homologação - Procuração Eletrônica.
+ | 4. Clique em **Enviar Solicitação**.
 
- 2. Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique em **Acompanhamento**.
+**ETAPA 2: Homologação da Funcionalidade**
 
- 3. Na aba **Dados da Solicitação**, selecione **Não** na pergunta A solicitação foi atendida?
+ | 1. Envie um e-mail com os vídeos demonstrativos (roteiro abaixo) para apoio-sustentacao-id@gestao.gov.br , com cópia para apoio-integracaid@gestao.gov.br.
 
- 4. No campo **Detalhar o que não foi atendido**, escreva: 'Vídeo de homologação enviado em [data].'
+  - **Assunto do e-mail**: *Vídeos de Homologação - Procuração Eletrônica*.
 
- 5. Clique em **Mandar para Análise**.
+ | 2. Retorne ao **Portal do Serviço de Pós-Integração**, clique em **Acompanhamento** e localize o seu chamado.
 
-Liberação da Procuração gov.br em ambiente de produção.
----------------------------------------------
+ | 3. Na aba *Dados da Solicitação*, marque **Não** para a pergunta *'A solicitação foi atendida?'*.
 
-Para a **liberação do uso da Procuração gov.br** o serviço integrado deve solicitar a habilitação pelo `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_, no mesmo protocolo aberto para homologação, e no campo **Considerações** informar o seguinte:
+ | 4. No campo *Detalhar o que não foi atendido*, informe o envio dos vídeos:
 
-'**Solicito habilitação para uso da Procuração gov.br, no [inserir client_id de produção do Login Único gov.br].**'
+  'Vídeos de homologação enviados por e-mail em [DD/MM/AAAA]. Client Id Produção: [inserir_client_id (produção)]'.
 
-É necessário também anexar vídeos demonstrando o correto funcionamento da integração no ambiente de homologação, conforme roteiro abaixo:
+ | 5. Clique em **Mandar para Análise**.
 
-Vídeo 1: Deve demonstrar a emissão de uma procuração de um CPF para outro, demonstrando a seleção do serviço em questão.
-Deve mostrar também a procuração ativa na lista de procurações do procurador.
+**Roteiro Obrigatório de Vídeos Demonstrativos**
 
-Vídeo 2: Deve demonstrar o procurador acessando o serviço em questão, selecionando o CPF que irá representar no serviço, para a procuração que foi dada para ele.
+É obrigatório anexar os vídeos que comprovem o funcionamento da integração no ambiente de homologação. Siga o roteiro:
 
-Vídeo 3: Deve ser mostrado o CPF que concedeu a procuração ao PROCURADOR, visualizando o histórico de serviços que foram acessados com a procuração em seu nome.
+ - **Vídeo 1: Emissão de Procuração**
 
+  Deve demonstrar o fluxo de emissão de uma procuração entre CPFs, incluindo a seleção do serviço correspondente. Ao final, deve exibir a procuração ativa na lista de procurações do procurador.
 
+ - **Vídeo 2: Acesso do Procurador**
 
+  Deve demonstrar o procurador acessando o serviço, selecionando o CPF do representado e utilizando a procuração concedida.
+
+ - **Vídeo 3: Histórico de Acessos**
+
+  Deve demonstrar o CPF do outorgante (quem concedeu a procuração) visualizando o histórico de serviços que foram acessados em seu nome por meio da procuração.
 
 .. _`Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-pos-integracao-aos-produtos-do-ecossistema-da-identidade-digital-gov.br
-
-
-
 
 Serviços Disponíveis
 --------------------
 
 A API possui **dois serviços principais**:
 
-1. **Histórico de acessos de Sistema Cliente**  
+ 1. **Histórico de acessos de Sistema Cliente**  
    Permite registrar as ações executadas por um sistema quando utiliza
    determinada procuração.
 
    **Atenção:** O registro de uso de procuração é obrigatório!
 
-2. **Recuperação de procurações do cliente**  
+ 2. **Recuperação de procurações do cliente**  
    Permite consultar quais procurações estão disponíveis para um usuário
    autenticado como procurador/outorgado.
 
