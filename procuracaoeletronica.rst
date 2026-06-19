@@ -151,18 +151,18 @@ usa uma procuração, garantindo que seja possível saber:
 
 Para usar este serviço, é necessário que o *access token* contenha o escopo:
 
-poav1_retrievePowersOfAttorneyByAgentAccountIdAndGrantorAccountIdAndClientIdAndIsActive_agent
+``poav2_createPoaAccessHistory_agent``
 
 
 **Requisição**
 
 - **Método**: POST  
 - **Endpoint**:
-  ``https://api.staging.acesso.gov.br/procuracoes/v1/procuracoes/:powerOfAttorneyId/historico-acessos``
+  ``https://api.staging.acesso.gov.br/procuracoes/v2/procuracoes/:poaId/historico-acessos``
 
 **Parâmetros**
 
-- ``powerOfAttorneyId`` (*Path Param*): identificador da procuração.
+- ``poaId`` (*Path Param*): identificador da procuração.
 
 **Corpo da Requisição \\ Body (JSON)**
 
@@ -180,7 +180,7 @@ Explicação dos campos:
 
 - **clientId** → identificador único do sistema cliente.  
 - **serviceId** → código numérico do serviço utilizado.  
-- **instanteEvento** → data e hora em que o evento ocorreu.
+- **serviceEventCreatedAtUtc** → data e hora em que o evento ocorreu em UTC.
 
 **Resposta de Sucesso**
 
@@ -227,10 +227,8 @@ Onde ``id`` é o identificador do histórico gerado.
 Recuperação de Procurações do Cliente
 -------------------------------------
 
-Este serviço permite **consultar todas as procurações** nas quais um usuário é
-outorgado (procurador).  
-Ou seja: retorna a lista de poderes que esse usuário pode exercer em nome de
-outra pessoa (outorgante).
+Este serviço permite **consultar todas as procurações** nas quais um usuário é outorgado (procurador).  
+Ou seja: retorna a lista de poderes que esse usuário pode exercer em nome de outra pessoa (outorgante).
 
 **Exemplo de token que habilita este serviço:**
 
@@ -238,11 +236,11 @@ outra pessoa (outorgante).
 
    {
      "aud": "exemplo.staging.acesso.gov.br",
-     "sub": "05297085667",
+     "sub": "88888888888",
      "agent": true,
      "grantor_account": "99999999999",
      "scope": ["openid", "profile", "email"],
-     "iss": "https://sso2.staging.acesso.gov.br/"
+     "iss": "https://sso.staging.acesso.gov.br/"
    }
 
 Explicação:
@@ -256,70 +254,80 @@ Explicação:
 
 Para usar este serviço, o *access token* precisa conter o escopo:
 
-poav1_createPoaAccessHistory_agent
+poav2_retrievePoasByAgentAccountIdAndGrantorAccountIdAndClientIdAndIsActive_agent
 
 
 **Requisição**
 
 - **Método**: GET  
 - **Endpoint**:
-  ``https://api.staging.acesso.gov.br/procuracoes/v1/procuracoes``
+  ``https://api.staging.acesso.gov.br/procuracoes/v2/procuracoes``
 
 **Parâmetros de consulta (query params):**
 
 - ``filtrar-por-outorgante`` → CPF do outorgante.  
-- ``filtrar-por-outorgado`` → CPF do procurador/outorgado.  
+- ``filtrar-por-procurador`` → CPF do procurador.  
 - ``filtrar-por-clientid`` → clientId da aplicação cliente (deve coincidir com o claim ``aud``).  
 - ``filtrar-por-situacao`` → situação da procuração (ex.: ``ativo``).
 
 **Exemplo de requisição**
 
-GET http://localhost:8197/procuracoes/v1/procuracoes?filtrar-por-clientid=exemplo.local.acesso.gov.br&filtrar-por-outorgado=11111111111&filtrar-por-outorgante=99999999999&filtrar-por-situacao=ativo
+GET http://api.staging.acesso.gov.br/procuracoes/v2/procuracoes?filtrar-por-clientid=exemplo.staging.acesso.gov.br&filtrar-por-procurador=11111111111&filtrar-por-outorgante=99999999999&filtrar-por-situacao=ativo
 
 
 **Resposta de Sucesso**
 
 .. code-block:: json
 
-   {
-     "powerOfAttorneyCollection": [
-       {
-         "id": 1,
-         "grantorAccount": {
-           "id": "11111111111",
-           "name": "Fulano de Tal"
-         },
-         "agentAccount": {
-           "id": "99999999999",
-           "name": "Usuário de Teste"
-         },
-         "validAfter": "2023-10-02",
-         "validBefore": "2024-04-26",
-         "grantorAddress": "Rua A, 1403, AP 1, Belém, PA, CEP 66060160",
-         "agentAddress": "Rua B, 12, Belém, PA, CEP 66060160",
-         "services": [
-           {
-             "clientId": "exemplo.local.acesso.gov.br",
-             "serviceId": 11395,
-             "serviceName": "Obter imagens de sensoriamento remoto"
-           }
-         ],
-         "createdAt": "2023-10-02T12:09:51.447",
-         "status": "ACTIVE",
-         "beforeTerm": false,
-         "expired": false,
-         "revoked": false
-       }
-     ]
-   }
+  {
+    "poas": [
+      {
+        "id": 8743,
+        "grantorAccount": {
+          "id": "c1b2d3e4-5f6a-7b8c-9d0e-1f2a3b4c5d6e",
+          "name": "Ana Luiza Pereira",
+          "address": "Rua das Flores, 245, São Paulo - SP, 01023-040, Brasil"
+        },
+        "agentAccount": {
+          "id": "f7e8d9c0-1b2a-3c4d-5e6f-7a8b9c0d1e2f",
+          "name": "Carlos Eduardo Silva",
+          "address": "Avenida das Américas, 1089, Rio de Janeiro - RJ, 20031-170, Brasil"
+        },
+        "createdAtUtc": "2024-05-02T13:27:45.000",
+        "expiresAtUtc": "2028-05-02T13:27:45.000",
+        "revokedAtUtc": null,
+        "renouncedAtUtc": null,
+        "canceledAtUtc": null,
+        "statusDetails": {},
+        "status": "ACTIVE",
+        "statusAtUtc": "2025-02-10T09:15:30.000",
+        "statusAt": "2025-02-10T06:15:30.000",
+        "createdAt": "2025-02-10T06:15:30.000",
+        "expiresAt": "2030-02-10T06:15:30.000",
+        "services": [
+          {
+            "clientId": "9a8b7c6d-5e4f-3a2b-1c0d-9e8f7a6b5c4d",
+            "serviceId": 3124,
+            "serviceName": "Digital Signature Service"
+          },
+          {
+            "clientId": "3d2c1b0a-9e8f-7a6b-5c4d-3e2f1a0b9c8d",
+            "serviceId": 5879,
+            "serviceName": "Document Storage Service"
+          }
+        ]
+      }
+    ]
+  }
 
 Explicação dos campos principais:
 
 - **grantorAccount** → dados do outorgante.  
 - **agentAccount** → dados do procurador.  
-- **validAfter / validBefore** → período de validade da procuração.  
+- **createdAtUtc / expiresAtUtc** → período de validade da procuração, uma vez que os outros campos **revokedAtUtc**, **renouncedAtUtc** e **canceledAtUtc** estão nulos.  
 - **services** → lista de serviços que podem ser utilizados com esta procuração.  
-- **status** → situação atual ( ``ACTIVE, CANCELED, CANCELED_BY_ACCOUNT_LOCK, CANCELED_BY_ACCOUNT_REMOVAL, CANCELED_BY_ACCOUNT_REREGISTER, EXPIRED,  RENOUNCED, REVOKED``).
+- **status** → situação atual ( ``ACTIVE, CANCELED, CANCELED_BY_ACCOUNT_LOCK, CANCELED_BY_ACCOUNT_REMOVAL, CANCELED_BY_ACCOUNT_REREGISTER, EXPIRED, RENOUNCED, REVOKED``).
+
 
 Considerações Finais
 --------------------
