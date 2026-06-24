@@ -134,6 +134,15 @@ A API possui **dois serviços principais**:
  2. **Recuperação de procurações do cliente**  
    Permite consultar quais procurações estão disponíveis para um usuário autenticado como procurador (outorgado).
 
+   O **Swagger** com os detalhes das APIs dos serviços da Procuração Eletrônica gov.br estão nos seguintes endereços:
+
+   **Homologação:**
+   https://api.staging.acesso.gov.br/procuracoes/v2/docs/index.html
+
+   **Produção:**
+   https://api.acesso.gov.br/procuracoes/v2/docs/index.html
+
+   **Atenção!** Utilize sempre a última versão das APIs disponível.
 
 Histórico de Acessos de Sistema Cliente
 ---------------------------------------
