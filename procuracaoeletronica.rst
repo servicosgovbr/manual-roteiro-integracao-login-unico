@@ -253,7 +253,7 @@ Explicação:
 
 Para usar este serviço, o *access token* precisa conter o escopo:
 
-poav2_retrievePoasByAgentAccountIdAndGrantorAccountIdAndClientIdAndIsActive_agent
+``poav2_retrievePoasByAgentAccountIdAndGrantorAccountIdAndClientIdAndIsActive_agent``
 
 
 **Requisição**
