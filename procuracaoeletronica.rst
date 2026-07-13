@@ -22,6 +22,8 @@ A API permite que sistemas clientes integrados ao Login Único gov.br, usem às 
 
  - **Registro de histórico**: Rastrear e auditar os acessos realizados pelas aplicações que utilizam as procurações.
 
+.. _pre_requisitos_e_orientacoes: 
+
 Pré-requisitos e Orientações
 ----------------------------
 
@@ -119,6 +121,15 @@ A liberação do uso da API ocorre em duas fases: Homologação e Produção.
   Deve demonstrar o CPF do outorgante (quem concedeu a procuração) visualizando o histórico dos serviços acessados em seu nome por meio da procuração.
 
 .. _`Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-pos-integracao-aos-produtos-do-ecossistema-da-identidade-digital-gov.br
+
+**ETAPA 3: Habilitação da Funcionalidade em Produção**
+
+  Após a homologação com sucesso, será habilitada a funcionalidade da Procuração Eletrônica gov.br no ambiente de produção para o client_id informado.
+
+  **Atenção!** Para o correto funcionamento da procuração, o serviço deve atender aos `Pré Requisitos`_.  
+
+  .. _`Pré Requisitos`: #pre-requisitos-e-orientacoes
+
 
 Serviços Disponíveis
 --------------------
