@@ -78,7 +78,7 @@ A liberação do uso da API ocorre em duas fases: Homologação e Produção.
 
 **ETAPA 1: Solicitação de Habilitação do Escopo**
 
- | 1. Acesse o Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR e clique em **Iniciar**. 
+ | 1. Acesse o `Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`_ e clique em **Iniciar**. 
  
  | 2. Na aba *Dados da Solicitação*, localize o campo *Qual é o tipo de solicitação?* e selecione **Outras Solicitações**.
 
