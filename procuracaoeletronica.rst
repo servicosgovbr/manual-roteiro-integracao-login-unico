@@ -84,7 +84,7 @@ A liberação do uso da API ocorre em duas fases: Homologação e Produção.
 
  | 3. Na seção *Informações da Solicitação*, vá em *Descreva sua Solicitação* e insira o texto padrão abaixo:
 
-  'Solicito a inclusão do escopo [inserir_escopo] para habilitação da funcionalidade Procuração Eletrônica gov.br no ambiente de homologação do Login Único gov.br para o Client Id [inserir_client_id (homologação)].'
+  'Solicito a habilitação da funcionalidade Procuração Eletrônica gov.br no ambiente de homologação do Login Único gov.br para o Client Id [inserir_client_id (homologação)].'
 
  | 4. Clique em **Enviar Solicitação**.
 
