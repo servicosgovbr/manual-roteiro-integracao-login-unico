@@ -1,5 +1,5 @@
 API de Procuração - Roteiro Técnico
-==================================
+===================================
 
 .. contents::
    :local:
@@ -110,15 +110,43 @@ A liberação do uso da API ocorre em duas fases: Homologação e Produção.
 
  - **Vídeo 1: Emissão de Procuração**
 
-  Deve demonstrar o fluxo de emissão de uma procuração entre CPFs, incluindo a seleção do serviço correspondente. Ao final, deve exibir a procuração ativa na lista de procurações do procurador.
+  - Deve demonstrar o fluxo de emissão de uma procuração entre CPFs, incluindo a seleção do serviço correspondente. Ao final, deve exibir a procuração ativa na lista de procurações do procurador.
+  - Este procedimento deve ser realizado na área logada de homologação :
+    https://servicos.staging.acesso.gov.br/
+
+  .. figure:: _images/procuracao_area_logada.png
+   :align: center
+   :alt:
+
+---------------------------
+
+  .. figure:: _images/procuracao_area_logada_2.png
+   :align: center
+   :alt:
+---------------------------
+
+  .. figure:: _images/procuracao_selecao_servico.png
+   :align: center
+   :alt:
+
+---------------------------
 
  - **Vídeo 2: Acesso do Procurador**
 
-  Deve demonstrar o procurador acessando o serviço, selecionando o CPF do representado e utilizando a procuração concedida.
+  - Deve demonstrar o procurador acessando o serviço, selecionando o CPF do representado e utilizando a procuração concedida.
+
+  - Este procedimento deve ser realizado no serviço cliente que está realizando a integração com a Procuração gov.br.
 
  - **Vídeo 3: Histórico de Acessos**
 
-  Deve demonstrar o CPF do outorgante (quem concedeu a procuração) visualizando o histórico dos serviços acessados em seu nome por meio da procuração.
+  - Deve demonstrar o CPF do outorgante (quem concedeu a procuração) visualizando o histórico dos serviços acessados em seu nome por meio da procuração.
+
+  - Este procedimento deve ser realizado na área logada de homologação :
+    https://servicos.staging.acesso.gov.br/
+
+  .. figure:: _images/procuracao_historico.png
+   :align: center
+   :alt:
 
 .. _`Portal do Serviço de Pós-Integração aos Produtos do Ecossistema da Identidade Digital GOV.BR`: https://www.gov.br/governodigital/pt-br/estrategias-e-governanca-digital/transformacao-digital/servico-de-pos-integracao-aos-produtos-do-ecossistema-da-identidade-digital-gov.br
 
