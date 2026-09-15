@@ -651,7 +651,7 @@ Parâmetros para requisição GET https://api.staging.acesso.gov.br/empresas/v2/
 
 Detalhamento da **atuacao**
 
-Se o CPF possui papel na empresa na Receita Federal, o conteúdo será **SOCIO**, **CONTADOR**, **REPRESENTANTE_LEGAL**, **COLABORADOR** e **NAO_ATUANTE**.
+Se o CPF possui papel na empresa na Receita Federal, o conteúdo será **SOCIO**, **CONTADOR**, **REPRESENTANTE_LEGAL** ou **COLABORADOR**.
 
 Se o CPF possui certificado digital de pessoa jurídica, porém não possui um papel na empresa na base da Receita Federal, o resultado será **NAO_ATUANTE**. 
 
