@@ -317,9 +317,9 @@ A utilização das informações do **ACCESS_TOKEN** e **ID_TOKEN** ocorrerá ao
 6. **reliability_info**: level: gold, silver ou bronze. reliabilities: [id: número dos selos do usuário logado]. Verificar quais selos de confiabilidade estão disponíveis, acesse `Resultado Esperado do Acesso ao Serviço de Confiabilidade Cadastral (Selos)`_  	
 
 **Caso seja necessário as informações do usuário  também podem ser obtidas utilizando a chamada userinfo:**
-Endpoint  - https://sso.staging.acesso.gov.br/userinfo/
+Endpoint  - https://sso.staging.acesso.gov.br/userinfo
 
-Para solicitação dos dados no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo/ e acrescentar o atributo Authorization ao header do HTTP da requisição:
+Para solicitação dos dados no cadastro do cidadão, deverá acessar, pelo método GET, o serviço https://sso.staging.acesso.gov.br/userinfo e acrescentar o atributo Authorization ao header do HTTP da requisição:
 	
 =================  ======================================================================
 **Variavél**  	   **Descrição**
