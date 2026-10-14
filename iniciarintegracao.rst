@@ -57,7 +57,9 @@ Serviço solicita email e phone: se a conta possuir apenas o telefone cadastrado
 Serviço solicita apenas phone: se a conta do cidadão possuir um telefone cadastrado, a autenticação poderá prosseguir normalmente, mesmo que não exista um endereço de e-mail cadastrado, pois esse atributo não foi solicitado pelo serviço integrado.
 
 Portanto, a exigência de informar ou complementar os dados depende dos atributos solicitados pelo serviço integrado no parâmetro scope. O Login gov.br verifica a disponibilidade dos dados na conta e solicita o preenchimento e a validação daqueles que forem exigidos e estiverem ausentes.
+
 - Parâmetro **STATE** deve obrigatoriamente ser usado e deve ser validado no cliente (validado que foi previamente emitido pelo cliente)
+
 - Parâmetros **code_challenge e code_challenge_method** devem obrigatoriamente ser usado evitando que a resposta do "authorize" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_
 - O site `Ajuda para geração do code_challenge`_ orientará para geração do conteúdo do code_challenge. 
 
