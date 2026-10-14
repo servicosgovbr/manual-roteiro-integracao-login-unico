@@ -44,6 +44,19 @@ Exemplo de requisição:
 
 **Observações para Passo 3:**
 
+- No parâmetro **SCOPE**, a aplicação integrada pode solicitar o atributo email, o atributo phone ou ambos. A escolha dos atributos a serem solicitados é uma decisão de negócio do serviço integrado, de acordo com suas necessidades.
+
+Quando o serviço integrado solicita, por meio do parâmetro scope, um ou mais desses atributos, o Login gov.br verifica se os dados correspondentes estão disponíveis na conta do cidadão. Caso algum dos dados solicitados não esteja cadastrado, o cidadão deverá informá-lo e realizar a respectiva validação para prosseguir com a autenticação.
+
+Exemplos de funcionamento:
+
+Serviço solicita apenas email: se a conta do cidadão possuir somente um telefone cadastrado, será necessário informar e validar um endereço de e-mail para prosseguir com a autenticação.
+
+Serviço solicita email e phone: se a conta possuir apenas o telefone cadastrado, o cidadão deverá informar e validar um endereço de e-mail para prosseguir com a autenticação. O telefone já cadastrado atenderá à solicitação desse atributo, desde que esteja válido e disponível para o fluxo de autenticação.
+
+Serviço solicita apenas phone: se a conta do cidadão possuir um telefone cadastrado, a autenticação poderá prosseguir normalmente, mesmo que não exista um endereço de e-mail cadastrado, pois esse atributo não foi solicitado pelo serviço integrado.
+
+Portanto, a exigência de informar ou complementar os dados depende dos atributos solicitados pelo serviço integrado no parâmetro scope. O Login gov.br verifica a disponibilidade dos dados na conta e solicita o preenchimento e a validação daqueles que forem exigidos e estiverem ausentes.
 - Parâmetro **STATE** deve obrigatoriamente ser usado e deve ser validado no cliente (validado que foi previamente emitido pelo cliente)
 - Parâmetros **code_challenge e code_challenge_method** devem obrigatoriamente ser usado evitando que a resposta do "authorize" possa ser utilizada por um terceiro agente. Detalhes na `RFC PKCE`_
 - O site `Ajuda para geração do code_challenge`_ orientará para geração do conteúdo do code_challenge. 
