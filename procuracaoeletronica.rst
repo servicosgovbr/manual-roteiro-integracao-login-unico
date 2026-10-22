@@ -217,7 +217,7 @@ Para usar este serviço, é necessário que o *access token* contenha o escopo:
      "poaAccessHistory": {
        "clientId": "exemplo.local.acesso.gov.br",
        "serviceId": 10,
-       "instanteEvento": "2023-10-05T10:11:47.000"
+       "serviceEventCreatedAtUtc": "2023-10-05T10:11:47.000"
      }
    }
 
